@@ -1,0 +1,21 @@
+id,name,type,icon,description,display_order,status,is_featured
+1,Restaurant,business_type,🍽️,Business that serves food,1,active,False
+2,Condo,property_type,🏢,Condominium,5,active,False
+3,Cottage,property_type,🏡,Cottage,6,active,False
+4,Guide,article_type,📘,Guide article,19,active,False
+5,Hot Tub,amenity,🛁,Hot Tub,10,active,False
+6,News,article_type,📰,News article,20,active,False
+7,North Topsail Beach,location,🌊,North Topsail Beach,18,active,False
+8,Ocean View,amenity,🌊,Ocean views,11,active,False
+9,Pet Friendly,amenity,🐶,Pets allowed,9,active,False
+10,Shop,business_type,🛍️,Retail shop,2,active,False
+11,Service,business_type,🛠️,Service provider,3,active,False
+12,House,property_type,🏠,Standalone house,4,active,False
+13,Surf City,location,📍,Surf City,16,active,False
+14,Pool,amenity,🏊,Swimming pool,7,active,False
+15,Topsail Beach,location,🏖️,Topsail Beach,17,active,False
+16,Guest,user_type,🧳,User is a guest,15,active,False
+17,Manager,user_type,🧑‍💼,User is a manager,14,active,False
+18,Agent,user_type,💼,User is an agent,13,active,False
+19,Owner,user_type,👤,User is an owner,12,active,False
+20,WiFi,amenity,📶,Wireless internet,8,active,False

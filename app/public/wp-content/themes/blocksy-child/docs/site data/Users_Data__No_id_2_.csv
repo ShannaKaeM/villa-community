@@ -1,0 +1,11 @@
+name,email,user_type_id,location_id,email_verified_at,password,remember_token,phone,bio,profile_image
+Admin User,admin@northcoastdemo.com,12,16,,$2y$12$M8MN1pInaPfRyDz250elyON5u8hJw1H6JWmse2y4MYPb8whm8NmwS,,,This is a user bio 1,
+Demo User 1,user1@northcoastdemo.com,13,17,,$2y$12$lRhUx5XwiQ5JAz3G4zcetuXudULENJ/Q7kLAFN5TdpL1DEbXnkDsa,,,This is a user bio 2,
+Demo User 2,user2@northcoastdemo.com,14,18,,$2y$12$9a7ovhbjlq/7Q6.2xl3DROJ0MCR2hkKgih19jzz7vqUtVLD9QGFyu,,,This is a user bio 3,
+Demo User 3,user3@northcoastdemo.com,15,16,,$2y$12$qYmk/VvGKRaG4eCzvdRu/OaVitCKUkmrpWjMVakNWDO9GE8BBrFd6,,,This is a user bio 4,
+Demo User 4,user4@northcoastdemo.com,12,17,,$2y$12$fabdwDw9V41JzIPTUK9ZyOtak0qsUp8xs4WWEL65lUzeVt8YrDB4i,,,This is a user bio 5,
+Demo User 5,user5@northcoastdemo.com,13,18,,$2y$12$jmpMtJ7YzL0nB8GsxlnlYOnf4VKorrunDV1GdDWBn4N/eWJ8EkBEe,,,This is a user bio 6,
+Demo User 6,user6@northcoastdemo.com,14,16,,$2y$12$ExwL3OnG.nwXtWy2qg9SKuoy5eqTGiW0LyePYgV33OZMrrVSW4R2q,,,This is a user bio 6,
+Demo User 7,user7@northcoastdemo.com,15,17,,$2y$12$yczCDUFhqeZbcR27e8yCXeGIhb6kPpKpr6TFU4iG2lH/IwYpjJk8W,,,This is a user bio 7,
+Demo User 8,user8@northcoastdemo.com,12,18,,$2y$12$dU5Sizt1UKLq5kLbHBax6OUl6oIO9lVC1wF/V7d7gfWUC0CPYVCsq,,,This is a user bio 8,
+Demo User 9,user9@northcoastdemo.com,13,16,,$2y$12$vufCDmPdL76bLS71FWtYm.IYu8C0JIOUk8TLz8oOlT0XABlVMLM2.,,,This is a user bio ,
