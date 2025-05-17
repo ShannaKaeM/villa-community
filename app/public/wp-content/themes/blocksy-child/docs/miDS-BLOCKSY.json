@@ -4,7 +4,9 @@
   "color2": "#5D8A8C", 
   "color3": "#C4A587", 
   "color4": "#EFF3F5", 
-  "color5": "#6B7280", 
+  "color5": "#6B7280",
+  "color6": "#FFFFFF",
+  "color7": "#000000",
 
   "__semantic_color_mapping": "Semantic color mapping",
   "colorPrimary": "var(--color1)",
@@ -12,8 +14,8 @@
   "colorAccent": "var(--color3)",
   "colorLight": "var(--color4)",
   "colorText": "var(--color5)",
-  "colorWhite": "#FFFFFF",
-  "colorBlack": "#000000",
+  "colorWhite": "var(--color6)",
+  "colorBlack": "var(--color7)",
 
   "__background_tokens": "Background tokens",
   "backgroundColor": "var(--colorWhite)",

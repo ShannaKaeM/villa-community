@@ -2,45 +2,25 @@
 /**
  * WindPress Integration for Tailwind CSS v4
  * 
- * This file handles the integration of WindPress with the theme.json file
- * to expose design tokens as CSS variables and Tailwind utility classes.
+ * This file handles the integration of WindPress with CSS variables
+ * defined directly in style.css using the @theme directive.
  */
 
-// Enqueue WindPress CSS
-function mi_enqueue_windpress() {
-    // Check if theme.json exists
-    $theme_json_path = get_stylesheet_directory() . '/theme.json';
-    if (!file_exists($theme_json_path)) {
-        add_action('admin_notices', function() {
-            echo '<div class="error"><p>theme.json not found. WindPress integration requires a valid theme.json file.</p></div>';
-        });
-        return;
-    }
-    
-    // Enqueue the main WindPress CSS file - no dependency on child theme style
-    wp_enqueue_style(
-        'mi-windpress',
-        get_stylesheet_directory_uri() . '/css/windpress.css',
-        array(), // No dependencies - standalone CSS
-        wp_get_theme()->get('Version')
-    );
-    
-    // Add inline CSS with CSS variables from theme.json
-    $theme_json = json_decode(file_get_contents($theme_json_path), true);
-    if (!empty($theme_json)) {
-        $css_variables = mi_generate_css_variables_from_theme_json($theme_json);
-        wp_add_inline_style('mi-windpress', $css_variables);
-    }
+// We're using direct CSS variables in style.css with @theme directive
+// No theme.json check needed
+function mi_check_theme_json() {
+    // Using direct CSS approach with @theme directive instead of theme.json
+    return false;
 }
-add_action('wp_enqueue_scripts', 'mi_enqueue_windpress');
-add_action('admin_enqueue_scripts', 'mi_enqueue_windpress');
+// No actions needed - WindPress will use CSS variables defined in style.css
 
 /**
  * Generate CSS variables from theme.json
+ * 
+ * This function can be used if you need to manually generate CSS variables
+ * from theme.json, but WindPress should handle this automatically.
  */
 function mi_generate_css_variables_from_theme_json($theme_json) {
-    // We'll still generate these as a fallback, but WindPress should handle this
-    // through the @theme directive in windpress.css
     $css = ":root {\n";
     
     foreach ($theme_json as $key => $value) {
@@ -57,55 +37,6 @@ function mi_generate_css_variables_from_theme_json($theme_json) {
     return $css;
 }
 
-/**
- * Create directory for WindPress CSS if it doesn't exist
- */
-function mi_create_windpress_directory() {
-    $css_dir = get_stylesheet_directory() . '/css';
-    if (!file_exists($css_dir)) {
-        wp_mkdir_p($css_dir);
-    }
-}
-add_action('after_setup_theme', 'mi_create_windpress_directory');
 
-/**
- * Create the WindPress CSS file if it doesn't exist
- */
-function mi_create_windpress_css_file() {
-    $css_file = get_stylesheet_directory() . '/css/windpress.css';
-    if (!file_exists($css_file)) {
-        $css_content = '/* WindPress CSS for Blocksy Child Theme */
-@import "tailwindcss";
 
-/* Use theme.json as the source of design tokens */
-@theme "../theme.json";
 
-/* Override default Tailwind colors with our theme colors */
-@theme {
-  /* Remove default colors */
-  --color-*: initial;
-  
-  /* Map our theme.json colors to Tailwind color variables */
-  --color-primary: var(--colorPrimary);
-  --color-secondary: var(--colorBase);
-  --color-accent: var(--colorAccent);
-  --color-light: var(--colorLight);
-  --color-dark: var(--colorText);
-  --color-white: var(--colorWhite);
-  --color-black: var(--colorBlack);
-  
-  /* Background colors */
-  --color-background: var(--backgroundColor);
-  --color-background-surface: var(--backgroundSurface);
-  --color-background-card: var(--backgroundCard);
-  
-  /* Button colors */
-  --color-button: var(--buttonBackground);
-  --color-button-text: var(--buttonText);
-  --color-button-hover: var(--buttonBackgroundHover);
-}';
-        
-        file_put_contents($css_file, $css_content);
-    }
-}
-add_action('after_setup_theme', 'mi_create_windpress_css_file');

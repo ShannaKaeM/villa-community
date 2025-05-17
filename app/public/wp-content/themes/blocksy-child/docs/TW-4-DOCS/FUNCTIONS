@@ -1,0 +1,63 @@
+Tailwind CSS Functions and Directives: Simple Guide
+Tailwind CSS has special words that help you make your website look nice. These are called "functions" and "directives." Let's learn about them!
+
+What are Directives?
+Directives are special commands that start with @ (like @theme or @apply). They tell Tailwind to do something special with your CSS.
+
+Important Directives to Know
+@theme
+This is like a treasure box for your colors, sizes, and fonts!
+
+css
+CopyInsert
+@theme {
+  --color-blue: #0000ff;
+  --font-big: 24px;
+  --space-small: 8px;
+}
+When you use @theme, Tailwind will automatically make classes like:
+
+bg-color-blue (for blue backgrounds)
+text-font-big (for big text)
+p-space-small (for small padding)
+@import
+This helps you bring in other CSS files:
+
+css
+CopyInsert
+@import "tailwindcss";
+@apply
+This lets you use Tailwind classes inside your own CSS:
+
+css
+CopyInsert
+.my-button {
+  @apply rounded-lg bg-blue-500 text-white p-4;
+}
+@utility
+This helps you make your own utility classes:
+
+css
+CopyInsert
+@utility tab-4 {
+  tab-size: 4;
+}
+@variant
+This lets you change styles for different states:
+
+css
+CopyInsert
+.my-element {
+  background: white;
+  @variant dark {
+    background: black;
+  }
+}
+How This Helps Your Project
+With these special words, you can:
+
+Keep all your colors and sizes in one place
+Make your own classes that work like Tailwind's
+Change how things look when you hover or click
+Use the same style in many places without copying code
+This makes your website easier to build and change later!

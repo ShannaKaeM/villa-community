@@ -1,0 +1,119 @@
+# How Tailwind Detects Classes in Your Files: Simple Guide
+
+## What Is Class Detection?
+
+Tailwind CSS is smart! It looks through all your files to find which utility classes you're actually using. Then it only creates CSS for those classes, keeping your website fast and small.
+
+Think of it like this: Tailwind is like a chef who only cooks the dishes people order, instead of cooking everything on the menu.
+
+## How It Works
+
+1. Tailwind scans your files as simple text (not as code)
+2. It finds anything that looks like it might be a Tailwind class
+3. It generates CSS only for the classes it found
+4. It throws away any text that isn't a real Tailwind class
+
+## Important Rules for Class Names
+
+### Don't Build Class Names in Pieces
+
+❌ **Wrong way:**
+```html
+<div class="text-{{ error ? 'red' : 'green' }}-500"></div>
+```
+
+✅ **Right way:**
+```html
+<div class="{{ error ? 'text-red-500' : 'text-green-500' }}"></div>
+```
+
+### With JavaScript Components
+
+❌ **Wrong way:**
+```jsx
+function Button({ color }) {
+  return <button className={`bg-${color}-500`}>Click me</button>;
+}
+```
+
+✅ **Right way:**
+```jsx
+function Button({ color }) {
+  const colorClasses = {
+    blue: "bg-blue-500",
+    red: "bg-red-500",
+    green: "bg-green-500"
+  };
+  return <button className={colorClasses[color]}>Click me</button>;
+}
+```
+
+## Which Files Get Scanned?
+
+Tailwind automatically scans all files in your project EXCEPT:
+
+- Files listed in your `.gitignore`
+- Images, videos, and other non-text files
+- CSS files
+- Package manager files (like package-lock.json)
+
+## Telling Tailwind Where to Look
+
+### Adding Extra Folders to Scan
+
+If you need Tailwind to look in places it normally doesn't (like node_modules), use the `@source` directive:
+
+```css
+@import "tailwindcss";
+@source "../node_modules/my-component-library";
+```
+
+This is super helpful when you're using libraries that have Tailwind classes.
+
+### Ignoring Folders
+
+If you have folders you don't want Tailwind to scan (to save time), you can tell it to skip them:
+
+```css
+@import "tailwindcss";
+@source not "../old-code-we-dont-use";
+```
+
+### Setting a Different Base Path
+
+If your project has a special setup, you can tell Tailwind where to start looking:
+
+```css
+@import "tailwindcss" source("../src");
+```
+
+### Manual Mode
+
+If you want complete control, you can turn off automatic scanning and list exactly which folders to check:
+
+```css
+@import "tailwindcss" source(none);
+@source "../components";
+@source "../pages";
+```
+
+## Forcing Classes to Be Included
+
+Sometimes you need a class that isn't in your HTML yet. You can force Tailwind to include it:
+
+```css
+@import "tailwindcss";
+@source inline("underline", "text-center", "hidden");
+```
+
+This makes sure those classes are always available, even if they're not found in your files.
+
+## Why This Matters for WordPress
+
+In WordPress themes:
+
+1. Tailwind will scan your PHP, Twig, and JS files for classes
+2. If you're using plugins or libraries with Tailwind classes, you may need to add them with `@source`
+3. For dynamic classes in PHP, always use complete class names
+
+This helps keep your CSS small and your WordPress site fast!

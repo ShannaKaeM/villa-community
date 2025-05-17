@@ -1,0 +1,111 @@
+# Tailwind CSS Dark Mode: Simple Guide
+
+## What Is Dark Mode?
+
+Dark mode is a color scheme that uses light text on a dark background. It's easier on the eyes at night and saves battery on some devices. Many websites now offer both light and dark versions of their design.
+
+## How Tailwind Handles Dark Mode
+
+Tailwind makes it super easy to create a dark version of your website using the `dark:` prefix. This special prefix lets you apply styles only when dark mode is active.
+
+## Basic Example
+
+Here's how to create a card that changes colors in dark mode:
+
+```html
+<div class="bg-white dark:bg-gray-800 text-black dark:text-white p-6 rounded-lg">
+  <h2 class="text-xl">This is a card</h2>
+  <p class="text-gray-600 dark:text-gray-300">
+    This text is darker in light mode and lighter in dark mode!
+  </p>
+</div>
+```
+
+## How Dark Mode Works
+
+By default, Tailwind's dark mode uses your computer's settings. If you have dark mode turned on in your operating system, websites using Tailwind will automatically show in dark mode.
+
+This works because Tailwind uses the `prefers-color-scheme: dark` media query behind the scenes.
+
+## Manual Dark Mode Toggle
+
+Sometimes you want users to choose between light and dark mode themselves. Here's how to set that up:
+
+### Step 1: Override the dark variant
+
+First, tell Tailwind to use a class instead of the system preference:
+
+```css
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+```
+
+### Step 2: Add the dark class when needed
+
+Now you can add the `dark` class to your HTML to activate dark mode:
+
+```html
+<html class="dark">
+  <body>
+    <!-- Everything inside will use dark mode styles -->
+  </body>
+</html>
+```
+
+### Step 3: Add JavaScript to toggle dark mode
+
+Here's a simple script to toggle dark mode and save the preference:
+
+```javascript
+// Check for saved theme preference or use system preference
+const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const savedTheme = localStorage.getItem('theme');
+
+// Apply dark mode if saved as dark or if system prefers dark (and no saved preference)
+if (savedTheme === 'dark' || (!savedTheme && userPrefersDark)) {
+  document.documentElement.classList.add('dark');
+} else {
+  document.documentElement.classList.remove('dark');
+}
+
+// Function to toggle theme
+function toggleDarkMode() {
+  if (document.documentElement.classList.contains('dark')) {
+    document.documentElement.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  } else {
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+// Add this to a button: onclick="toggleDarkMode()"
+```
+
+## Using a Data Attribute Instead
+
+If you prefer using data attributes instead of classes, you can do that too:
+
+```css
+@import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+```
+
+Then use it like this:
+
+```html
+<html data-theme="dark">
+  <!-- Dark mode activated -->
+</html>
+```
+
+## Dark Mode with WordPress
+
+In WordPress themes:
+
+1. You can add dark mode support to your theme.json
+2. Use the `dark:` prefix in your block templates and CSS
+3. Add a simple toggle button in your header
+4. Store the user's preference in localStorage
+
+This gives your WordPress users a personalized experience with both light and dark themes!

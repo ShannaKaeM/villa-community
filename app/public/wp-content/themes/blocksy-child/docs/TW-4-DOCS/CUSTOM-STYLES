@@ -1,0 +1,142 @@
+# Adding Custom Styles in Tailwind CSS: Simple Guide
+
+## Ways to Add Custom Styles
+
+There are four main ways to add your own styles in Tailwind CSS:
+
+1. **Customize your theme** - Change colors, fonts, and sizes
+2. **Use arbitrary values** - Create one-off styles with square brackets
+3. **Write custom CSS** - Add your own CSS classes
+4. **Create custom utilities** - Make your own utility classes
+
+Let's look at each one!
+
+## 1. Customizing Your Theme
+
+The easiest way to add your own styles is to customize your theme with the `@theme` directive:
+
+```css
+@theme {
+  --color-pizza: #ff6b6b;
+  --font-comic: "Comic Sans MS", cursive;
+  --spacing-huge: 8rem;
+}
+```
+
+Now you can use classes like `bg-pizza`, `font-comic`, and `p-huge` in your HTML!
+
+## 2. Using Arbitrary Values
+
+Sometimes you need a specific value that's not in your theme. Use square brackets to create one-off styles:
+
+```html
+<div class="top-[117px] text-[22px] bg-[#bada55]">
+  This has custom positioning, text size, and color!
+</div>
+```
+
+You can even use CSS variables with a special shorthand:
+
+```html
+<div class="bg-(--my-special-color)">
+  This uses a CSS variable for background color!
+</div>
+```
+
+This is great for:
+- One-time specific measurements
+- Special colors not in your theme
+- Unique values you don't want to add to your theme
+
+## 3. Writing Custom CSS
+
+You can always write regular CSS when needed:
+
+```css
+@import "tailwindcss";
+
+.my-special-card {
+  border: 2px dashed purple;
+  padding: 20px;
+  background: linear-gradient(to right, pink, lavender);
+}
+```
+
+### Adding Base Styles
+
+For styling HTML elements like headings:
+
+```css
+@layer base {
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: bold;
+  }
+  h2 {
+    font-size: var(--text-xl);
+  }
+}
+```
+
+### Adding Component Classes
+
+For reusable components like cards or buttons:
+
+```css
+@layer components {
+  .card {
+    background-color: var(--color-white);
+    border-radius: var(--rounded-lg);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-xl);
+  }
+}
+```
+
+Now you can use `<div class="card">` and even override parts with utility classes like `<div class="card rounded-none">`.
+
+## 4. Creating Custom Utilities
+
+For your own utility classes that work like Tailwind's built-in ones:
+
+```css
+@utility content-auto {
+  content-visibility: auto;
+}
+
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+```
+
+Now you can use these anywhere, even with variants:
+- `content-auto`
+- `hover:content-auto`
+- `lg:scrollbar-hidden`
+
+## Using Variants with Custom CSS
+
+You can use Tailwind's variants in your custom CSS too:
+
+```css
+.my-button {
+  background: white;
+  @variant dark {
+    background: black;
+  }
+  @variant hover {
+    transform: scale(1.05);
+  }
+}
+```
+
+## Which Method Should You Use?
+
+- **Theme customization**: For colors, fonts, and sizes you'll use throughout your site
+- **Arbitrary values**: For one-off specific values
+- **Component classes**: For complex reusable elements
+- **Custom utilities**: For simple CSS properties Tailwind doesn't include
+
+Remember: The Tailwind way is to use utility classes as much as possible, and only create custom components when you're repeating the same combinations of utilities many times!
