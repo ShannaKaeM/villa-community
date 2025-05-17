@@ -1,0 +1,42 @@
+<div class="bg-colorLight rounded-radiusLg shadow-shadowMd mx-auto px-spacingMd sm:px-spacingLg lg:px-spacingXxl py-spacingLg sm:py-spacingXl lg:py-spacingXxl">
+    <div class="grid grid-cols-1 lg:grid-cols-12 lg:gap-x-spacingLg gap-y-spacingLg lg:gap-y-0">
+        <div class="lg:col-span-6 flex flex-col gap-6 md:gap-8 justify-center items-center lg:items-start text-center lg:text-left">
+            <span class="block text-4xl sm:text-5xl lg:text-6xl font-fontWeightBold text-headingsColor leading-lineHeightTight">
+                {{ mock.hero.title_line1 }}<br>
+                {{ mock.hero.title_line2 }}<br>
+                {{ mock.hero.title_line3 }}
+            </span>
+            
+            <span class="block text-fontSizeLg text-textColor max-w-md mx-auto lg:mx-0">
+                {{ mock.hero.subtitle }}
+            </span>
+            
+            <div class="bg-backgroundSurface py-2 px-4 rounded-radiusFull flex items-center gap-x-3 self-center lg:self-start">
+                <div class="flex -space-x-2">
+                    {% for avatar in mock.hero.contact.avatars %}
+                        <img class="w-9 h-9 rounded-radiusFull border-2 border-borderLight" src="{{ avatar.src }}" alt="{{ avatar.alt }}">
+                    {% endfor %}
+                </div>
+                <span class="text-fontSizeSm text-textColor font-fontWeightMedium">{{ mock.hero.contact.text }}</span>
+            </div>
+            
+            <a href="{{ mock.hero.shop_now.href }}"
+               class="bg-buttonBackground text-buttonText hover:bg-buttonBackgroundHover 
+                      py-3 px-8 rounded-radiusFull 
+                      text-base font-fontWeightSemibold 
+                      self-center lg:self-start 
+                      inline-block
+                      transition-all duration-transitionDurationNormal ease-transitionTimingFunction">
+                {{ mock.hero.shop_now.text }}
+            </a>
+        </div>
+        
+        <div class="lg:col-span-6 grid grid-cols-1 gap-4">
+            <!-- This is a placeholder for product images that would be in the right column -->
+            <!-- You can expand this later to include product cards as shown in the example -->
+            <div class="bg-backgroundCard rounded-radiusMd p-4 h-80 flex items-center justify-center">
+                <p class="text-textMuted">Product image placeholder</p>
+            </div>
+        </div>
+    </div>
+</div>
