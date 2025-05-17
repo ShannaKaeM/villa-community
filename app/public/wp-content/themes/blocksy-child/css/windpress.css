@@ -1,0 +1,30 @@
+/* WindPress CSS for Blocksy Child Theme */
+@import "tailwindcss";
+
+/* Use theme.json as the source of design tokens */
+@theme "../theme.json";
+
+/* Override default Tailwind colors with our theme colors */
+@theme {
+  /* Remove default colors */
+  --color-*: initial;
+  
+  /* Map our theme.json colors to Tailwind color variables */
+  --color-primary: var(--colorPrimary);
+  --color-secondary: var(--colorBase);
+  --color-accent: var(--colorAccent);
+  --color-light: var(--colorLight);
+  --color-dark: var(--colorText);
+  --color-white: var(--colorWhite);
+  --color-black: var(--colorBlack);
+  
+  /* Background colors */
+  --color-background: var(--backgroundColor);
+  --color-background-surface: var(--backgroundSurface);
+  --color-background-card: var(--backgroundCard);
+  
+  /* Button colors */
+  --color-button: var(--buttonBackground);
+  --color-button-text: var(--buttonText);
+  --color-button-hover: var(--buttonBackgroundHover);
+}
