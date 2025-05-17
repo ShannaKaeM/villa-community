@@ -3,6 +3,11 @@
  * Blocksy Child Theme Functions
  */
 
+// Load Composer autoloader
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
 // Enqueue parent theme stylesheet
 function blocksy_child_enqueue_styles() {
     wp_enqueue_style(
@@ -20,6 +25,14 @@ function blocksy_child_enqueue_styles() {
     );
 }
 add_action('wp_enqueue_scripts', 'blocksy_child_enqueue_styles');
+
+// Include setup files
+require_once get_stylesheet_directory() . '/inc/timber-setup.php';
+require_once get_stylesheet_directory() . '/inc/carbon-fields-setup.php';
+require_once get_stylesheet_directory() . '/inc/setup.php';
+
+// WindPress integration - Uncomment when ready to activate
+// require_once get_stylesheet_directory() . '/inc/windpress-setup.php';
 
 /**
  * Add your custom functions below this line

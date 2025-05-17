@@ -1,0 +1,19 @@
+{
+    "name": "mi-agency/blocksy-child",
+    "description": "Blocksy Child Theme with Timber and Carbon Fields integration",
+    "type": "wordpress-theme",
+    "require": {
+        "timber/timber": "^2.0",
+        "htmlburger/carbon-fields": "^3.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "MiAgency\\": "inc/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
