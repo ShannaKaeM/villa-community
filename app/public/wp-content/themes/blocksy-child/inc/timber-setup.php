@@ -26,13 +26,33 @@ add_filter('timber/context', function($context) {
     $context['site'] = new Timber\Site();
     
     // Add Blocksy options to Timber context
-    $context['blocksy_options'] = function_exists('blocksy_get_options') ? blocksy_get_options() : [];
+    $context['blocksy_options'] = [];
     
-    // Add menu locations
-    $context['menu'] = [
-        'primary' => new Timber\Menu('primary'),
-        'footer' => new Timber\Menu('footer')
-    ];
+    // Only try to get Blocksy options if the function exists
+    if (function_exists('blocksy_get_options')) {
+        // The function requires a specific option ID or 'all'
+        $context['blocksy_options'] = blocksy_get_options('all');
+    }
+    
+    // Add menu locations safely
+    $context['menu'] = [];
+    
+    // Only add menus if they exist
+    if (has_nav_menu('primary')) {
+        try {
+            $context['menu']['primary'] = Timber\Timber::get_menu('primary');
+        } catch (\Exception $e) {
+            // Fallback if menu fails to load
+        }
+    }
+    
+    if (has_nav_menu('footer')) {
+        try {
+            $context['menu']['footer'] = Timber\Timber::get_menu('footer');
+        } catch (\Exception $e) {
+            // Fallback if menu fails to load
+        }
+    }
     
     return $context;
 });

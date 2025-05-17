@@ -1,0 +1,85 @@
+# USING THEME.JSON WITH WINDPRESS
+
+Theme.json is a special file that works great with WindPress and Tailwind CSS. Let's learn how they work together!
+
+## What is Theme.json?
+
+Theme.json is like a recipe book for your website's look. It holds all your:
+- Colors
+- Spacing sizes
+- Font sizes
+- Border styles
+- And more!
+
+It keeps all these design choices in one place, making it easy to change how your whole site looks.
+
+## How WindPress Uses Theme.json
+
+WindPress is super smart! It can read your theme.json file and turn all those design choices into Tailwind CSS classes.
+
+Here's what happens:
+1. You put your design choices in theme.json
+2. WindPress reads this file
+3. WindPress creates Tailwind CSS classes for each design choice
+4. You use these classes in your HTML
+
+## Example: Using Colors from Theme.json
+
+Let's say your theme.json has these colors:
+
+```json
+{
+  "colorPrimary": "#9D3C72",
+  "colorSecondary": "#5D8A8C",
+  "colorAccent": "#C4A587"
+}
+```
+
+With WindPress, you can use these colors like this:
+
+```html
+<div class="bg-colorPrimary text-colorSecondary border-colorAccent">
+  This box uses your theme colors!
+</div>
+```
+
+## How to Connect Theme.json to WindPress
+
+The connection happens automatically! WindPress looks for your theme.json file in your theme folder.
+
+If you want to be extra sure, you can tell WindPress where to find your theme.json in the main CSS file:
+
+```css
+@theme "../theme.json";
+```
+
+## Benefits of Using Theme.json with WindPress
+
+1. **One Source of Truth**: All your design tokens are in one file
+2. **Easy Updates**: Change a color once, it updates everywhere
+3. **WordPress Native**: Works with WordPress's own systems
+4. **No Duplication**: No need to copy design tokens to multiple places
+5. **Better Teamwork**: Designers can update the theme.json file without touching code
+
+## Our Theme.json Structure
+
+Our theme.json file is organized into sections:
+
+1. **Global Colors**: Basic color palette (color1, color2, etc.)
+2. **Semantic Colors**: Colors with meaning (colorPrimary, colorAccent, etc.)
+3. **Background Colors**: Colors for different backgrounds
+4. **Text Colors**: Colors for different text elements
+5. **Spacing**: Standard spacing sizes
+6. **Typography**: Font sizes and styles
+
+## Using Our Theme.json with WindPress
+
+With our setup, you can use classes like:
+
+- `bg-colorPrimary` - Background with primary color
+- `text-textColor` - Text with main text color
+- `p-spacingMd` - Padding with medium spacing
+- `text-fontSizeLg` - Text with large font size
+- `rounded-radiusMd` - Border radius with medium size
+
+This makes it super easy to build consistent designs that match our theme!

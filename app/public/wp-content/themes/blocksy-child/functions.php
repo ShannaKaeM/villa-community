@@ -31,8 +31,11 @@ require_once get_stylesheet_directory() . '/inc/timber-setup.php';
 require_once get_stylesheet_directory() . '/inc/carbon-fields-setup.php';
 require_once get_stylesheet_directory() . '/inc/setup.php';
 
-// WindPress integration - Uncomment when ready to activate
-// require_once get_stylesheet_directory() . '/inc/windpress-setup.php';
+// Include custom blocks directly
+require_once get_stylesheet_directory() . '/blocks/mi-hero/Block.php';
+
+// WindPress integration
+require_once get_stylesheet_directory() . '/inc/windpress-setup.php';
 
 /**
  * Add your custom functions below this line

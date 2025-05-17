@@ -28,6 +28,21 @@ function mi_theme_setup() {
 }
 add_action('after_setup_theme', 'mi_theme_setup');
 
+// Register custom block category
+function mi_register_block_categories($categories) {
+    return array_merge(
+        $categories,
+        [
+            [
+                'slug' => 'miblocks',
+                'title' => __('MI Blocks', 'blocksy-child'),
+                'icon'  => 'dashicons-block-default',
+            ],
+        ]
+    );
+}
+add_filter('block_categories_all', 'mi_register_block_categories');
+
 // Register and load custom blocks
 function mi_register_blocks() {
     // Check if blocks directory exists

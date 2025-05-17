@@ -76,8 +76,18 @@ add_action('init', 'mi_register_hero_block');
  * Render hero block with Timber
  */
 function mi_render_hero_block($attributes, $content) {
-    // Set up Timber context
-    $context = Timber\Timber::context();
+    // Set up Timber context safely
+    try {
+        $context = Timber\Timber::context();
+    } catch (\Exception $e) {
+        // Fallback if Timber context fails
+        $context = array(
+            'site' => array(
+                'title' => get_bloginfo('name'),
+                'description' => get_bloginfo('description')
+            )
+        );
+    }
     
     // Create mock data structure that matches the example
     $mock = [
@@ -111,6 +121,29 @@ function mi_render_hero_block($attributes, $content) {
     $context['attributes'] = $attributes;
     $context['content'] = $content;
     
-    // Render the template
-    return Timber\Timber::compile('blocks/mi-hero/Block.twig', $context);
+    // Add CSS variables directly from theme.json
+    $theme_json_path = get_stylesheet_directory() . '/theme.json';
+    $inline_styles = '';
+    
+    if (file_exists($theme_json_path)) {
+        $theme_json = json_decode(file_get_contents($theme_json_path), true);
+        if (!empty($theme_json)) {
+            $inline_styles = '<style>:root {\n';
+            
+            foreach ($theme_json as $key => $value) {
+                // Skip keys that start with "__" as they are comments
+                if (substr($key, 0, 2) === "__") {
+                    continue;
+                }
+                
+                // Add the CSS variable
+                $inline_styles .= "  --{$key}: {$value};\n";
+            }
+            
+            $inline_styles .= '}</style>';
+        }
+    }
+    
+    // Render the template with inline styles
+    return $inline_styles . Timber\Timber::compile('blocks/mi-hero/Block.twig', $context);
 }

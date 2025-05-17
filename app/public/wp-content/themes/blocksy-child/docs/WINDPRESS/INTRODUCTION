@@ -1,0 +1,62 @@
+# WHAT IS WINDPRESS?
+
+WindPress is a special tool that helps you use Tailwind CSS with WordPress. Think of it like a bridge that connects two different worlds.
+
+## How Does It Work?
+
+WindPress is super easy to use:
+
+1. You install it like any other WordPress plugin
+2. You turn it on
+3. You can start using Tailwind CSS right away!
+
+No need for complicated setup or coding tools. It just works!
+
+## Cool Things WindPress Can Do
+
+### Works Anywhere
+You can use WindPress on any WordPress site, even on simple hosting plans.
+
+### Super Fast
+WindPress makes your website fast because it creates small CSS files.
+
+### Easy to Use
+You don't need to be a coding expert to use WindPress. It has simple settings that are easy to understand.
+
+### Works with Everything
+You can use WindPress with:
+- Page builders like Elementor
+- Any WordPress theme
+- Other plugins
+- Block editor (Gutenberg)
+
+### Smart Helpers
+WindPress can suggest Tailwind classes as you type and help you pick colors from your theme.
+
+## Who Should Use WindPress?
+
+WindPress is perfect for:
+
+- **Website Builders**: People who make websites but don't want to deal with complicated coding tools
+- **Designers**: People who want to make pretty websites without writing lots of CSS
+- **WordPress Users**: Anyone who uses WordPress and wants to use Tailwind CSS
+
+## Getting Started is Easy
+
+To start using WindPress:
+
+1. Install the WindPress plugin
+2. Turn it on
+3. Start using Tailwind CSS classes in your WordPress site
+
+That's it! No complicated setup, no coding tools needed.
+
+## How WindPress Helps Our Theme
+
+In our theme, WindPress:
+
+1. Reads our theme.json file
+2. Turns our design tokens into Tailwind CSS classes
+3. Lets us use those classes in our templates
+
+This means we can keep all our design tokens in one place (theme.json) and use them easily with Tailwind CSS classes.

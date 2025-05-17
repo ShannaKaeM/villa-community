@@ -1,0 +1,69 @@
+# HOW TO INSTALL WINDPRESS
+
+Installing WindPress is super easy! Here's how to do it in simple steps.
+
+## Before You Start
+
+Make sure your WordPress site has:
+- PHP 7.4 or newer
+- WordPress 6.0 or newer
+
+Most websites already have these, so you probably don't need to worry about it.
+
+## Installing the Free Version
+
+The free version of WindPress is in the WordPress plugin library. Here's how to get it:
+
+### Step 1: Go to the Plugins Page
+- Log in to your WordPress dashboard
+- Click on "Plugins" in the left menu
+- Click on "Add New"
+
+### Step 2: Find WindPress
+- Type "WindPress" in the search box at the top right
+- Look for the WindPress plugin in the results
+
+### Step 3: Install It
+- Click the blue "Install Now" button next to WindPress
+- Wait a few seconds for it to download
+
+### Step 4: Turn It On
+- After it installs, the "Install Now" button will change to "Activate"
+- Click "Activate" to turn on the plugin
+- That's it! WindPress is now ready to use
+
+## Installing the Pro Version
+
+If you bought the Pro version, you'll have a special file to upload:
+
+### Step 1: Go to the Plugins Page
+- Log in to your WordPress dashboard
+- Click on "Plugins" in the left menu
+- Click on "Add New"
+
+### Step 2: Upload Your File
+- Click the "Upload Plugin" button at the top of the page
+- Click "Choose File" and find the WindPress zip file on your computer
+- Click "Install Now"
+
+### Step 3: Turn It On
+- After it installs, click "Activate Plugin"
+- That's it! WindPress Pro is now ready to use
+
+## What Happens Next?
+
+After you install WindPress:
+
+1. You'll see a new "WindPress" item in your WordPress dashboard menu
+2. Click on it to see the WindPress settings
+3. You can start using Tailwind CSS classes right away in your content
+
+## Using WindPress with Our Theme
+
+Our theme works great with WindPress because:
+
+1. We have a theme.json file with all our design tokens
+2. WindPress reads this file automatically
+3. You can use all our theme colors and settings as Tailwind classes
+
+For example, if our theme.json has a color called "colorPrimary", you can use the class "bg-colorPrimary" to make a background that color.
