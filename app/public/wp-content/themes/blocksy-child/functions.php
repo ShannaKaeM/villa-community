@@ -35,6 +35,7 @@ require_once get_stylesheet_directory() . '/inc/setup.php';
 require_once get_stylesheet_directory() . '/inc/cpt-properties.php';
 require_once get_stylesheet_directory() . '/inc/metabox-properties.php';
 require_once get_stylesheet_directory() . '/inc/property-importer.php';
+require_once get_stylesheet_directory() . '/inc/taxonomy-setup.php';
 
 /**
  * Add your custom functions below this line
