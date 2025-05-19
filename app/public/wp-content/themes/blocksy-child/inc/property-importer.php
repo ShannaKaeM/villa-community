@@ -147,6 +147,10 @@ class MI_Property_Importer {
         $imported = 0;
         $skipped = 0;
         
+        // Load categories from CSV for mapping
+        $categories_csv = get_stylesheet_directory() . '/docs/SITE DATA/Categories.csv';
+        $category_map = $this->load_category_map($categories_csv);
+        
         // Process each row
         while (($data = fgetcsv($file)) !== FALSE) {
             // Create an associative array of the row data
@@ -179,18 +183,50 @@ class MI_Property_Importer {
             
             // Set property type taxonomy
             if (!empty($row['property_type_id'])) {
-                wp_set_object_terms($post_id, intval($row['property_type_id']), 'property_type');
+                $property_type_id = intval($row['property_type_id']);
+                if (isset($category_map['property_type'][$property_type_id])) {
+                    $term_id = $this->get_or_create_term(
+                        $category_map['property_type'][$property_type_id]['name'],
+                        'property_type',
+                        $category_map['property_type'][$property_type_id]
+                    );
+                    wp_set_object_terms($post_id, $term_id, 'property_type');
+                }
             }
             
             // Set location taxonomy
             if (!empty($row['location_id'])) {
-                wp_set_object_terms($post_id, intval($row['location_id']), 'location');
+                $location_id = intval($row['location_id']);
+                if (isset($category_map['location'][$location_id])) {
+                    $term_id = $this->get_or_create_term(
+                        $category_map['location'][$location_id]['name'],
+                        'location',
+                        $category_map['location'][$location_id]
+                    );
+                    wp_set_object_terms($post_id, $term_id, 'location');
+                }
             }
             
             // Set amenities taxonomy
             if (!empty($row['amenity_ids'])) {
                 $amenity_ids = explode(',', $row['amenity_ids']);
-                wp_set_object_terms($post_id, array_map('intval', $amenity_ids), 'amenity');
+                $term_ids = [];
+                
+                foreach ($amenity_ids as $amenity_id) {
+                    $amenity_id = intval(trim($amenity_id));
+                    if (isset($category_map['amenity'][$amenity_id])) {
+                        $term_id = $this->get_or_create_term(
+                            $category_map['amenity'][$amenity_id]['name'],
+                            'amenity',
+                            $category_map['amenity'][$amenity_id]
+                        );
+                        $term_ids[] = $term_id;
+                    }
+                }
+                
+                if (!empty($term_ids)) {
+                    wp_set_object_terms($post_id, $term_ids, 'amenity');
+                }
             }
             
             // Set meta fields
@@ -233,6 +269,89 @@ class MI_Property_Importer {
             'imported' => $imported,
             'skipped' => $skipped
         );
+    }
+    
+    /**
+     * Load category map from CSV
+     * 
+     * @param string $csv_file Path to the categories CSV file
+     * @return array Category map indexed by type and ID
+     */
+    private function load_category_map($csv_file) {
+        if (!file_exists($csv_file)) {
+            return [];
+        }
+        
+        $category_map = [
+            'property_type' => [],
+            'location' => [],
+            'amenity' => []
+        ];
+        
+        $file = fopen($csv_file, 'r');
+        
+        // Get the header row
+        $header = fgetcsv($file);
+        
+        // Process each row
+        while (($data = fgetcsv($file)) !== FALSE) {
+            $row = array_combine($header, $data);
+            
+            // Only process property_type, location, and amenity types
+            if (!in_array($row['type'], ['property_type', 'location', 'amenity'])) {
+                continue;
+            }
+            
+            $category_map[$row['type']][intval($row['id'])] = [
+                'name' => $row['name'],
+                'description' => $row['description'],
+                'icon' => $row['icon'],
+                'display_order' => intval($row['display_order']),
+                'is_featured' => $row['is_featured'] === 'True'
+            ];
+        }
+        
+        fclose($file);
+        
+        return $category_map;
+    }
+    
+    /**
+     * Get or create a taxonomy term
+     * 
+     * @param string $name Term name
+     * @param string $taxonomy Taxonomy name
+     * @param array $data Term data
+     * @return int Term ID
+     */
+    private function get_or_create_term($name, $taxonomy, $data) {
+        // Check if term exists
+        $term = get_term_by('name', $name, $taxonomy);
+        
+        if ($term) {
+            // Update existing term
+            update_term_meta($term->term_id, 'icon', $data['icon']);
+            update_term_meta($term->term_id, 'display_order', $data['display_order']);
+            update_term_meta($term->term_id, 'is_featured', $data['is_featured']);
+            
+            return $term->term_id;
+        } else {
+            // Create new term
+            $result = wp_insert_term($name, $taxonomy, [
+                'description' => $data['description']
+            ]);
+            
+            if (!is_wp_error($result)) {
+                $term_id = $result['term_id'];
+                update_term_meta($term_id, 'icon', $data['icon']);
+                update_term_meta($term_id, 'display_order', $data['display_order']);
+                update_term_meta($term_id, 'is_featured', $data['is_featured']);
+                
+                return $term_id;
+            }
+            
+            return 0;
+        }
     }
 }
 
