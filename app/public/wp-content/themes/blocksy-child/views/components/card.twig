@@ -1,0 +1,24 @@
+{# Card Component #}
+<div class="mi-card {{ classes }}">
+    {% if image %}
+        <div class="mi-card__image">
+            <img src="{{ image.src }}" alt="{{ image.alt|default(title) }}">
+        </div>
+    {% endif %}
+    
+    <div class="mi-card__content">
+        {% if title %}
+            <h3 class="mi-card__title">{{ title }}</h3>
+        {% endif %}
+        
+        {% if description %}
+            <div class="mi-card__description">{{ description }}</div>
+        {% endif %}
+        
+        {% if link %}
+            <a href="{{ link.url }}" class="mi-card__link" {% if link.target %}target="{{ link.target }}"{% endif %}>
+                {{ link.text|default('Read more') }}
+            </a>
+        {% endif %}
+    </div>
+</div>

@@ -30,14 +30,21 @@ add_action('wp_enqueue_scripts', 'blocksy_child_enqueue_styles');
 
 // Include setup files
 require_once get_stylesheet_directory() . '/inc/timber-setup.php';
+
+// Carbon Fields setup - this must come before any other Carbon Fields files
 require_once get_stylesheet_directory() . '/inc/carbon-fields-setup.php';
+
+// Only include Carbon Fields dependent files if Carbon Fields is available
+if (class_exists('\Carbon_Fields\Container') && class_exists('\Carbon_Fields\Field')) {
+    // Include property system
+    require_once get_stylesheet_directory() . '/inc/carbon-fields-properties.php';
+}
+
+// Include general setup
 require_once get_stylesheet_directory() . '/inc/setup.php';
 
 // Include block system
 require_once get_stylesheet_directory() . '/inc/blocks/loader.php';
-
-// Include property system
-require_once get_stylesheet_directory() . '/inc/carbon-fields-properties.php';
 
 /**
  * Add your custom functions below this line

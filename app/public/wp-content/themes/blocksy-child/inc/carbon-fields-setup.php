@@ -3,6 +3,30 @@
  * Carbon Fields setup and configuration
  */
 
+// Check if Carbon Fields is available
+if (!class_exists('\Carbon_Fields\Container') || !class_exists('\Carbon_Fields\Field')) {
+    // Add admin notice about missing Carbon Fields
+    add_action('admin_notices', function() {
+        echo '<div class="error"><p>Carbon Fields is not installed or activated. Please install it via Composer or as a plugin.</p></div>';
+    });
+    
+    // Define dummy functions to prevent errors
+    if (!function_exists('carbon_get_theme_option')) {
+        function carbon_get_theme_option($option_name) {
+            return '';
+        }
+    }
+    
+    if (!function_exists('carbon_get_post_meta')) {
+        function carbon_get_post_meta($id, $name) {
+            return '';
+        }
+    }
+    
+    // Return early
+    return;
+}
+
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 

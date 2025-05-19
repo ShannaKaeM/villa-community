@@ -10,6 +10,14 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Check if Carbon Fields is available
+if (!class_exists('\Carbon_Fields\Container') || !class_exists('\Carbon_Fields\Field')) {
+    add_action('admin_notices', function() {
+        echo '<div class="error"><p>Carbon Fields is not installed or activated. Please make sure it is properly set up.</p></div>';
+    });
+    return;
+}
+
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
