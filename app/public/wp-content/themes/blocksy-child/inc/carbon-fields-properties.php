@@ -130,135 +130,6 @@ function mi_register_property_fields() {
 add_action('carbon_fields_register_fields', 'mi_register_property_fields');
 
 /**
- * Register property post type
- */
-function mi_register_property_post_type() {
-    $labels = [
-        'name'               => _x('Properties', 'post type general name', 'blocksy-child'),
-        'singular_name'      => _x('Property', 'post type singular name', 'blocksy-child'),
-        'menu_name'          => _x('Properties', 'admin menu', 'blocksy-child'),
-        'name_admin_bar'     => _x('Property', 'add new on admin bar', 'blocksy-child'),
-        'add_new'            => _x('Add New', 'property', 'blocksy-child'),
-        'add_new_item'       => __('Add New Property', 'blocksy-child'),
-        'new_item'           => __('New Property', 'blocksy-child'),
-        'edit_item'          => __('Edit Property', 'blocksy-child'),
-        'view_item'          => __('View Property', 'blocksy-child'),
-        'all_items'          => __('All Properties', 'blocksy-child'),
-        'search_items'       => __('Search Properties', 'blocksy-child'),
-        'parent_item_colon'  => __('Parent Properties:', 'blocksy-child'),
-        'not_found'          => __('No properties found.', 'blocksy-child'),
-        'not_found_in_trash' => __('No properties found in Trash.', 'blocksy-child'),
-    ];
-
-    $args = [
-        'labels'             => $labels,
-        'public'             => true,
-        'publicly_queryable' => true,
-        'show_ui'            => true,
-        'show_in_menu'       => true,
-        'query_var'          => true,
-        'rewrite'            => ['slug' => 'property'],
-        'capability_type'    => 'post',
-        'has_archive'        => true,
-        'hierarchical'       => false,
-        'menu_position'      => null,
-        'menu_icon'          => 'dashicons-admin-home',
-        'supports'           => ['title', 'editor', 'thumbnail', 'excerpt'],
-        'show_in_rest'       => true,
-    ];
-
-    register_post_type('property', $args);
-}
-add_action('init', 'mi_register_property_post_type');
-
-/**
- * Register property taxonomies
- */
-function mi_register_property_taxonomies() {
-    // Property Type Taxonomy
-    $type_labels = [
-        'name'              => _x('Property Types', 'taxonomy general name', 'blocksy-child'),
-        'singular_name'     => _x('Property Type', 'taxonomy singular name', 'blocksy-child'),
-        'search_items'      => __('Search Property Types', 'blocksy-child'),
-        'all_items'         => __('All Property Types', 'blocksy-child'),
-        'parent_item'       => __('Parent Property Type', 'blocksy-child'),
-        'parent_item_colon' => __('Parent Property Type:', 'blocksy-child'),
-        'edit_item'         => __('Edit Property Type', 'blocksy-child'),
-        'update_item'       => __('Update Property Type', 'blocksy-child'),
-        'add_new_item'      => __('Add New Property Type', 'blocksy-child'),
-        'new_item_name'     => __('New Property Type Name', 'blocksy-child'),
-        'menu_name'         => __('Property Types', 'blocksy-child'),
-    ];
-
-    $type_args = [
-        'hierarchical'      => true,
-        'labels'            => $type_labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => ['slug' => 'property-type'],
-        'show_in_rest'      => true,
-    ];
-
-    register_taxonomy('property_type', ['property'], $type_args);
-
-    // Location Taxonomy
-    $location_labels = [
-        'name'              => _x('Locations', 'taxonomy general name', 'blocksy-child'),
-        'singular_name'     => _x('Location', 'taxonomy singular name', 'blocksy-child'),
-        'search_items'      => __('Search Locations', 'blocksy-child'),
-        'all_items'         => __('All Locations', 'blocksy-child'),
-        'parent_item'       => __('Parent Location', 'blocksy-child'),
-        'parent_item_colon' => __('Parent Location:', 'blocksy-child'),
-        'edit_item'         => __('Edit Location', 'blocksy-child'),
-        'update_item'       => __('Update Location', 'blocksy-child'),
-        'add_new_item'      => __('Add New Location', 'blocksy-child'),
-        'new_item_name'     => __('New Location Name', 'blocksy-child'),
-        'menu_name'         => __('Locations', 'blocksy-child'),
-    ];
-
-    $location_args = [
-        'hierarchical'      => true,
-        'labels'            => $location_labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => ['slug' => 'location'],
-        'show_in_rest'      => true,
-    ];
-
-    register_taxonomy('location', ['property'], $location_args);
-
-    // Amenity Taxonomy
-    $amenity_labels = [
-        'name'              => _x('Amenities', 'taxonomy general name', 'blocksy-child'),
-        'singular_name'     => _x('Amenity', 'taxonomy singular name', 'blocksy-child'),
-        'search_items'      => __('Search Amenities', 'blocksy-child'),
-        'all_items'         => __('All Amenities', 'blocksy-child'),
-        'parent_item'       => __('Parent Amenity', 'blocksy-child'),
-        'parent_item_colon' => __('Parent Amenity:', 'blocksy-child'),
-        'edit_item'         => __('Edit Amenity', 'blocksy-child'),
-        'update_item'       => __('Update Amenity', 'blocksy-child'),
-        'add_new_item'      => __('Add New Amenity', 'blocksy-child'),
-        'new_item_name'     => __('New Amenity Name', 'blocksy-child'),
-        'menu_name'         => __('Amenities', 'blocksy-child'),
-    ];
-
-    $amenity_args = [
-        'hierarchical'      => true,
-        'labels'            => $amenity_labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => ['slug' => 'amenity'],
-        'show_in_rest'      => true,
-    ];
-
-    register_taxonomy('amenity', ['property'], $amenity_args);
-}
-add_action('init', 'mi_register_property_taxonomies');
-
-/**
  * Register term meta for icons
  */
 function mi_register_taxonomy_term_meta() {
@@ -271,6 +142,28 @@ function mi_register_taxonomy_term_meta() {
             Field::make('textarea', 'property_type_description', __('Extended Description', 'blocksy-child'))
                 ->set_help_text(__('A more detailed description of this property type', 'blocksy-child')),
         ]);
+    
+    // Add term meta for locations
+    Container::make('term_meta', __('Location Details', 'blocksy-child'))
+        ->where('term_taxonomy', '=', 'property_location')
+        ->add_fields([
+            Field::make('image', 'location_image', __('Location Image', 'blocksy-child'))
+                ->set_help_text(__('Upload an image for this location', 'blocksy-child')),
+            Field::make('textarea', 'location_description', __('Extended Description', 'blocksy-child'))
+                ->set_help_text(__('A more detailed description of this location', 'blocksy-child')),
+        ]);
+    
+    // Add term meta for amenities
+    Container::make('term_meta', __('Amenity Details', 'blocksy-child'))
+        ->where('term_taxonomy', '=', 'property_amenity')
+        ->add_fields([
+            Field::make('image', 'amenity_icon', __('Icon', 'blocksy-child'))
+                ->set_help_text(__('Upload an icon for this amenity', 'blocksy-child')),
+            Field::make('textarea', 'amenity_description', __('Extended Description', 'blocksy-child'))
+                ->set_help_text(__('A more detailed description of this amenity', 'blocksy-child')),
+        ]);
+}
+add_action('carbon_fields_register_fields', 'mi_register_taxonomy_term_meta');
     
     Container::make('term_meta', __('Additional Details', 'blocksy-child'))
         ->where('term_taxonomy', '=', 'location')

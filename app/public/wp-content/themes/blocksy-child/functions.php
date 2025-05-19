@@ -34,9 +34,12 @@ require_once get_stylesheet_directory() . '/inc/timber-setup.php';
 // Carbon Fields setup - this must come before any other Carbon Fields files
 require_once get_stylesheet_directory() . '/inc/carbon-fields-setup.php';
 
+// Include property CPT and taxonomies (this doesn't depend on Carbon Fields)
+require_once get_stylesheet_directory() . '/inc/cpt-properties.php';
+
 // Only include Carbon Fields dependent files if Carbon Fields is available
 if (class_exists('\Carbon_Fields\Container') && class_exists('\Carbon_Fields\Field')) {
-    // Include property system
+    // Include property fields
     require_once get_stylesheet_directory() . '/inc/carbon-fields-properties.php';
 }
 
