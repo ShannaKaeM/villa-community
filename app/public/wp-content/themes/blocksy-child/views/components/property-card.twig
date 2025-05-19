@@ -1,0 +1,51 @@
+{# Property Card Component #}
+<div class="mi-property-card{% if is_featured %} is-featured{% endif %}">
+    {% if image %}
+        <div class="mi-property-card__image">
+            <img src="{{ image.src }}" alt="{{ title }}">
+            {% if is_featured %}
+                <span class="mi-property-card__featured-badge">Featured</span>
+            {% endif %}
+        </div>
+    {% endif %}
+    
+    <div class="mi-property-card__content">
+        <h3 class="mi-property-card__title">{{ title }}</h3>
+        
+        {% if location or property_type %}
+            <div class="mi-property-card__meta">
+                {% if location %}
+                    <span class="mi-property-card__location">
+                        <i class="mi-icon mi-icon-location"></i>
+                        {{ location }}
+                    </span>
+                {% endif %}
+                
+                {% if property_type %}
+                    <span class="mi-property-card__type">
+                        <i class="mi-icon mi-icon-home"></i>
+                        {{ property_type }}
+                    </span>
+                {% endif %}
+            </div>
+        {% endif %}
+        
+        <div class="mi-property-card__details">
+            {# Nested component for property details #}
+            {{ component('property-details', {
+                bedrooms: bedrooms,
+                bathrooms: bathrooms,
+                max_guests: max_guests
+            }) }}
+        </div>
+        
+        {% if nightly_rate %}
+            <div class="mi-property-card__price">
+                <span class="mi-property-card__price-value">${{ nightly_rate }}</span>
+                <span class="mi-property-card__price-label">per night</span>
+            </div>
+        {% endif %}
+        
+        <a href="{{ property.link }}" class="mi-property-card__link">View Property</a>
+    </div>
+</div>

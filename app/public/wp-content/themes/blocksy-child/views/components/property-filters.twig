@@ -1,0 +1,130 @@
+{# Property Filters Component #}
+<div class="mi-listings-filters" id="mi-property-filters">
+    <h3 class="mi-filters-title">Filter Properties</h3>
+    
+    <form class="mi-filters-form" action="" method="get" data-ajax-form="true">
+        {% if showPropertyTypes %}
+            <div class="mi-filter-group">
+                <h4>Property Type</h4>
+                <div class="mi-filter-options">
+                    {% set property_types = function('get_terms', {
+                        'taxonomy': 'property_type',
+                        'hide_empty': true
+                    }) %}
+                    
+                    {% if property_types %}
+                        {% for type in property_types %}
+                            <div class="mi-filter-checkbox">
+                                <input type="checkbox" id="property_type_{{ type.term_id }}" name="property_type[]" value="{{ type.term_id }}">
+                                <label for="property_type_{{ type.term_id }}">{{ type.name }}</label>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="mi-filter-empty">No property types available</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        
+        {% if showLocations %}
+            <div class="mi-filter-group">
+                <h4>Location</h4>
+                <div class="mi-filter-options">
+                    {% set locations = function('get_terms', {
+                        'taxonomy': 'location',
+                        'hide_empty': true
+                    }) %}
+                    
+                    {% if locations %}
+                        {% for location in locations %}
+                            <div class="mi-filter-checkbox">
+                                <input type="checkbox" id="location_{{ location.term_id }}" name="location[]" value="{{ location.term_id }}">
+                                <label for="location_{{ location.term_id }}">{{ location.name }}</label>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="mi-filter-empty">No locations available</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        
+        {% if showAmenities %}
+            <div class="mi-filter-group">
+                <h4>Amenities</h4>
+                <div class="mi-filter-options">
+                    {% set amenities = function('get_terms', {
+                        'taxonomy': 'amenity',
+                        'hide_empty': true
+                    }) %}
+                    
+                    {% if amenities %}
+                        {% for amenity in amenities %}
+                            <div class="mi-filter-checkbox">
+                                <input type="checkbox" id="amenity_{{ amenity.term_id }}" name="amenity[]" value="{{ amenity.term_id }}">
+                                <label for="amenity_{{ amenity.term_id }}">{{ amenity.name }}</label>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="mi-filter-empty">No amenities available</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        
+        {% if showBedroomFilter %}
+            <div class="mi-filter-group">
+                <h4>Bedrooms</h4>
+                <div class="mi-filter-range">
+                    <div class="mi-filter-range-label">
+                        <span class="mi-filter-range-min">1</span>
+                        <span class="mi-filter-range-max">5+</span>
+                    </div>
+                    <input type="range" class="mi-filter-range-slider" name="bedrooms" min="1" max="5" value="1" step="1">
+                </div>
+            </div>
+        {% endif %}
+        
+        {% if showBathroomFilter %}
+            <div class="mi-filter-group">
+                <h4>Bathrooms</h4>
+                <div class="mi-filter-range">
+                    <div class="mi-filter-range-label">
+                        <span class="mi-filter-range-min">1</span>
+                        <span class="mi-filter-range-max">5+</span>
+                    </div>
+                    <input type="range" class="mi-filter-range-slider" name="bathrooms" min="1" max="5" value="1" step="0.5">
+                </div>
+            </div>
+        {% endif %}
+        
+        {% if showGuestFilter %}
+            <div class="mi-filter-group">
+                <h4>Guests</h4>
+                <div class="mi-filter-range">
+                    <div class="mi-filter-range-label">
+                        <span class="mi-filter-range-min">1</span>
+                        <span class="mi-filter-range-max">10+</span>
+                    </div>
+                    <input type="range" class="mi-filter-range-slider" name="max_guests" min="1" max="10" value="2" step="1">
+                </div>
+            </div>
+        {% endif %}
+        
+        {% if showPriceFilter %}
+            <div class="mi-filter-group">
+                <h4>Price per Night</h4>
+                <div class="mi-filter-range">
+                    <div class="mi-filter-range-label">
+                        <span class="mi-filter-range-min">$50</span>
+                        <span class="mi-filter-range-max">$500+</span>
+                    </div>
+                    <input type="range" class="mi-filter-range-slider" name="price" min="50" max="500" value="100" step="50">
+                </div>
+            </div>
+        {% endif %}
+        
+        <button type="submit" class="mi-filter-button">Apply Filters</button>
+        <button type="reset" class="mi-filter-reset">Reset Filters</button>
+    </form>
+</div>

@@ -33,6 +33,12 @@ require_once get_stylesheet_directory() . '/inc/timber-setup.php';
 require_once get_stylesheet_directory() . '/inc/carbon-fields-setup.php';
 require_once get_stylesheet_directory() . '/inc/setup.php';
 
+// Include block system
+require_once get_stylesheet_directory() . '/inc/blocks/loader.php';
+
+// Include property system
+require_once get_stylesheet_directory() . '/inc/carbon-fields-properties.php';
+
 /**
  * Add your custom functions below this line
  */
