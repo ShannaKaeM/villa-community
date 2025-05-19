@@ -85,6 +85,15 @@ TWIG;
 add_action('after_setup_theme', 'mi_register_sample_component');
 
 /**
+ * Register custom blocks
+ */
+function mi_register_custom_blocks() {
+    // Include the MI Card block
+    require_once get_stylesheet_directory() . '/blocks/mi-card/index.php';
+}
+add_action('init', 'mi_register_custom_blocks', 5);
+
+/**
  * Add Twig functions for blocks and components
  */
 function mi_add_twig_functions($twig) {

@@ -28,20 +28,34 @@ function blocksy_child_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'blocksy_child_enqueue_styles');
 
+// Carbon Fields setup - this MUST come first before any other includes
+require_once get_stylesheet_directory() . '/inc/carbon-fields-setup.php';
+
 // Include setup files
 require_once get_stylesheet_directory() . '/inc/timber-setup.php';
 
-// Carbon Fields setup - this must come before any other Carbon Fields files
-require_once get_stylesheet_directory() . '/inc/carbon-fields-setup.php';
+// Include CPT and taxonomy registration
+require_once get_stylesheet_directory() . '/inc/mi-cpt-registration.php';
 
-// Include property CPT and taxonomies (this doesn't depend on Carbon Fields)
-require_once get_stylesheet_directory() . '/inc/cpt-properties.php';
+// Include Carbon Fields property fields
+require_once get_stylesheet_directory() . '/inc/mi-property-fields.php';
 
-// Only include Carbon Fields dependent files if Carbon Fields is available
-if (class_exists('\Carbon_Fields\Container') && class_exists('\Carbon_Fields\Field')) {
-    // Include property fields
-    require_once get_stylesheet_directory() . '/inc/carbon-fields-properties.php';
-}
+// Include taxonomy importer
+require_once get_stylesheet_directory() . '/inc/mi-taxonomy-importer.php';
+
+// Include property importer
+require_once get_stylesheet_directory() . '/inc/mi-property-importer.php';
+
+// Include business importer
+require_once get_stylesheet_directory() . '/inc/mi-business-importer.php';
+
+// Include article importer
+require_once get_stylesheet_directory() . '/inc/mi-article-importer.php';
+
+// Include user profile importer
+require_once get_stylesheet_directory() . '/inc/mi-user-profile-importer.php';
+
+// Block registration diagnostic tool has been removed
 
 // Include general setup
 require_once get_stylesheet_directory() . '/inc/setup.php';

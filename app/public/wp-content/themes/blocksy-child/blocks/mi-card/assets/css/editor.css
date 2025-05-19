@@ -1,0 +1,49 @@
+/**
+ * MI Card Block Editor Styles
+ */
+
+/* Import the main styles */
+@import "./style.css";
+
+/* Editor-specific styles */
+.wp-block-mi-card {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* Add a border in the editor for better visibility */
+.editor-styles-wrapper .mi-card {
+    border: 1px dashed #ddd;
+}
+
+/* Style the block toolbar */
+.components-panel__body-title {
+    font-size: 13px !important;
+}
+
+/* Style the block controls */
+.components-base-control {
+    margin-bottom: 16px !important;
+}
+
+/* Style the inspector controls */
+.block-editor-block-inspector .components-panel__body {
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Style select controls */
+.components-select-control__input {
+    height: 36px !important;
+}
+
+/* Style toggle controls */
+.components-toggle-control .components-base-control__field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Style range controls */
+.components-range-control__wrapper {
+    margin-left: 0 !important;
+}

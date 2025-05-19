@@ -1,0 +1,32 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "mi/card",
+    "title": "MI Card",
+    "category": "widgets",
+    "icon": "index-card",
+    "description": "Display property cards",
+    "keywords": ["property", "card", "mi"],
+    "version": "1.0.0",
+    "textdomain": "mi-blocks",
+    "attributes": {
+        "count": {
+            "type": "number",
+            "default": 3
+        },
+        "columns": {
+            "type": "number",
+            "default": 3
+        },
+        "className": {
+            "type": "string"
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./assets/js/editor.js",
+    "editorStyle": "file:./assets/css/editor.css",
+    "style": "file:./assets/css/style.css"
+}

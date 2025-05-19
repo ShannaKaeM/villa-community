@@ -1,0 +1,187 @@
+<?php
+/**
+ * Property Card Template
+ * 
+ * This template is used for displaying property cards.
+ */
+
+// Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Get block attributes
+$variant = $attributes['variant'] ?? 'property';
+$size = $attributes['size'] ?? 'medium';
+$layout = $attributes['layout'] ?? 'vertical';
+$display_options = $attributes['displayOptions'] ?? [];
+$style_options = $attributes['styleOptions'] ?? [];
+
+// Get content data
+$items = $content_data ?? [];
+
+// If no items, return empty
+if (empty($items)) {
+    return '';
+}
+
+// Generate classes based on attributes
+$card_classes = [
+    'mi-card',
+    'mi-card--' . $variant,
+    'mi-card--' . $size,
+    $layout === 'horizontal' ? 'mi-card--horizontal' : '',
+];
+
+// Add border radius classes
+$border_radius_map = [
+    'none' => 'rounded-none',
+    'small' => 'rounded',
+    'medium' => 'rounded-md',
+    'large' => 'rounded-lg',
+    'full' => 'rounded-full',
+];
+$border_radius_class = $border_radius_map[$style_options['borderRadius']] ?? 'rounded-md';
+
+// Add shadow classes
+$shadow_map = [
+    'none' => 'shadow-none',
+    'small' => 'shadow-sm',
+    'medium' => 'shadow',
+    'large' => 'shadow-lg',
+];
+$shadow_class = $shadow_map[$style_options['shadow']] ?? 'shadow';
+
+// Combine all classes
+$card_classes[] = $border_radius_class;
+$card_classes[] = $shadow_class;
+
+// Inline styles for custom colors
+$card_styles = [];
+if (!empty($style_options['backgroundColor'])) {
+    $card_styles[] = 'background-color: ' . $style_options['backgroundColor'];
+}
+if (!empty($style_options['textColor'])) {
+    $card_styles[] = 'color: ' . $style_options['textColor'];
+}
+$card_style = !empty($card_styles) ? ' style="' . implode('; ', $card_styles) . '"' : '';
+
+// Start output buffer
+ob_start();
+?>
+
+<div <?php echo $block['anchor'] ? 'id="' . esc_attr($block['anchor']) . '"' : ''; ?> class="<?php echo esc_attr($block['className'] ?? ''); ?>">
+    <?php foreach ($items as $property) : ?>
+        <div class="<?php echo esc_attr(implode(' ', $card_classes)); ?> bg-white overflow-hidden flex <?php echo $layout === 'horizontal' ? 'flex-row' : 'flex-col'; ?>"<?php echo $card_style; ?>>
+            
+            <?php if (!empty($property['featured_image']) && ($display_options['showImage'] ?? true)) : ?>
+                <div class="mi-card__media <?php echo $layout === 'horizontal' ? 'w-1/3' : 'w-full'; ?> relative">
+                    <img src="<?php echo esc_url($property['featured_image']['src']); ?>" 
+                         alt="<?php echo esc_attr($property['title']); ?>"
+                         class="mi-card__image w-full h-full object-cover" 
+                         <?php if ($layout === 'horizontal') : ?>style="height: 100%; min-height: 200px;"<?php endif; ?>>
+                    
+                    <?php if (($display_options['showPrice'] ?? true) && !empty($property['nightly_rate'])) : ?>
+                        <div class="mi-card__badge absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full font-semibold">
+                            $<?php echo esc_html(number_format($property['nightly_rate'], 0)); ?>/night
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (!empty($property['is_featured'])) : ?>
+                        <div class="mi-card__featured-badge absolute top-4 left-4 bg-secondary text-white px-3 py-1 rounded-full text-sm">
+                            Featured
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
+            
+            <div class="mi-card__content p-4 <?php echo $layout === 'horizontal' ? 'w-2/3' : 'w-full'; ?> flex flex-col">
+                <?php if (($display_options['showTitle'] ?? true) && !empty($property['title'])) : ?>
+                    <h3 class="mi-card__title text-xl font-bold mb-2"><?php echo esc_html($property['title']); ?></h3>
+                <?php endif; ?>
+                
+                <?php if (($display_options['showLocation'] ?? true) && (!empty($property['city']) || !empty($property['location_terms']))) : ?>
+                    <div class="mi-card__location text-emphasis mb-2 flex items-center">
+                        <span class="mi-card__icon mr-1">📍</span>
+                        <?php if (!empty($property['city']) && !empty($property['state'])) : ?>
+                            <span><?php echo esc_html($property['city'] . ', ' . $property['state']); ?></span>
+                        <?php elseif (!empty($property['location_terms'])) : ?>
+                            <span><?php echo esc_html($property['location_terms'][0]['name']); ?></span>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if (($display_options['showDetails'] ?? true)) : ?>
+                    <div class="mi-card__details flex flex-wrap gap-4 mb-3">
+                        <?php if (!empty($property['bedrooms'])) : ?>
+                            <span class="mi-card__detail flex items-center">
+                                <span class="mi-card__icon mr-1">🛏️</span>
+                                <span><?php echo esc_html($property['bedrooms']); ?> <?php echo esc_html($property['bedrooms'] > 1 ? 'beds' : 'bed'); ?></span>
+                            </span>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($property['bathrooms'])) : ?>
+                            <span class="mi-card__detail flex items-center">
+                                <span class="mi-card__icon mr-1">🚿</span>
+                                <span><?php echo esc_html($property['bathrooms']); ?> <?php echo esc_html($property['bathrooms'] > 1 ? 'baths' : 'bath'); ?></span>
+                            </span>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($property['max_guests'])) : ?>
+                            <span class="mi-card__detail flex items-center">
+                                <span class="mi-card__icon mr-1">👥</span>
+                                <span><?php echo esc_html($property['max_guests']); ?> <?php echo esc_html($property['max_guests'] > 1 ? 'guests' : 'guest'); ?></span>
+                            </span>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if (($display_options['showExcerpt'] ?? true) && !empty($property['excerpt'])) : ?>
+                    <div class="mi-card__excerpt text-base mb-4"><?php echo wp_kses_post($property['excerpt']); ?></div>
+                <?php endif; ?>
+                
+                <?php if (($display_options['showAmenities'] ?? true) && !empty($property['amenities'])) : ?>
+                    <div class="mi-card__amenities flex flex-wrap gap-2 mb-4">
+                        <?php 
+                        $amenity_count = min(count($property['amenities']), 3);
+                        for ($i = 0; $i < $amenity_count; $i++) : 
+                            $amenity = $property['amenities'][$i];
+                        ?>
+                            <span class="mi-card__tag bg-subtle px-2 py-1 rounded-full text-sm">
+                                <?php if (!empty($amenity['icon'])) : ?>
+                                    <span class="mi-card__icon mr-1"><?php echo esc_html($amenity['icon']); ?></span>
+                                <?php endif; ?>
+                                <?php echo esc_html($amenity['name']); ?>
+                            </span>
+                        <?php endfor; ?>
+                        
+                        <?php if (count($property['amenities']) > 3) : ?>
+                            <span class="mi-card__tag bg-subtle px-2 py-1 rounded-full text-sm">
+                                +<?php echo esc_html(count($property['amenities']) - 3); ?> more
+                            </span>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if (($display_options['showCta'] ?? true)) : ?>
+                    <div class="mi-card__actions mt-auto">
+                        <a href="<?php echo esc_url($property['permalink']); ?>" class="mi-card__cta inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-4 rounded-md transition-colors">
+                            <?php echo esc_html__('View Property', 'mi-blocks'); ?>
+                        </a>
+                        
+                        <?php if (!empty($property['booking_url'])) : ?>
+                            <a href="<?php echo esc_url($property['booking_url']); ?>" class="mi-card__booking ml-2 inline-block bg-secondary hover:bg-secondary-dark text-white font-semibold py-2 px-4 rounded-md transition-colors">
+                                <?php echo esc_html__('Book Now', 'mi-blocks'); ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<?php
+// Return the output
+return ob_get_clean();
+?>
