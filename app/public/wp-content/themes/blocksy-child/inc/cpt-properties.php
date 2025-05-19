@@ -120,13 +120,14 @@ function mi_register_amenities_taxonomy() {
     );
 
     $args = array(
-        'hierarchical'      => false,
+        'hierarchical'      => true, // Changed to true to make it hierarchical like categories
         'labels'            => $labels,
         'show_ui'           => true,
         'show_admin_column' => true,
         'query_var'         => true,
         'rewrite'           => array('slug' => 'amenity'),
         'show_in_rest'      => true,
+        'meta_box_cb'       => 'post_categories_meta_box', // Use the same meta box as categories
     );
 
     register_taxonomy('amenity', array('property'), $args);
