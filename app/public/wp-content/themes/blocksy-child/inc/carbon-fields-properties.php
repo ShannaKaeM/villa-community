@@ -13,10 +13,21 @@ if (!defined('ABSPATH')) {
 // Check if Carbon Fields is available
 if (!class_exists('\Carbon_Fields\Container') || !class_exists('\Carbon_Fields\Field')) {
     add_action('admin_notices', function() {
-        echo '<div class="error"><p>Carbon Fields is not installed or activated. Please make sure it is properly set up.</p></div>';
+        echo '<div class="error"><p>Carbon Fields is not installed or activated. Please install and activate the Carbon Fields plugin before using this feature.</p></div>';
     });
     return;
 }
+
+// Check if Carbon Fields is properly initialized
+if (!function_exists('carbon_get_post_meta') || !function_exists('carbon_get_theme_option')) {
+    add_action('admin_notices', function() {
+        echo '<div class="error"><p>Carbon Fields functions are not available. Please make sure Carbon Fields is properly initialized.</p></div>';
+    });
+    return;
+}
+
+// IMPORTANT: If you encounter errors with this file, uncomment the following line to disable it
+// return;
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
@@ -52,29 +63,33 @@ function mi_register_property_fields() {
                 ->set_help_text(__('Longitude coordinates for map display', 'blocksy-child')),
         ])
         ->add_tab(__('Property Details', 'blocksy-child'), [
-            Field::make('number', 'property_bedrooms', __('Bedrooms', 'blocksy-child'))
+            Field::make('text', 'property_bedrooms', __('Bedrooms', 'blocksy-child'))
                 ->set_required(true)
-                ->set_min(0)
-                ->set_step(1)
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '0')
+                ->set_attribute('step', '1')
                 ->set_help_text(__('Number of bedrooms in the property', 'blocksy-child')),
             
-            Field::make('number', 'property_bathrooms', __('Bathrooms', 'blocksy-child'))
+            Field::make('text', 'property_bathrooms', __('Bathrooms', 'blocksy-child'))
                 ->set_required(true)
-                ->set_min(0)
-                ->set_step(0.5)
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '0')
+                ->set_attribute('step', '0.5')
                 ->set_help_text(__('Number of bathrooms in the property', 'blocksy-child')),
             
-            Field::make('number', 'property_max_guests', __('Maximum Guests', 'blocksy-child'))
+            Field::make('text', 'property_max_guests', __('Maximum Guests', 'blocksy-child'))
                 ->set_required(true)
-                ->set_min(1)
-                ->set_step(1)
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '0')
+                ->set_attribute('step', '1')
                 ->set_help_text(__('Maximum number of guests allowed', 'blocksy-child')),
         ])
         ->add_tab(__('Pricing', 'blocksy-child'), [
-            Field::make('number', 'property_nightly_rate', __('Nightly Rate ($)', 'blocksy-child'))
+            Field::make('text', 'property_nightly_rate', __('Nightly Rate ($)', 'blocksy-child'))
                 ->set_required(true)
-                ->set_min(0)
-                ->set_step(1)
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '0')
+                ->set_attribute('step', '1')
                 ->set_help_text(__('Base nightly rate in USD', 'blocksy-child')),
         ])
         ->add_tab(__('Booking', 'blocksy-child'), [
