@@ -3,8 +3,5 @@
  * Main template file
  */
 
-// Load Timber
-$context = Timber\Timber::context();
-$context['posts'] = Timber::get_posts();
-
-Timber::render('templates/index.twig', $context);
+// Include the parent theme's index template
+require get_template_directory() . '/index.php';

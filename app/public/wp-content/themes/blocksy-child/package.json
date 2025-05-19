@@ -1,0 +1,14 @@
+{
+  "name": "blocksy-child-theme",
+  "version": "1.0.0",
+  "description": "Blocksy child theme",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "wordpress",
+    "blocksy"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}

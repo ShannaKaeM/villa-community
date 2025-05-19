@@ -1,0 +1,44 @@
+# Copyright (C) 2024 Loïc Blascos
+# This file is distributed under the GPL-3.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Grid Builder - Meta Box 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-grid-builder-meta-box\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-10-01T14:35:03+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: wpgb-meta-box\n"
+
+#. Plugin Name of the plugin
+msgid "WP Grid Builder - Meta Box"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.wpgridbuilder.com"
+msgstr ""
+
+#. Description of the plugin
+msgid "Integrate WP Grid Builder with Meta Box plugin."
+msgstr ""
+
+#. Author of the plugin
+msgid "Loïc Blascos"
+msgstr ""
+
+#: includes/class-helpers.php:353
+msgid "Yes"
+msgstr ""
+
+#: includes/class-helpers.php:357
+msgid "No"
+msgstr ""
+
+#: includes/class-plugin.php:162
+msgid "<strong>Gridbuilder ᵂᴾ - Meta Box</strong> add-on requires at least <code>Gridbuilder ᵂᴾ v1.5.7</code>. Please update Gridbuilder ᵂᴾ to use Meta Box add-on."
+msgstr ""

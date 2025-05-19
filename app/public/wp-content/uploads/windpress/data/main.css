@@ -1,0 +1,96 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme) theme(static);
+/* @import "tailwindcss/preflight.css" layer(base); */
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Root Variables - Exposing All Blocksy Globals */
+:root {
+  /* Blocksy Color Palette */
+--theme-palette-color-1: #5A7F80 !important; /* Primary */
+--theme-palette-color-2: #A0495D !important; /* Secondary */
+--theme-palette-color-3: rgb(13, 162, 162) !important; /* Emphasis */
+--theme-palette-color-4: #8C7966 !important; /* Subtle */
+--theme-palette-color-5: #888888 !important; /* Base */
+--theme-palette-color-6: #000000 !important; /* Black */
+--theme-palette-color-7: #ffffff !important; /* White */
+
+  /* Button Styling Variables */
+  --spacing-btn-y: 0.5rem;  /* Equivalent to py-2 */
+  --spacing-btn-x: 1rem;    /* Equivalent to px-4 */
+  --radius-btn: 0.075rem;   /*  */
+  --shadow-btn: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* Equivalent to shadow-sm */
+  
+  /* Focus Ring Variables */
+  --shadow-btn-focus-ring: 0 0 0 3px; /* For the ring offset part */
+  --focus-ring-offset-width: 2px;
+}
+
+/* Tailwind Theme */
+@theme {
+  --color-*: initial; 
+  /* Primary Color Scale */
+  --color-primary: var(--theme-palette-color-1);
+  --color-primary-lightest: oklch(from var(--color-primary) calc(l + 0.1) c h);
+  --color-primary-light: oklch(from var(--color-primary) calc(l + 0.05) c h);
+  --color-primary-med: var(--color-primary);
+  --color-primary-dark: oklch(from var(--color-primary) calc(l - 0.05) c h);
+  --color-primary-darkest: oklch(from var(--color-primary) calc(l - 0.1) c h);
+  
+  /* Secondary Color Scale */
+  --color-secondary: var(--theme-palette-color-2);
+  --color-secondary-lightest: oklch(from var(--color-secondary) calc(l + 0.1) c h);
+  --color-secondary-light: oklch(from var(--color-secondary) calc(l + 0.05) c h);
+  --color-secondary-med: var(--color-secondary);
+  --color-secondary-dark: oklch(from var(--color-secondary) calc(l - 0.05) c h);
+  --color-secondary-darkest: oklch(from var(--color-secondary) calc(l - 0.1) c h);
+  
+  /* Emphasis Color Scale */
+  --color-emphasis: var(--theme-palette-color-3);
+  --color-emphasis-lightest: oklch(from var(--color-emphasis) calc(l + 0.1) c h);
+  --color-emphasis-light: oklch(from var(--color-emphasis) calc(l + 0.05) c h);
+  --color-emphasis-med: var(--color-emphasis);
+  --color-emphasis-dark: oklch(from var(--color-emphasis) calc(l - 0.05) c h);
+  --color-emphasis-darkest: oklch(from var(--color-emphasis) calc(l - 0.1) c h);
+  
+  /* Subtle Color Scale */
+  --color-subtle: var(--theme-palette-color-4);
+  --color-subtle-lightest: oklch(from var(--color-subtle) calc(l + 0.1) c h);
+  --color-subtle-light: oklch(from var(--color-subtle) calc(l + 0.05) c h);
+  --color-subtle-med: var(--color-subtle);
+  --color-subtle-dark: oklch(from var(--color-subtle) calc(l - 0.05) c h);
+  --color-subtle-darkest: oklch(from var(--color-subtle) calc(l - 0.1) c h);
+  
+  /* Base Color Scale */
+  --color-base: var(--theme-palette-color-5);
+  --color-base-lightest: oklch(from var(--color-base) calc(l + 0.1) c h);
+  --color-base-light: oklch(from var(--color-base) calc(l + 0.05) c h);
+  --color-base-med: var(--color-base);
+  --color-base-dark: oklch(from var(--color-base) calc(l - 0.05) c h);
+  --color-base-darkest: oklch(from var(--color-base) calc(l - 0.1) c h);
+  
+  /* Black and White */
+  --color-black: var(--theme-palette-color-6);
+  --color-white: var(--theme-palette-color-7);
+  
+  /* State Colors for Interactive Elements */
+  --color-primary-hover: var(--color-primary-dark);
+  --color-primary-active: var(--color-primary-darkest);
+  --color-secondary-hover: var(--color-secondary-dark);
+  --color-secondary-active: var(--color-secondary-darkest);
+  --color-emphasis-hover: var(--color-emphasis-dark);
+  --color-emphasis-active: var(--color-emphasis-darkest);
+  
+  /* Button Styling */
+  --spacing-y: var(--spacing-btn-y);
+  --spacing-x: var(--spacing-btn-x);
+  --radius-btn: var(--radius-btn);
+  --shadow-btn: var(--shadow-btn);
+  
+  /* Focus Ring Variables using TW4 namespaces */
+  --shadow-focus: var(--shadow-btn-focus-ring);
+  --ring-offset-width: var(--focus-ring-offset-width);
+  --shadow-focus-primary: 0 0 0 3px var(--color-primary-lightest);
+  --shadow-focus-secondary: 0 0 0 3px var(--color-secondary-lightest);
+  --shadow-focus-emphasis: 0 0 0 3px var(--color-emphasis-lightest);
+}
