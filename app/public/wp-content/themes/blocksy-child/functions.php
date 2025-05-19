@@ -32,6 +32,9 @@ add_action('wp_enqueue_scripts', 'blocksy_child_enqueue_styles');
 require_once get_stylesheet_directory() . '/inc/timber-setup.php';
 require_once get_stylesheet_directory() . '/inc/carbon-fields-setup.php';
 require_once get_stylesheet_directory() . '/inc/setup.php';
+require_once get_stylesheet_directory() . '/inc/cpt-properties.php';
+require_once get_stylesheet_directory() . '/inc/metabox-properties.php';
+require_once get_stylesheet_directory() . '/inc/property-importer.php';
 
 /**
  * Add your custom functions below this line
