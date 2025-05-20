@@ -3,16 +3,20 @@
 @import "tailwindcss/theme.css" layer(theme) theme(static);
 /* @import "tailwindcss/preflight.css" layer(base); */
 @import "tailwindcss/utilities.css" layer(utilities);
+@plugin "daisyui" {
+  prefix: "d-";
+}
 
 /* Root Variables - Exposing All Blocksy Globals */
 :root {
   /* Blocksy Color Palette */
 --theme-palette-color-1: #5A7F80 !important; /* Primary */
---theme-palette-color-2: #A0495D !important; /* Secondary */
---theme-palette-color-3: rgb(13, 162, 162) !important; /* Accent */
---theme-palette-color-4: #8C7966 !important; /* Neutral */
+--theme-palette-color-2: #b07777 !important; /* Secondary */
+--theme-palette-color-3: rgb(13, 162, 162) !important; /* Emphasis */
+--theme-palette-color-4: #8C7966 !important; /* Subtle */
 --theme-palette-color-5: #888888 !important; /* Base */
 --theme-palette-color-6: #000000 !important; /* Black */
+--theme-palette-color-7: #ffffff !important; /* White */
 --theme-palette-color-7: #ffffff !important; /* White */
 
 /* Primary Color Scale */
@@ -31,21 +35,21 @@
   --color-secondary-dark: oklch(from var(--color-secondary) calc(l - 0.05) c h);
   --color-secondary-darkest: oklch(from var(--color-secondary) calc(l - 0.1) c h);
   
-  /* Accent Color Scale */
-  --color-accent: var(--theme-palette-color-3);
-  --color-accent-lightest: oklch(from var(--color-accent) calc(l + 0.1) c h);
-  --color-accent-light: oklch(from var(--color-accent) calc(l + 0.05) c h);
-  --color-accent-med: var(--color-accent);
-  --color-accent-dark: oklch(from var(--color-accent) calc(l - 0.05) c h);
-  --color-accent-darkest: oklch(from var(--color-accent) calc(l - 0.1) c h);
+  /* Emphasis Color Scale */
+  --color-emphasis: var(--theme-palette-color-3);
+  --color-emphasis-lightest: oklch(from var(--color-emphasis) calc(l + 0.1) c h);
+  --color-emphasis-light: oklch(from var(--color-emphasis) calc(l + 0.05) c h);
+  --color-emphasis-med: var(--color-emphasis);
+  --color-emphasis-dark: oklch(from var(--color-emphasis) calc(l - 0.05) c h);
+  --color-emphasis-darkest: oklch(from var(--color-emphasis) calc(l - 0.1) c h);
   
-  /* Neutral Color Scale */
-  --color-neutral: var(--theme-palette-color-4);
-  --color-neutral-lightest: oklch(from var(--color-neutral) calc(l + 0.1) c h);
-  --color-neutral-light: oklch(from var(--color-neutral) calc(l + 0.05) c h);
-  --color-neutral-med: var(--color-neutral);
-  --color-neutral-dark: oklch(from var(--color-neutral) calc(l - 0.05) c h);
-  --color-subtle-darkest: oklch(from var(--color-neutral) calc(l - 0.1) c h);
+  /* Subtle Color Scale */
+  --color-subtle: var(--theme-palette-color-4);
+  --color-subtle-lightest: oklch(from var(--color-subtle) calc(l + 0.1) c h);
+  --color-subtle-light: oklch(from var(--color-subtle) calc(l + 0.05) c h);
+  --color-subtle-med: var(--color-subtle);
+  --color-subtle-dark: oklch(from var(--color-subtle) calc(l - 0.05) c h);
+  --color-subtle-darkest: oklch(from var(--color-subtle) calc(l - 0.1) c h);
   
   /* Base Color Scale */
   --color-base: var(--theme-palette-color-5);
@@ -59,44 +63,47 @@
   --color-black: var(--theme-palette-color-6);
   --color-white: var(--theme-palette-color-7);
 }
+  
+@plugin "daisyui/theme" {
+  name: "mytheme";
+  default: true; /* set as default */
+  prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
+  color-scheme: light; /* color of browser-provided UI */
 
-/* DaisyUI Theme */
+  --color-base-100: oklch(98% 0.02 240);
+  --color-base-200: oklch(95% 0.03 240);
+  --color-base-300: oklch(92% 0.04 240);
+  --color-base-content: oklch(20% 0.05 240);
+  --color-primary: oklch(55% 0.3 240);
+  --color-primary-content: oklch(98% 0.01 240);
+  --color-secondary: oklch(70% 0.25 200);
+  --color-secondary-content: oklch(98% 0.01 200);
+  --color-emphasis: oklch(65% 0.25 160);
+  --color-emphasis-content: oklch(98% 0.01 160);
+  --color-subtle: oklch(50% 0.05 240);
+  --color-subtle-content: oklch(98% 0.01 240);
+  --color-info: oklch(70% 0.2 220);
+  --color-info-content: oklch(98% 0.01 220);
+  --color-success: oklch(65% 0.25 140);
+  --color-success-content: oklch(98% 0.01 140);
+  --color-warning: oklch(80% 0.25 80);
+  --color-warning-content: oklch(20% 0.05 80);
+  --color-error: oklch(65% 0.3 30);
+  --color-error-content: oklch(98% 0.01 30);
 
-@plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
-  root: ":root";
-  include: ;
-  exclude: ;
-  prefix: d-;
-  logs: false;
-  /* Theme colors derived from our root variables */
-  --color-*: initial; 
-  --color-base-100: var(--color-base-lightest);
-  --color-base-200: var(--color-base-light);
-  --color-base-300: var(--color-base-med);
-  --color-base-content: var(--color-base-dark);
-  --color-primary: var(--color-primary-med);
-  --color-primary-content: var(--color-white);
-  --color-secondary: var(--color-secondary-med);
-  --color-secondary-content: var(--color-white);
-  --color-accent: var(--color-accent-med);
-  --color-accent-content: var(--color-white);
-  --color-neutral: var(--color-neutral-med);
-  --color-neutral-content: var(--color-white);
-  --color-info: oklch(95% 0.045 203.388);
-  --color-info-content: oklch(70% 0.04 256.788);
-  --color-success: oklch(96% 0.067 122.328);
-  --color-success-content: oklch(70% 0.04 256.788);
-  --color-warning: oklch(95% 0.038 75.164);
-  --color-warning-content: oklch(70% 0.04 256.788);
-  --color-error: oklch(93% 0.032 17.717);
-  --color-error-content: oklch(70% 0.04 256.788);
-  --radius-selector: 0.5rem;
-  --radius-field: 0.5rem;
+  /* border radius */
+  --radius-selector: 1rem;
+  --radius-field: 0.25rem;
   --radius-box: 0.5rem;
+
+  /* base sizes */
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
+
+  /* border size */
   --border: 1px;
+
+  /* effects */
   --depth: 1;
-  --noise: 1;
+  --noise: 0;
 }
