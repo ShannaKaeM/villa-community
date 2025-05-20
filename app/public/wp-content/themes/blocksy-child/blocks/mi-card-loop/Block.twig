@@ -1,6 +1,6 @@
 {# MI Card Loop Block Template #}
 
-{# Set up the grid classes based on columns attribute #}
+{# Set up the grid classes based on columns attribute - Grid-First Approach #}
 {% set grid_classes = 'grid gap-6' %}
 {% if attributes.columns == 1 %}
     {% set grid_classes = grid_classes ~ ' grid-cols-1' %}
@@ -12,7 +12,7 @@
     {% set grid_classes = grid_classes ~ ' grid-cols-1 md:grid-cols-2 lg:grid-cols-4' %}
 {% endif %}
 
-{# Set up the wrapper attributes #}
+{# Set up the wrapper attributes - Proper Block Wrapper Attributes #}
 {% set wrapper_attributes = fn('get_block_wrapper_attributes', {
     'class': grid_classes ~ ' ' ~ attributes.className
 }) %}
@@ -22,47 +22,49 @@
     {% if cards|length > 0 %}
         {% for card in cards %}
             {# Apply different classes based on variant #}
-            <div class="d-card shadow-xl {% if attributes.variant == 'property' %}d-card-property{% elseif attributes.variant == 'business' %}d-card-business{% endif %}">
+            {# Responsive Width Management - Use w-full instead of fixed width #}
+            {% set card_classes = 'd-card bg-base-100 w-full shadow-xl' %}
+            
+            {# Apply card variant classes #}
+            {% if attributes.variant == 'property' %}
+                {% set card_classes = card_classes ~ ' d-card-property' %}
+            {% elseif attributes.variant == 'business' %}
+                {% set card_classes = card_classes ~ ' d-card-business' %}
+            {% elseif attributes.variant == 'generic' %}
+                {% set card_classes = card_classes ~ ' d-card-generic' %}
+            {% endif %}
+            
+            {# Apply card size class #}
+            {% if attributes.cardSize == 'compact' %}
+                {% set card_classes = card_classes ~ ' d-card-compact' %}
+            {% elseif attributes.cardSize == 'large' %}
+                {% set card_classes = card_classes ~ ' d-card-side' %}
+            {% endif %}
+            
+            <div class="{{ card_classes }}">
                 {% if card.thumbnail %}
                     <figure>
                         <img src="{{ card.thumbnail }}" alt="{{ card.title }}">
                         
                         {# Property badges #}
-                        {% if attributes.variant == 'property' and card.price %}
-                            <div class="d-badge d-badge-primary absolute bottom-4 left-4 text-lg">
-                                {{ card.price }}
-                            </div>
-                        {% endif %}
-                        
-                        {% if attributes.variant == 'property' and card.status %}
-                            <div class="d-badge d-badge-accent absolute top-4 right-4">
-                                {{ card.status }}
-                            </div>
-                        {% endif %}
-                        
-                        {% if attributes.variant == 'property' and card.featured %}
-                            <div class="d-badge d-badge-secondary absolute top-4 left-4">
-                                Featured
-                            </div>
-                        {% endif %}
-                        
-                        {# Business badges #}
-                        {% if attributes.variant == 'business' and card.price %}
-                            <div class="d-badge d-badge-primary absolute bottom-4 left-4 text-lg">
-                                {{ card.price }}
-                            </div>
-                        {% endif %}
-                        
-                        {% if attributes.variant == 'business' and card.status %}
-                            <div class="d-badge d-badge-accent absolute top-4 right-4">
-                                {{ card.status }}
-                            </div>
-                        {% endif %}
-                        
-                        {% if attributes.variant == 'business' and card.featured %}
-                            <div class="d-badge d-badge-secondary absolute top-4 left-4">
-                                Featured
-                            </div>
+                        {% if attributes.variant == 'property' or attributes.variant == 'business' %}
+                            {% if card.price %}
+                                <div class="d-badge d-badge-primary absolute bottom-4 left-4 text-lg">
+                                    {{ card.price }}
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.status %}
+                                <div class="d-badge d-badge-accent absolute top-4 right-4">
+                                    {{ card.status }}
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.featured %}
+                                <div class="d-badge d-badge-secondary absolute top-4 left-4">
+                                    Featured
+                                </div>
+                            {% endif %}
                         {% endif %}
                     </figure>
                 {% endif %}
@@ -155,7 +157,29 @@
                     
                     {% if card.permalink %}
                         <div class="d-card-actions justify-end mt-4">
-                            <a href="{{ card.permalink }}" class="d-btn d-btn-primary">
+                            {% set button_classes = 'd-btn' %}
+                            
+                            {# Apply button color #}
+                            {% if attributes.buttonColor == 'primary' %}
+                                {% set button_classes = button_classes ~ ' d-btn-primary' %}
+                            {% elseif attributes.buttonColor == 'secondary' %}
+                                {% set button_classes = button_classes ~ ' d-btn-secondary' %}
+                            {% elseif attributes.buttonColor == 'accent' %}
+                                {% set button_classes = button_classes ~ ' d-btn-accent' %}
+                            {% elseif attributes.buttonColor == 'neutral' %}
+                                {% set button_classes = button_classes ~ ' d-btn-neutral' %}
+                            {% else %}
+                                {% set button_classes = button_classes ~ ' d-btn-primary' %}
+                            {% endif %}
+                            
+                            {# Apply button size #}
+                            {% if attributes.buttonSize == 'sm' %}
+                                {% set button_classes = button_classes ~ ' d-btn-sm' %}
+                            {% elseif attributes.buttonSize == 'lg' %}
+                                {% set button_classes = button_classes ~ ' d-btn-lg' %}
+                            {% endif %}
+                            
+                            <a href="{{ card.permalink }}" class="{{ button_classes }}">
                                 {{ attributes.linkText|default('View Details') }}
                             </a>
                         </div>
@@ -164,6 +188,7 @@
             </div>
         {% endfor %}
     {% else %}
+        {# Empty state with proper grid span #}
         <div class="col-span-full text-center py-12 bg-base-200 rounded-lg">
             <p>No items found.</p>
         </div>

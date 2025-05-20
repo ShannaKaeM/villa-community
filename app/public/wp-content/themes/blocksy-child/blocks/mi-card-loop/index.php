@@ -42,15 +42,18 @@ function mi_register_card_loop_block() {
         'style' => 'mi-card-loop-block-style',
         'render_callback' => 'mi_render_card_loop_block',
         'attributes' => [
-            'variant' => ['type' => 'string', 'default' => 'generic'],
+            'variant' => ['type' => 'string', 'default' => 'property'],
             'columns' => ['type' => 'number', 'default' => 3],
             'count' => ['type' => 'number', 'default' => 3],
+            'cardSize' => ['type' => 'string', 'default' => 'normal'],
             'title' => ['type' => 'string', 'default' => 'Card Title'],
             'description' => ['type' => 'string', 'default' => 'This is a sample card description.'],
             'imageUrl' => ['type' => 'string', 'default' => ''],
             'imageAlt' => ['type' => 'string', 'default' => ''],
             'linkUrl' => ['type' => 'string', 'default' => '#'],
             'linkText' => ['type' => 'string', 'default' => 'Learn More'],
+            'buttonSize' => ['type' => 'string', 'default' => 'md'],
+            'buttonColor' => ['type' => 'string', 'default' => 'primary'],
             'price' => ['type' => 'string', 'default' => ''],
             'status' => ['type' => 'string', 'default' => ''],
             'featured' => ['type' => 'boolean', 'default' => false],
@@ -79,22 +82,61 @@ function mi_render_card_loop_block($attributes, $content, $block) {
     // Create mock cards for the editor
     $cards = [];
     
-    // If we're in the editor, create mock cards based on the attributes
+    // Define structured mock data for editor preview and fallback
+    $mock_data = [
+        'property' => [
+            'title' => 'Sample Property',
+            'excerpt' => 'This is a sample property description with all the features you would expect.',
+            'thumbnail' => get_stylesheet_directory_uri() . '/docs/Images/Generated Image May 14, 2025 - 12_20PM.jpeg',
+            'permalink' => '#',
+            'location' => 'Sample Location',
+            'price' => '$500,000',
+            'status' => 'For Sale',
+            'bedrooms' => '3',
+            'bathrooms' => '2',
+            'area' => '1,500 sq ft',
+            'featured' => true
+        ],
+        'business' => [
+            'title' => 'Sample Business',
+            'excerpt' => 'This is a sample business description with all the details you would expect.',
+            'thumbnail' => get_stylesheet_directory_uri() . '/docs/Images/Generated Image May 14, 2025 - 12_20PM.jpeg',
+            'permalink' => '#',
+            'location' => 'Business District',
+            'business_type' => 'Retail',
+            'price' => '$1,200,000',
+            'status' => 'For Sale',
+            'phone' => '(555) 123-4567',
+            'email' => 'info@samplebusiness.com',
+            'website' => 'https://www.example.com',
+            'address' => '123 Business Ave',
+            'featured' => true
+        ],
+        'generic' => [
+            'title' => 'Sample Card',
+            'excerpt' => 'This is a sample card description.',
+            'thumbnail' => get_stylesheet_directory_uri() . '/docs/Images/Generated Image May 14, 2025 - 12_20PM.jpeg',
+            'permalink' => '#',
+            'featured' => false
+        ]
+    ];
+    
+    // If we're in the editor, create mock cards based on the attributes and mock data
     if (defined('REST_REQUEST') && REST_REQUEST) {
+        $variant = $attributes['variant'];
+        $mock_item = $mock_data[$variant];
+        
+        // Override mock data with any attributes provided
+        if ($variant === 'generic') {
+            $mock_item['title'] = $attributes['title'];
+            $mock_item['excerpt'] = $attributes['description'];
+            $mock_item['thumbnail'] = $attributes['imageUrl'] ?: $mock_item['thumbnail'];
+            $mock_item['permalink'] = $attributes['linkUrl'];
+        }
+        
+        // Create the requested number of cards
         for ($i = 0; $i < $attributes['count']; $i++) {
-            $cards[] = [
-                'title' => $attributes['title'],
-                'excerpt' => $attributes['description'],
-                'thumbnail' => $attributes['imageUrl'] ?: get_stylesheet_directory_uri() . '/docs/Images/Generated Image May 14, 2025 - 12_20PM.jpeg',
-                'permalink' => $attributes['linkUrl'],
-                'location' => $attributes['location'] ?: 'Sample Location',
-                'price' => $attributes['price'] ?: '$500,000',
-                'status' => $attributes['status'] ?: 'For Sale',
-                'bedrooms' => $attributes['bedrooms'] ?: '3',
-                'bathrooms' => $attributes['bathrooms'] ?: '2',
-                'area' => $attributes['area'] ?: '1,500 sq ft',
-                'featured' => $attributes['featured']
-            ];
+            $cards[] = $mock_item;
         }
     } else {
         // For front-end, fetch real data based on variant
