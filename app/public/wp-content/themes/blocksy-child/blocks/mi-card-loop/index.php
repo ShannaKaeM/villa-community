@@ -61,6 +61,9 @@ function mi_register_card_loop_block() {
             'bedrooms' => ['type' => 'string', 'default' => ''],
             'bathrooms' => ['type' => 'string', 'default' => ''],
             'area' => ['type' => 'string', 'default' => ''],
+            'showFilters' => ['type' => 'boolean', 'default' => false],
+            'filterPosition' => ['type' => 'string', 'default' => 'left'],
+            'filterCategories' => ['type' => 'array', 'default' => []],
             'className' => ['type' => 'string', 'default' => '']
         ]
     ]);
@@ -78,6 +81,41 @@ function mi_render_card_loop_block($attributes, $content, $block) {
     $context['attributes'] = $attributes;
     $context['content'] = $content;
     $context['block'] = $block;
+    
+    // Add mock filter data for the sidebar
+    $filter_data = [
+        'property_types' => [
+            ['id' => 1, 'name' => 'House'],
+            ['id' => 2, 'name' => 'Apartment'],
+            ['id' => 3, 'name' => 'Villa'],
+            ['id' => 4, 'name' => 'Condo'],
+            ['id' => 5, 'name' => 'Townhouse']
+        ],
+        'locations' => [
+            ['id' => 1, 'name' => 'Downtown'],
+            ['id' => 2, 'name' => 'Suburbs'],
+            ['id' => 3, 'name' => 'Beachfront'],
+            ['id' => 4, 'name' => 'Mountain View'],
+            ['id' => 5, 'name' => 'Lakeside']
+        ],
+        'price_range' => [
+            'min' => 100000,
+            'max' => 1000000
+        ],
+        'area_range' => [
+            'min' => 500,
+            'max' => 5000
+        ],
+        'amenities' => [
+            ['id' => 1, 'name' => 'Pool'],
+            ['id' => 2, 'name' => 'Garden'],
+            ['id' => 3, 'name' => 'Garage'],
+            ['id' => 4, 'name' => 'Gym'],
+            ['id' => 5, 'name' => 'Security']
+        ]
+    ];
+    
+    $context['filter_data'] = $filter_data;
     
     // Create mock cards for the editor
     $cards = [];

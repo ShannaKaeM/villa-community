@@ -25,7 +25,7 @@
         attributes: {
             variant: {
                 type: 'string',
-                default: 'generic'
+                default: 'property'
             },
             columns: {
                 type: 'number',
@@ -34,6 +34,10 @@
             count: {
                 type: 'number',
                 default: 3
+            },
+            cardSize: {
+                type: 'string',
+                default: 'normal'
             },
             title: {
                 type: 'string',
@@ -58,6 +62,14 @@
             linkText: {
                 type: 'string',
                 default: 'Learn More'
+            },
+            buttonSize: {
+                type: 'string',
+                default: 'md'
+            },
+            buttonColor: {
+                type: 'string',
+                default: 'primary'
             },
             price: {
                 type: 'string',
@@ -86,6 +98,18 @@
             area: {
                 type: 'string',
                 default: ''
+            },
+            showFilters: {
+                type: 'boolean',
+                default: false
+            },
+            filterPosition: {
+                type: 'string',
+                default: 'left'
+            },
+            filterCategories: {
+                type: 'array',
+                default: []
             }
         },
         
@@ -102,6 +126,10 @@
             
             function onChangeCount(newCount) {
                 props.setAttributes({ count: newCount });
+            }
+            
+            function onChangeCardSize(newCardSize) {
+                props.setAttributes({ cardSize: newCardSize });
             }
             
             function onChangeTitle(newTitle) {
@@ -125,6 +153,14 @@
             
             function onChangeLinkText(newLinkText) {
                 props.setAttributes({ linkText: newLinkText });
+            }
+            
+            function onChangeButtonSize(newButtonSize) {
+                props.setAttributes({ buttonSize: newButtonSize });
+            }
+            
+            function onChangeButtonColor(newButtonColor) {
+                props.setAttributes({ buttonColor: newButtonColor });
             }
             
             function onChangePrice(newPrice) {
@@ -155,6 +191,14 @@
                 props.setAttributes({ area: newArea });
             }
             
+            function onChangeShowFilters(newShowFilters) {
+                props.setAttributes({ showFilters: newShowFilters });
+            }
+            
+            function onChangeFilterPosition(newFilterPosition) {
+                props.setAttributes({ filterPosition: newFilterPosition });
+            }
+            
             return [
                 el(InspectorControls, { key: 'inspector' },
                     el(PanelBody, { title: 'Card Loop Settings', initialOpen: true },
@@ -181,9 +225,19 @@
                             min: 1,
                             max: 12,
                             onChange: onChangeCount
+                        }),
+                        el(SelectControl, {
+                            label: 'Card Size',
+                            value: attributes.cardSize,
+                            options: [
+                                { label: 'Compact', value: 'compact' },
+                                { label: 'Normal', value: 'normal' },
+                                { label: 'Large', value: 'large' }
+                            ],
+                            onChange: onChangeCardSize
                         })
                     ),
-                    el(PanelBody, { title: 'Card Content', initialOpen: false },
+                    attributes.variant === 'generic' && el(PanelBody, { title: 'Card Content (Generic Only)', initialOpen: false },
                         el(TextControl, {
                             label: 'Title',
                             value: attributes.title,
@@ -221,6 +275,45 @@
                             label: 'Link Text',
                             value: attributes.linkText,
                             onChange: onChangeLinkText
+                        })
+                    ),
+                    el(PanelBody, { title: 'Button Options', initialOpen: false },
+                        el(SelectControl, {
+                            label: 'Button Size',
+                            value: attributes.buttonSize,
+                            options: [
+                                { label: 'Small', value: 'sm' },
+                                { label: 'Medium', value: 'md' },
+                                { label: 'Large', value: 'lg' }
+                            ],
+                            onChange: onChangeButtonSize
+                        }),
+                        el(SelectControl, {
+                            label: 'Button Color',
+                            value: attributes.buttonColor,
+                            options: [
+                                { label: 'Primary', value: 'primary' },
+                                { label: 'Secondary', value: 'secondary' },
+                                { label: 'Accent', value: 'accent' },
+                                { label: 'Neutral', value: 'neutral' }
+                            ],
+                            onChange: onChangeButtonColor
+                        })
+                    ),
+                    el(PanelBody, { title: 'Filter Options', initialOpen: false },
+                        el(ToggleControl, {
+                            label: 'Show Filters',
+                            checked: attributes.showFilters,
+                            onChange: onChangeShowFilters
+                        }),
+                        attributes.showFilters && el(SelectControl, {
+                            label: 'Filter Position',
+                            value: attributes.filterPosition,
+                            options: [
+                                { label: 'Left Sidebar', value: 'left' },
+                                { label: 'Right Sidebar', value: 'right' }
+                            ],
+                            onChange: onChangeFilterPosition
                         })
                     ),
                     attributes.variant === 'property' && el(PanelBody, { title: 'Property Details', initialOpen: false },

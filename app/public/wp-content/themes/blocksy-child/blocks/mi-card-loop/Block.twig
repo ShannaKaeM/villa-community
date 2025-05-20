@@ -14,11 +14,61 @@
 
 {# Set up the wrapper attributes - Proper Block Wrapper Attributes #}
 {% set wrapper_attributes = fn('get_block_wrapper_attributes', {
-    'class': grid_classes ~ ' ' ~ attributes.className
+    'class': attributes.className
 }) %}
 
 <div {{ wrapper_attributes|raw }}>
-    {# Loop through cards and display them #}
+    {% if attributes.showFilters and attributes.variant == 'property' %}
+        {# Grid layout with filter sidebar - Grid-First Approach #}
+        {% set sidebar_position = attributes.filterPosition == 'left' ? 'lg:grid-cols-[300px_1fr]' : 'lg:grid-cols-[1fr_300px]' %}
+        <div class="grid grid-cols-1 {{ sidebar_position }} gap-6">
+            
+            {# Filter Sidebar - Left Position #}
+            {% if attributes.filterPosition == 'left' %}
+                <div class="d-drawer lg:d-drawer-open">
+                    <input id="filter-drawer" type="checkbox" class="d-drawer-toggle" />
+                    <div class="d-drawer-content flex lg:hidden mb-4">
+                        {# Mobile Toggle Button #}
+                        <label for="filter-drawer" class="d-btn d-btn-primary d-drawer-button">Show Filters</label>
+                    </div>
+                    <div class="d-drawer-side min-h-[50vh] z-10">
+                        <label for="filter-drawer" aria-label="close sidebar" class="d-drawer-overlay"></label>
+                        <div class="d-menu bg-base-200 w-80 min-h-full p-4">
+                            {# Filter Content #}
+                            {% include 'blocks/mi-card-loop/filter-sidebar.twig' %}
+                        </div>
+                    </div>
+                </div>
+                
+                {# Card Grid #}
+                <div class="{{ grid_classes }}">
+                    {# Loop through cards and display them #}
+            {% else %}
+                {# Card Grid #}
+                <div class="{{ grid_classes }}">
+                    {# Loop through cards and display them #}
+                
+                {# Filter Sidebar - Right Position #}
+                <div class="d-drawer lg:d-drawer-open">
+                    <input id="filter-drawer" type="checkbox" class="d-drawer-toggle" />
+                    <div class="d-drawer-content flex lg:hidden mb-4">
+                        {# Mobile Toggle Button #}
+                        <label for="filter-drawer" class="d-btn d-btn-primary d-drawer-button">Show Filters</label>
+                    </div>
+                    <div class="d-drawer-side min-h-[50vh] z-10">
+                        <label for="filter-drawer" aria-label="close sidebar" class="d-drawer-overlay"></label>
+                        <div class="d-menu bg-base-200 w-80 min-h-full p-4">
+                            {# Filter Content #}
+                            {% include 'blocks/mi-card-loop/filter-sidebar.twig' %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        {# Standard Card Grid without Filters #}
+        <div class="{{ grid_classes }}">
+            {# Loop through cards and display them #}
     {% if cards|length > 0 %}
         {% for card in cards %}
             {# Apply different classes based on variant #}
@@ -191,6 +241,12 @@
         {# Empty state with proper grid span #}
         <div class="col-span-full text-center py-12 bg-base-200 rounded-lg">
             <p>No items found.</p>
+        </div>
+    {% endif %}
+    {% if attributes.showFilters and attributes.variant == 'property' %}
+                </div>
+            </div>
+    {% else %}
         </div>
     {% endif %}
 </div>
