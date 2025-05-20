@@ -12,8 +12,9 @@
 }
 
 /* Add a border in the editor for better visibility */
-.editor-styles-wrapper .mi-card {
+.editor-styles-wrapper .wp-block-mi-card {
     border: 1px dashed #ddd;
+    padding: 1rem;
 }
 
 /* Style the block toolbar */
@@ -46,4 +47,36 @@
 /* Style range controls */
 .components-range-control__wrapper {
     margin-left: 0 !important;
+}
+
+/* DaisyUI Card Editor Styles */
+.editor-styles-wrapper .card {
+    background-color: var(--base-100, white);
+    border-radius: var(--rounded-box, 0.5rem);
+    box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04));
+}
+
+.editor-styles-wrapper .card-body {
+    padding: 1.5rem;
+}
+
+.editor-styles-wrapper .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.editor-styles-wrapper .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: var(--rounded-btn, 0.5rem);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.editor-styles-wrapper .btn-primary {
+    background-color: var(--p, #570df8);
+    color: var(--pc, white);
 }
