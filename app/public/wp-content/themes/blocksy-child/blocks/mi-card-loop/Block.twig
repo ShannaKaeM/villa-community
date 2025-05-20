@@ -1,6 +1,6 @@
 {# MI Card Loop Block Template #}
 
-{# Set up the grid classes based on columns attribute - Grid-First Approach #}
+{# Set up the grid classes based on columns attribute #}
 {% set grid_classes = 'grid gap-6' %}
 {% if attributes.columns == 1 %}
     {% set grid_classes = grid_classes ~ ' grid-cols-1' %}
@@ -12,53 +12,51 @@
     {% set grid_classes = grid_classes ~ ' grid-cols-1 md:grid-cols-2 lg:grid-cols-4' %}
 {% endif %}
 
-{# Set up the wrapper attributes - Proper Block Wrapper Attributes #}
+{# Set up the wrapper attributes #}
 {% set wrapper_attributes = fn('get_block_wrapper_attributes', {
     'class': attributes.className
 }) %}
 
 <div {{ wrapper_attributes|raw }}>
     {% if attributes.showFilters and attributes.variant == 'property' %}
-        {# Grid layout with filter sidebar - Grid-First Approach #}
+        {# Layout with filter sidebar #}
         {% set sidebar_position = attributes.filterPosition == 'left' ? 'lg:grid-cols-[300px_1fr]' : 'lg:grid-cols-[1fr_300px]' %}
         <div class="grid grid-cols-1 {{ sidebar_position }} gap-6">
             
-            {# Filter Sidebar - Left Position #}
             {% if attributes.filterPosition == 'left' %}
+                {# Left sidebar #}
                 <div class="d-drawer lg:d-drawer-open">
                     <input id="filter-drawer" type="checkbox" class="d-drawer-toggle" />
                     <div class="d-drawer-content flex lg:hidden mb-4">
-                        {# Mobile Toggle Button #}
                         <label for="filter-drawer" class="d-btn d-btn-primary d-drawer-button">Show Filters</label>
                     </div>
                     <div class="d-drawer-side min-h-[50vh] z-10">
                         <label for="filter-drawer" aria-label="close sidebar" class="d-drawer-overlay"></label>
                         <div class="d-menu bg-base-200 w-80 min-h-full p-4">
-                            {# Filter Content #}
                             {% include 'blocks/mi-card-loop/filter-sidebar.twig' %}
                         </div>
                     </div>
                 </div>
                 
-                {# Card Grid #}
+                {# Card grid #}
                 <div class="{{ grid_classes }}">
-                    {# Loop through cards and display them #}
+                    {% include 'blocks/mi-card-loop/card-content.twig' %}
+                </div>
             {% else %}
-                {# Card Grid #}
+                {# Card grid #}
                 <div class="{{ grid_classes }}">
-                    {# Loop through cards and display them #}
+                    {% include 'blocks/mi-card-loop/card-content.twig' %}
+                </div>
                 
-                {# Filter Sidebar - Right Position #}
+                {# Right sidebar #}
                 <div class="d-drawer lg:d-drawer-open">
                     <input id="filter-drawer" type="checkbox" class="d-drawer-toggle" />
                     <div class="d-drawer-content flex lg:hidden mb-4">
-                        {# Mobile Toggle Button #}
                         <label for="filter-drawer" class="d-btn d-btn-primary d-drawer-button">Show Filters</label>
                     </div>
                     <div class="d-drawer-side min-h-[50vh] z-10">
                         <label for="filter-drawer" aria-label="close sidebar" class="d-drawer-overlay"></label>
                         <div class="d-menu bg-base-200 w-80 min-h-full p-4">
-                            {# Filter Content #}
                             {% include 'blocks/mi-card-loop/filter-sidebar.twig' %}
                         </div>
                     </div>
@@ -66,187 +64,9 @@
             {% endif %}
         </div>
     {% else %}
-        {# Standard Card Grid without Filters #}
+        {# Standard card grid #}
         <div class="{{ grid_classes }}">
-            {# Loop through cards and display them #}
-    {% if cards|length > 0 %}
-        {% for card in cards %}
-            {# Apply different classes based on variant #}
-            {# Responsive Width Management - Use w-full instead of fixed width #}
-            {% set card_classes = 'd-card bg-base-100 w-full shadow-xl' %}
-            
-            {# Apply card variant classes #}
-            {% if attributes.variant == 'property' %}
-                {% set card_classes = card_classes ~ ' d-card-property' %}
-            {% elseif attributes.variant == 'business' %}
-                {% set card_classes = card_classes ~ ' d-card-business' %}
-            {% elseif attributes.variant == 'generic' %}
-                {% set card_classes = card_classes ~ ' d-card-generic' %}
-            {% endif %}
-            
-            {# Apply card size class #}
-            {% if attributes.cardSize == 'compact' %}
-                {% set card_classes = card_classes ~ ' d-card-compact' %}
-            {% elseif attributes.cardSize == 'large' %}
-                {% set card_classes = card_classes ~ ' d-card-side' %}
-            {% endif %}
-            
-            <div class="{{ card_classes }}">
-                {% if card.thumbnail %}
-                    <figure>
-                        <img src="{{ card.thumbnail }}" alt="{{ card.title }}">
-                        
-                        {# Property badges #}
-                        {% if attributes.variant == 'property' or attributes.variant == 'business' %}
-                            {% if card.price %}
-                                <div class="d-badge d-badge-primary absolute bottom-4 left-4 text-lg">
-                                    {{ card.price }}
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.status %}
-                                <div class="d-badge d-badge-accent absolute top-4 right-4">
-                                    {{ card.status }}
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.featured %}
-                                <div class="d-badge d-badge-secondary absolute top-4 left-4">
-                                    Featured
-                                </div>
-                            {% endif %}
-                        {% endif %}
-                    </figure>
-                {% endif %}
-                
-                <div class="d-card-body">
-                    <h2 class="d-card-title">{{ card.title }}</h2>
-                    
-                    {% if card.excerpt %}
-                        <p>{{ card.excerpt }}</p>
-                    {% endif %}
-                    
-                    {# Property Card Metadata #}
-                    {% if attributes.variant == 'property' %}
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            {% if card.location %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A2.167 2.167 0 0112.833 18h-1.666A2.167 2.167 0 019 15.833V11M8 7h8m-4-4v4H7a4 4 0 00-4 4v6h18v-6a4 4 0 00-4-4h-5V3z"></path></svg>
-                                    {{ card.location }}
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.bedrooms %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                                    {{ card.bedrooms }} Beds
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.bathrooms %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    {{ card.bathrooms }} Baths
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.area %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                                    {{ card.area }}
-                                </div>
-                            {% endif %}
-                        </div>
-                    
-                    {# Business Card Metadata #}
-                    {% elseif attributes.variant == 'business' %}
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            {% if card.location %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                    {{ card.location }}
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.business_type %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
-                                    {{ card.business_type }}
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.phone %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                                    {{ card.phone }}
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.email %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                    {{ card.email }}
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.website %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-                                    <a href="{{ card.website }}" target="_blank" rel="noopener noreferrer" class="hover:underline">Website</a>
-                                </div>
-                            {% endif %}
-                            
-                            {% if card.address %}
-                                <div class="d-badge d-badge-outline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                                    {{ card.address }}
-                                </div>
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                    
-                    {% if card.permalink %}
-                        <div class="d-card-actions justify-end mt-4">
-                            {% set button_classes = 'd-btn' %}
-                            
-                            {# Apply button color #}
-                            {% if attributes.buttonColor == 'primary' %}
-                                {% set button_classes = button_classes ~ ' d-btn-primary' %}
-                            {% elseif attributes.buttonColor == 'secondary' %}
-                                {% set button_classes = button_classes ~ ' d-btn-secondary' %}
-                            {% elseif attributes.buttonColor == 'accent' %}
-                                {% set button_classes = button_classes ~ ' d-btn-accent' %}
-                            {% elseif attributes.buttonColor == 'neutral' %}
-                                {% set button_classes = button_classes ~ ' d-btn-neutral' %}
-                            {% else %}
-                                {% set button_classes = button_classes ~ ' d-btn-primary' %}
-                            {% endif %}
-                            
-                            {# Apply button size #}
-                            {% if attributes.buttonSize == 'sm' %}
-                                {% set button_classes = button_classes ~ ' d-btn-sm' %}
-                            {% elseif attributes.buttonSize == 'lg' %}
-                                {% set button_classes = button_classes ~ ' d-btn-lg' %}
-                            {% endif %}
-                            
-                            <a href="{{ card.permalink }}" class="{{ button_classes }}">
-                                {{ attributes.linkText|default('View Details') }}
-                            </a>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
-    {% else %}
-        {# Empty state with proper grid span #}
-        <div class="col-span-full text-center py-12 bg-base-200 rounded-lg">
-            <p>No items found.</p>
-        </div>
-    {% endif %}
-    {% if attributes.showFilters and attributes.variant == 'property' %}
-                </div>
-            </div>
-    {% else %}
+            {% include 'blocks/mi-card-loop/card-content.twig' %}
         </div>
     {% endif %}
 </div>
