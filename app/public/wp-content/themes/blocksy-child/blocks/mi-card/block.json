@@ -5,11 +5,15 @@
     "title": "MI Card",
     "category": "widgets",
     "icon": "index-card",
-    "description": "Display property cards",
-    "keywords": ["property", "card", "mi"],
+    "description": "Display cards",
+    "keywords": ["card", "mi"],
     "version": "1.0.0",
     "textdomain": "mi-blocks",
     "attributes": {
+        "variant": {
+            "type": "string",
+            "default": "property"
+        },
         "count": {
             "type": "number",
             "default": 3

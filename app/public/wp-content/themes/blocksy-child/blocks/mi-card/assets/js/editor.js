@@ -24,8 +24,28 @@
                     createElement(
                         PanelBody,
                         { title: __('Settings'), initialOpen: true },
-                        createElement(RangeControl, {
-                            label: __('Number of Properties'),
+                        createElement(
+                            'div',
+                            { className: 'components-base-control' },
+                            createElement(
+                                'label',
+                                { className: 'components-base-control__label' },
+                                __('Card Type')
+                            ),
+                            createElement(
+                                'select',
+                                {
+                                    className: 'components-select-control__input',
+                                    value: attributes.variant,
+                                    onChange: function(e) { setAttributes({ variant: e.target.value }); }
+                                },
+                                createElement('option', { value: 'generic' }, __('Generic Card')),
+                                createElement('option', { value: 'property' }, __('Property Card')),
+                                createElement('option', { value: 'business' }, __('Business Card'))
+                            )
+                        ),
+                        attributes.variant !== 'generic' && createElement(RangeControl, {
+                            label: __('Number of Items'),
                             value: attributes.count,
                             onChange: function(value) { setAttributes({ count: value }); },
                             min: 1,
@@ -47,13 +67,19 @@
                         Placeholder,
                         {
                             icon: 'index-card',
-                            label: __('MI Property Card'),
-                            instructions: __('Displays the latest properties in a card layout.')
+                            label: __('MI Card'),
+                            instructions: attributes.variant === 'generic' 
+                                ? __('Displays content in a card layout.') 
+                                : (attributes.variant === 'property' 
+                                    ? __('Displays properties in a card layout.') 
+                                    : __('Displays businesses in a card layout.'))
                         },
                         createElement(
                             'p',
                             null,
-                            __('This block will show') + ' ' + attributes.count + ' ' + __('properties in') + ' ' + attributes.columns + ' ' + __('columns.')
+                            attributes.variant === 'generic'
+                                ? __('This block will show generic cards in') + ' ' + attributes.columns + ' ' + __('columns.')
+                                : __('This block will show') + ' ' + attributes.count + ' ' + (attributes.variant === 'property' ? __('properties') : __('businesses')) + ' ' + __('in') + ' ' + attributes.columns + ' ' + __('columns.')
                         )
                     )
                 )

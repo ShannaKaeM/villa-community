@@ -98,7 +98,7 @@ add_action('init', 'mi_register_custom_blocks', 5);
  */
 function mi_add_twig_functions($twig) {
     // Add function to get properties
-    $twig->addFunction(new \Timber\Twig_Function('get_properties', function($args = []) {
+    $twig->addFunction(new \Twig\TwigFunction('get_properties', function($args = []) {
         $helper = MI_Carbon_Fields_Helper::get_instance();
         return $helper->get_properties($args);
     }));

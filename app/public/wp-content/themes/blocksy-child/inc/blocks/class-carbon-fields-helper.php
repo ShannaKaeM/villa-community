@@ -46,13 +46,13 @@ class MI_Carbon_Fields_Helper {
      */
     public function add_twig_functions($twig) {
         // Add Carbon Fields functions
-        $twig->addFunction(new \Timber\Twig_Function('carbon_get', [$this, 'get_carbon_field']));
-        $twig->addFunction(new \Timber\Twig_Function('carbon_image', [$this, 'get_carbon_image']));
-        $twig->addFunction(new \Timber\Twig_Function('carbon_gallery', [$this, 'get_carbon_gallery']));
-        $twig->addFunction(new \Timber\Twig_Function('carbon_complex', [$this, 'get_carbon_complex']));
+        $twig->addFunction(new \Twig\TwigFunction('carbon_get', [$this, 'get_carbon_field']));
+        $twig->addFunction(new \Twig\TwigFunction('carbon_image', [$this, 'get_carbon_image']));
+        $twig->addFunction(new \Twig\TwigFunction('carbon_gallery', [$this, 'get_carbon_gallery']));
+        $twig->addFunction(new \Twig\TwigFunction('carbon_complex', [$this, 'get_carbon_complex']));
         
         // Add taxonomy icon function
-        $twig->addFunction(new \Timber\Twig_Function('taxonomy_icon', [$this, 'get_taxonomy_icon']));
+        $twig->addFunction(new \Twig\TwigFunction('taxonomy_icon', [$this, 'get_taxonomy_icon']));
         
         return $twig;
     }
