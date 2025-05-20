@@ -1,0 +1,103 @@
+{# MI Card Loop Block Template #}
+
+{# Set up the grid classes based on columns attribute #}
+{% set grid_classes = 'grid gap-6' %}
+{% if attributes.columns == 1 %}
+    {% set grid_classes = grid_classes ~ ' grid-cols-1' %}
+{% elseif attributes.columns == 2 %}
+    {% set grid_classes = grid_classes ~ ' grid-cols-1 md:grid-cols-2' %}
+{% elseif attributes.columns == 3 %}
+    {% set grid_classes = grid_classes ~ ' grid-cols-1 md:grid-cols-2 lg:grid-cols-3' %}
+{% elseif attributes.columns == 4 %}
+    {% set grid_classes = grid_classes ~ ' grid-cols-1 md:grid-cols-2 lg:grid-cols-4' %}
+{% endif %}
+
+{# Set up the wrapper attributes #}
+{% set wrapper_attributes = fn('get_block_wrapper_attributes', {
+    'class': grid_classes ~ ' ' ~ attributes.className
+}) %}
+
+<div {{ wrapper_attributes|raw }}>
+    {# Loop through cards and display them #}
+    {% if cards|length > 0 %}
+        {% for card in cards %}
+            <div class="d-card shadow-xl">
+                {% if card.thumbnail %}
+                    <figure>
+                        <img src="{{ card.thumbnail }}" alt="{{ card.title }}">
+                        
+                        {% if attributes.variant == 'property' and card.price %}
+                            <div class="d-badge d-badge-primary absolute bottom-4 left-4 text-lg">
+                                {{ card.price }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if attributes.variant == 'property' and card.status %}
+                            <div class="d-badge d-badge-accent absolute top-4 right-4">
+                                {{ card.status }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if attributes.variant == 'property' and card.featured %}
+                            <div class="d-badge d-badge-secondary absolute top-4 left-4">
+                                Featured
+                            </div>
+                        {% endif %}
+                    </figure>
+                {% endif %}
+                
+                <div class="d-card-body">
+                    <h2 class="d-card-title">{{ card.title }}</h2>
+                    
+                    {% if card.excerpt %}
+                        <p>{{ card.excerpt }}</p>
+                    {% endif %}
+                    
+                    {% if attributes.variant == 'property' %}
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            {% if card.location %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A2.167 2.167 0 0112.833 18h-1.666A2.167 2.167 0 019 15.833V11M8 7h8m-4-4v4H7a4 4 0 00-4 4v6h18v-6a4 4 0 00-4-4h-5V3z"></path></svg>
+                                    {{ card.location }}
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.bedrooms %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                                    {{ card.bedrooms }} Beds
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.bathrooms %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    {{ card.bathrooms }} Baths
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.area %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                                    {{ card.area }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    
+                    {% if card.permalink %}
+                        <div class="d-card-actions justify-end mt-4">
+                            <a href="{{ card.permalink }}" class="d-btn d-btn-primary">
+                                {{ attributes.linkText|default('View Details') }}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-span-full text-center py-12 bg-base-200 rounded-lg">
+            <p>No items found.</p>
+        </div>
+    {% endif %}
+</div>

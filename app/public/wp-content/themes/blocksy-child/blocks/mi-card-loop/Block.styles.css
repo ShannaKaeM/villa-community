@@ -1,0 +1,103 @@
+/**
+ * MI Card Loop Block Styles
+ */
+
+/* DaisyUI Card Styles */
+.d-card {
+    @apply relative flex flex-col overflow-hidden rounded-lg;
+}
+
+.d-card:focus {
+    @apply outline-none;
+}
+
+.d-card figure {
+    @apply relative;
+}
+
+.d-card figure img {
+    @apply w-full h-auto object-cover;
+    height: 240px;
+}
+
+.d-card-body {
+    @apply flex flex-col gap-4 p-6;
+}
+
+.d-card-title {
+    @apply text-xl font-bold;
+}
+
+.d-card-actions {
+    @apply flex items-center justify-end;
+}
+
+/* DaisyUI Badge Styles */
+.d-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.d-badge-primary {
+    @apply bg-primary text-primary-content;
+}
+
+.d-badge-secondary {
+    @apply bg-secondary text-secondary-content;
+}
+
+.d-badge-accent {
+    @apply bg-accent text-accent-content;
+}
+
+.d-badge-outline {
+    @apply bg-transparent border border-current;
+}
+
+/* DaisyUI Button Styles */
+.d-btn {
+    @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.d-btn-primary {
+    @apply bg-primary text-primary-content hover:bg-primary-focus;
+}
+
+.d-btn-secondary {
+    @apply bg-secondary text-secondary-content hover:bg-secondary-focus;
+}
+
+/* Shadow Utilities */
+.shadow-xl {
+    @apply shadow-lg;
+}
+
+/* Editor Specific Styles */
+.wp-block-mi-card-loop {
+    @apply mb-8;
+}
+
+/* Make sure the grid works properly in the editor */
+.editor-styles-wrapper .wp-block-mi-card-loop {
+    display: grid;
+    grid-gap: 1.5rem;
+}
+
+.editor-styles-wrapper .wp-block-mi-card-loop.grid-cols-1 {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .editor-styles-wrapper .wp-block-mi-card-loop.grid-cols-1.md\:grid-cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .editor-styles-wrapper .wp-block-mi-card-loop.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .editor-styles-wrapper .wp-block-mi-card-loop.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

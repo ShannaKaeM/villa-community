@@ -88,8 +88,20 @@ add_action('after_setup_theme', 'mi_register_sample_component');
  * Register custom blocks
  */
 function mi_register_custom_blocks() {
-    // Include the MI Card block
-    require_once get_stylesheet_directory() . '/blocks/mi-card/index.php';
+    // Get all block directories
+    $blocks_dir = get_stylesheet_directory() . '/blocks/';
+    if (!is_dir($blocks_dir)) {
+        return;
+    }
+    
+    // Loop through block directories
+    $block_dirs = glob($blocks_dir . '*', GLOB_ONLYDIR);
+    foreach ($block_dirs as $block_dir) {
+        $index_file = $block_dir . '/index.php';
+        if (file_exists($index_file)) {
+            require_once $index_file;
+        }
+    }
 }
 add_action('init', 'mi_register_custom_blocks', 5);
 
