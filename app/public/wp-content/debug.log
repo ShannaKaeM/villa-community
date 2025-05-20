@@ -1,0 +1,447 @@
+[19-May-2025 20:16:57 UTC] PHP Fatal error:  Uncaught Error: Class "WP_Block_Categories_Registry" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/functions.php:94
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): mi_check_block_registration('')
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/general-template.php(3208): do_action('wp_footer')
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/footer.php(28): wp_footer()
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(810): require_once('/Users/shannami...')
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(745): load_template('/Users/shannami...', true, Array)
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/general-template.php(92): locate_template(Array, true, true, Array)
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/single.php(20): get_footer()
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(812): require('/Users/shannami...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(745): load_template('/Users/shannami...', false, Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/page.php(15): get_template_part('single')
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template-loader.php(106): include('/Users/shannami...')
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-blog-header.php(19): require_once('/Users/shannami...')
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/index.php(17): require('/Users/shannami...')
+#16 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/functions.php on line 94
+[19-May-2025 20:25:17 UTC] PHP Fatal error:  Uncaught Error: Cannot use object of type WP_Block as array in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php:70
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(104): include()
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1038): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->update_item(Object(WP_REST_Request))
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(439): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(459): WP_REST_Server->serve_request('/wp/v2/pages/22...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp.php(818): WP->parse_request('')
+#17 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/functions.php(1342): WP->main('')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-blog-header.php(16): wp()
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/index.php(17): require('/Users/shannami...')
+#20 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 70
+[19-May-2025 20:25:41 UTC] PHP Fatal error:  Uncaught Error: Cannot use object of type WP_Block as array in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php:70
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(104): include()
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#12 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#16 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 70
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $item in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 12
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $args in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 23
+[19-May-2025 20:46:36 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 23
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_image in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 29
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_title in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 49
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_location in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 57
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_excerpt in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 68
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_meta in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 74
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_amenities in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 106
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_button in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 130
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $item in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 12
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $args in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 23
+[19-May-2025 20:46:36 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 23
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_image in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 29
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_title in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 49
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_location in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 57
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_excerpt in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 68
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_meta in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 74
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_amenities in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 106
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_button in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 130
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $item in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 12
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $args in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 23
+[19-May-2025 20:46:36 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 23
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_image in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 29
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_title in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 49
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_location in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 57
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_excerpt in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 68
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_meta in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 74
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_amenities in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 106
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_button in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 130
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $item in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 12
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $args in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 23
+[19-May-2025 20:46:36 UTC] PHP Warning:  Trying to access array offset on value of type null in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 23
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_image in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 29
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_title in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 49
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_location in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 57
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_excerpt in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 68
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_meta in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 74
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_amenities in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 106
+[19-May-2025 20:46:36 UTC] PHP Warning:  Undefined variable $show_button in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/variants/property.php on line 130
+[19-May-2025 21:09:30 UTC] PHP Parse error:  syntax error, unexpected identifier "register_block_type", expecting ")" in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php on line 40
+[19-May-2025 21:09:33 UTC] PHP Parse error:  syntax error, unexpected identifier "register_block_type", expecting ")" in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php on line 40
+[19-May-2025 21:15:36 UTC] PHP Fatal error:  Cannot redeclare mi_render_card_block() (previously declared in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php:55) in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php on line 193
+[19-May-2025 23:08:31 UTC] PHP Parse error:  Unmatched '}' in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php on line 97
+[19-May-2025 23:36:48 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-component-manager.php:97
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Component_Manager->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('property.twig', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(110): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/post-template.php(256): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/inc/components/single/content-helpers.php(230): the_content('Continue readin...')
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/template-parts/single.php(74): blocksy_single_content()
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(812): require('/Users/shannami...')
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(745): load_template('/Users/shannami...', false, Array)
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#17 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/single.php(17): get_template_part('template-parts/...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(812): require('/Users/shannami...')
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(745): load_template('/Users/shannami...', false, Array)
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#21 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/page.php(15): get_template_part('single')
+#22 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template-loader.php(106): include('/Users/shannami...')
+#23 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-blog-header.php(19): require_once('/Users/shannami...')
+#24 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/index.php(17): require('/Users/shannami...')
+#25 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-component-manager.php on line 97
+[19-May-2025 23:37:04 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-component-manager.php:97
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Component_Manager->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('property.twig', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(110): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-component-manager.php on line 97
+[20-May-2025 00:24:37 UTC] Automatic updates starting...
+[20-May-2025 00:24:38 UTC] Automatic updates complete.
+[20-May-2025 02:59:34 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-component-manager.php:97
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Component_Manager->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card....', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/post-template.php(256): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/inc/components/single/content-helpers.php(230): the_content('Continue readin...')
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/template-parts/single.php(74): blocksy_single_content()
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(812): require('/Users/shannami...')
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(745): load_template('/Users/shannami...', false, Array)
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#17 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/single.php(17): get_template_part('template-parts/...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(812): require('/Users/shannami...')
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template.php(745): load_template('/Users/shannami...', false, Array)
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/general-template.php(206): locate_template(Array, true, false, Array)
+#21 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy/page.php(15): get_template_part('single')
+#22 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/template-loader.php(106): include('/Users/shannami...')
+#23 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-blog-header.php(19): require_once('/Users/shannami...')
+#24 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/index.php(17): require('/Users/shannami...')
+#25 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-component-manager.php on line 97
+[20-May-2025 02:59:38 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-component-manager.php:97
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Component_Manager->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card....', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-component-manager.php on line 97
+[20-May-2025 03:01:16 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49
+[20-May-2025 03:01:17 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49
+[20-May-2025 03:01:53 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49
+[20-May-2025 03:01:54 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49
+[20-May-2025 03:01:57 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49
+[20-May-2025 03:02:02 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49
+[20-May-2025 03:02:06 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49
+[20-May-2025 03:02:22 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(655): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_item(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages/(?...', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(586): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(2973): rest_do_request(Object(WP_REST_Request))
+#17 [internal function]: rest_preload_api_request(Array, '/wp/v2/pages/22...')
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/block-editor.php(754): array_reduce(Array, 'rest_preload_ap...', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/edit-form-blocks.php(114): block_editor_rest_api_preload(Array, Object(WP_Block_Editor_Context))
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-admin/post.php(187): require('/Users/shannami...')
+#21 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49
+[20-May-2025 03:02:26 UTC] PHP Fatal error:  Uncaught Error: Class "Timber\Twig_Function" not found in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php:49
+Stack trace:
+#0 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): MI_Carbon_Fields_Helper->add_twig_functions(Object(Twig\Environment))
+#1 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Object(Twig\Environment), Array)
+#2 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(516): apply_filters('timber/twig', Object(Twig\Environment))
+#3 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Loader.php(120): Timber\Loader->get_twig()
+#4 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/vendor/timber/timber/src/Timber.php(1481): Timber\Loader->render('blocks/mi-card-...', Array, false, 'default')
+#5 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/blocks/mi-card/index.php(108): Timber\Timber::compile(Array, Array)
+#6 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-block.php(586): mi_render_card_block(Array, '', Object(WP_Block))
+#7 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2358): WP_Block->render()
+#8 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/blocks.php(2410): render_block(Array)
+#9 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): do_blocks('<!-- wp:mi/card...')
+#10 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters('<!-- wp:mi/card...', Array)
+#11 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(1961): apply_filters('the_content', '<!-- wp:mi/card...')
+#12 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php(470): WP_REST_Posts_Controller->prepare_item_for_response(Object(WP_Post), Object(WP_REST_Request))
+#13 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1292): WP_REST_Posts_Controller->get_items(Object(WP_REST_Request))
+#14 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(1125): WP_REST_Server->respond_to_request(Object(WP_REST_Request), '/wp/v2/pages', Array, NULL)
+#15 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api/class-wp-rest-server.php(439): WP_REST_Server->dispatch(Object(WP_REST_Request))
+#16 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/rest-api.php(459): WP_REST_Server->serve_request('/wp/v2/pages')
+#17 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(324): rest_api_loaded(Object(WP))
+#18 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#19 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/plugin.php(565): WP_Hook->do_action(Array)
+#20 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp.php(418): do_action_ref_array('parse_request', Array)
+#21 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/class-wp.php(818): WP->parse_request('')
+#22 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-includes/functions.php(1342): WP->main('')
+#23 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-blog-header.php(16): wp()
+#24 /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/index.php(17): require('/Users/shannami...')
+#25 {main}
+  thrown in /Users/shannamiddleton/Local Drive Mac/mi agency/miProjects/villa-community/app/public/wp-content/themes/blocksy-child/inc/blocks/class-carbon-fields-helper.php on line 49

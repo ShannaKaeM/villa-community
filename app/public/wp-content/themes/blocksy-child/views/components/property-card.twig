@@ -1,51 +1,85 @@
 {# Property Card Component #}
-<div class="mi-property-card{% if is_featured %} is-featured{% endif %}">
-    {% if image %}
-        <div class="mi-property-card__image">
-            <img src="{{ image.src }}" alt="{{ title }}">
-            {% if is_featured %}
-                <span class="mi-property-card__featured-badge">Featured</span>
+{# Usage: {% include 'components/property-card.twig' with { property: property_data } %} #}
+
+<div class="bg-white rounded-[var(--radius-btn)] shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <div class="relative">
+        {% if property.image_url %}
+            <img src="{{ property.image_url }}" 
+                alt="{{ property.title }}" 
+                class="w-full h-60 object-cover">
+        {% endif %}
+        
+        {% if property.price %}
+            <div class="absolute bottom-0 left-0 bg-secondary text-white py-[var(--spacing-btn-y)] px-[var(--spacing-btn-x)] font-semibold rounded-tr-[var(--radius-btn)]">
+                <span>{{ property.price }}</span>
+            </div>
+        {% endif %}
+        
+        {% if property.status %}
+            <div class="absolute top-4 right-4 bg-primary text-white py-1 px-3 rounded-full text-sm font-semibold shadow-sm">
+                {{ property.status }}
+            </div>
+        {% endif %}
+        
+        {% if property.featured %}
+            <div class="absolute top-4 left-4 bg-emphasis text-white py-1 px-3 rounded-full text-sm font-semibold shadow-sm">
+                Featured
+            </div>
+        {% endif %}
+    </div>
+    
+    <div class="p-6">
+        <h3 class="text-xl font-bold text-base-darkest mb-2">
+            <a href="{{ property.link }}" class="hover:text-secondary transition-colors">
+                {{ property.title }}
+            </a>
+        </h3>
+        
+        {% if property.location %}
+            <div class="flex items-center text-base mb-3">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span>{{ property.location }}</span>
+            </div>
+        {% endif %}
+        
+        <div class="flex flex-wrap gap-4 mb-4">
+            {% if property.bedrooms %}
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    <span>{{ property.bedrooms }} Beds</span>
+                </div>
+            {% endif %}
+            
+            {% if property.bathrooms %}
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <span>{{ property.bathrooms }} Baths</span>
+                </div>
+            {% endif %}
+            
+            {% if property.area %}
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"></path>
+                    </svg>
+                    <span>{{ property.area }} sq ft</span>
+                </div>
             {% endif %}
         </div>
-    {% endif %}
-    
-    <div class="mi-property-card__content">
-        <h3 class="mi-property-card__title">{{ title }}</h3>
         
-        {% if location or property_type %}
-            <div class="mi-property-card__meta">
-                {% if location %}
-                    <span class="mi-property-card__location">
-                        <i class="mi-icon mi-icon-location"></i>
-                        {{ location }}
-                    </span>
-                {% endif %}
-                
-                {% if property_type %}
-                    <span class="mi-property-card__type">
-                        <i class="mi-icon mi-icon-home"></i>
-                        {{ property_type }}
-                    </span>
-                {% endif %}
-            </div>
+        {% if property.excerpt %}
+            <p class="text-base-light text-sm mb-4">{{ property.excerpt }}</p>
         {% endif %}
         
-        <div class="mi-property-card__details">
-            {# Nested component for property details #}
-            {{ component('property-details', {
-                bedrooms: bedrooms,
-                bathrooms: bathrooms,
-                max_guests: max_guests
-            }) }}
-        </div>
-        
-        {% if nightly_rate %}
-            <div class="mi-property-card__price">
-                <span class="mi-property-card__price-value">${{ nightly_rate }}</span>
-                <span class="mi-property-card__price-label">per night</span>
-            </div>
-        {% endif %}
-        
-        <a href="{{ property.link }}" class="mi-property-card__link">View Property</a>
+        <a href="{{ property.link }}" class="block w-full bg-secondary hover:bg-secondary-hover text-white text-center py-[var(--spacing-btn-y)] px-[var(--spacing-btn-x)] rounded-[var(--radius-btn)] font-semibold transition-colors shadow-[var(--shadow-btn)]">
+            View Property
+        </a>
     </div>
 </div>

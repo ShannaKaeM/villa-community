@@ -3,7 +3,7 @@
         'name' => 'mi-agency/blocksy-child',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '82be3070165635cae2fe3576ec116f668fd412e3',
+        'reference' => 'd10ad675c617650aa0187aeff5f81c7789425540',
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'mi-agency/blocksy-child' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '82be3070165635cae2fe3576ec116f668fd412e3',
+            'reference' => 'd10ad675c617650aa0187aeff5f81c7789425540',
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

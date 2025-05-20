@@ -26,8 +26,7 @@ if (!function_exists('carbon_get_post_meta') || !function_exists('carbon_get_the
     return;
 }
 
-// IMPORTANT: If you encounter errors with this file, uncomment the following line to disable it
-// return;
+// IMPORTANT: Carbon Fields is now properly initialized and this file should be active
 
 use Carbon_Fields\Container;
 use Carbon_Fields\Field;
@@ -151,35 +150,15 @@ function mi_register_taxonomy_term_meta() {
                 ->set_help_text(__('Upload an image for this location', 'blocksy-child')),
             Field::make('textarea', 'location_description', __('Extended Description', 'blocksy-child'))
                 ->set_help_text(__('A more detailed description of this location', 'blocksy-child')),
-        ]);
-    
-    // Add term meta for amenities
-    Container::make('term_meta', __('Amenity Details', 'blocksy-child'))
-        ->where('term_taxonomy', '=', 'property_amenity')
-        ->add_fields([
-            Field::make('image', 'amenity_icon', __('Icon', 'blocksy-child'))
-                ->set_help_text(__('Upload an icon for this amenity', 'blocksy-child')),
-            Field::make('textarea', 'amenity_description', __('Extended Description', 'blocksy-child'))
-                ->set_help_text(__('A more detailed description of this amenity', 'blocksy-child')),
-        ]);
-}
-add_action('carbon_fields_register_fields', 'mi_register_taxonomy_term_meta');
-    
-    Container::make('term_meta', __('Additional Details', 'blocksy-child'))
-        ->where('term_taxonomy', '=', 'location')
-        ->add_fields([
-            Field::make('image', 'location_icon', __('Icon', 'blocksy-child'))
-                ->set_help_text(__('Upload an icon for this location', 'blocksy-child')),
-            Field::make('textarea', 'location_description', __('Extended Description', 'blocksy-child'))
-                ->set_help_text(__('A more detailed description of this location', 'blocksy-child')),
             Field::make('text', 'location_latitude', __('Latitude', 'blocksy-child'))
                 ->set_help_text(__('Latitude coordinates for map display', 'blocksy-child')),
             Field::make('text', 'location_longitude', __('Longitude', 'blocksy-child'))
                 ->set_help_text(__('Longitude coordinates for map display', 'blocksy-child')),
         ]);
     
-    Container::make('term_meta', __('Additional Details', 'blocksy-child'))
-        ->where('term_taxonomy', '=', 'amenity')
+    // Add term meta for amenities
+    Container::make('term_meta', __('Amenity Details', 'blocksy-child'))
+        ->where('term_taxonomy', '=', 'property_amenity')
         ->add_fields([
             Field::make('image', 'amenity_icon', __('Icon', 'blocksy-child'))
                 ->set_help_text(__('Upload an icon for this amenity', 'blocksy-child')),

@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block content %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for post in posts %}
+                {% include 'components/card.twig' with { 
+                    title: post.title,
+                    description: post.preview ? post.preview : post.content,
+                    image: { src: post.thumbnail.src, alt: post.title },
+                    link: { url: post.link, text: 'Read more' },
+                    classes: 'h-full'
+                } %}
+            {% else %}
+                <div class="col-span-full text-center p-8">
+                    <p class="text-lg">No posts found</p>
+                </div>
+            {% endfor %}
+        </div>
+        
+        {{ function('blocksy_pagination') }}
+    </div>
+{% endblock %}

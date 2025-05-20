@@ -97,10 +97,11 @@ function mi_render_card_block($attributes, $content, $block) {
     $context['mb'] = $block; // For compatibility with get_block_wrapper_attributes
     
     // Determine which Twig template to use
-    $templates = ['mi-card.twig'];
+    $templates = ['blocks/mi-card.twig'];
     
-    if ($attributes['variant'] !== 'default' && file_exists(__DIR__ . '/' . $attributes['variant'] . '.twig')) {
-        array_unshift($templates, $attributes['variant'] . '.twig');
+    // Check for variant-specific template
+    if ($attributes['variant'] !== 'default') {
+        array_unshift($templates, 'blocks/mi-card-' . $attributes['variant'] . '.twig');
     }
     
     // Render the Twig template

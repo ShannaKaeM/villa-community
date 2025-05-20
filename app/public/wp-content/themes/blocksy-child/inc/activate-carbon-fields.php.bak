@@ -1,0 +1,39 @@
+<?php
+/**
+ * Activate Carbon Fields Plugin
+ * 
+ * This file contains a function to activate the Carbon Fields plugin programmatically.
+ * It should be included in your theme's functions.php file.
+ */
+
+// Don't allow direct access
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
+ * Activate Carbon Fields plugin
+ */
+function mi_activate_carbon_fields_plugin() {
+    // Check if the function exists (it's part of WordPress core)
+    if (!function_exists('activate_plugin')) {
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+    }
+    
+    // Path to the Carbon Fields plugin
+    $plugin_path = 'carbon-fields/carbon-fields-plugin.php';
+    
+    // Check if the plugin is already active
+    if (!is_plugin_active($plugin_path)) {
+        // Activate the plugin
+        activate_plugin($plugin_path, '', false, true);
+        
+        // Add an admin notice to confirm activation
+        add_action('admin_notices', function() {
+            echo '<div class="updated"><p>Carbon Fields plugin has been activated successfully!</p></div>';
+        });
+    }
+}
+
+// Run the activation function on admin_init
+add_action('admin_init', 'mi_activate_carbon_fields_plugin');

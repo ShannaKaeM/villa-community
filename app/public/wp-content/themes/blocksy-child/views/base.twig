@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html {{ function('language_attributes') }}>
+<head>
+    {{ function('wp_head') }}
+</head>
+<body {{ function('body_class') }}>
+    {{ function('do_action', 'blocksy:header:before') }}
+    {{ function('blocksy_output_header') }}
+    {{ function('do_action', 'blocksy:header:after') }}
+
+    <main id="main" class="site-main">
+        {% block content %}
+            <!-- Content will be replaced by child templates -->
+        {% endblock %}
+    </main>
+
+    {{ function('do_action', 'blocksy:footer:before') }}
+    {{ function('blocksy_output_footer') }}
+    {{ function('do_action', 'blocksy:footer:after') }}
+    
+    {{ function('wp_footer') }}
+</body>
+</html>

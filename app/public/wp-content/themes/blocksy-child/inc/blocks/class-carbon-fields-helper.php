@@ -51,6 +51,9 @@ class MI_Carbon_Fields_Helper {
         $twig->addFunction(new \Timber\Twig_Function('carbon_gallery', [$this, 'get_carbon_gallery']));
         $twig->addFunction(new \Timber\Twig_Function('carbon_complex', [$this, 'get_carbon_complex']));
         
+        // Add taxonomy icon function
+        $twig->addFunction(new \Timber\Twig_Function('taxonomy_icon', [$this, 'get_taxonomy_icon']));
+        
         return $twig;
     }
 
@@ -221,6 +224,52 @@ class MI_Carbon_Fields_Helper {
         }
         
         return $fields;
+    }
+    
+    /**
+     * Get taxonomy icon text
+     * 
+     * This retrieves the emoji icon for a taxonomy term
+     *
+     * @param int $term_id Term ID
+     * @param string $taxonomy Taxonomy name
+     * @return string Icon text (emoji)
+     */
+    public function get_taxonomy_icon($term_id, $taxonomy) {
+        // First try the specific field name
+        $icon_meta_key = '';
+        switch ($taxonomy) {
+            case 'property_type':
+                $icon_meta_key = 'property_type_icon_text';
+                break;
+            case 'location':
+                $icon_meta_key = 'location_image_text';
+                break;
+            case 'amenity':
+                $icon_meta_key = 'amenity_icon_text';
+                break;
+            case 'business_type':
+                $icon_meta_key = 'business_type_icon_text';
+                break;
+            case 'article_type':
+                $icon_meta_key = 'article_type_icon_text';
+                break;
+            case 'user_type':
+                $icon_meta_key = 'user_type_icon_text';
+                break;
+            default:
+                $icon_meta_key = $taxonomy . '_icon_text';
+        }
+        
+        // Get the icon from term meta
+        $icon = get_term_meta($term_id, $icon_meta_key, true);
+        
+        // If not found, try the generic field name
+        if (empty($icon)) {
+            $icon = get_term_meta($term_id, $taxonomy . '_icon_text', true);
+        }
+        
+        return $icon;
     }
 }
 

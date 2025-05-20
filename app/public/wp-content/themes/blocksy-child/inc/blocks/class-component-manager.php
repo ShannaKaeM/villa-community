@@ -94,7 +94,7 @@ class MI_Component_Manager {
      */
     public function add_twig_functions($twig) {
         // Add component function
-        $twig->addFunction(new \Timber\Twig_Function('component', [$this, 'render_component']));
+        $twig->addFunction(new \Twig\TwigFunction('component', [$this, 'render_component']));
         
         return $twig;
     }

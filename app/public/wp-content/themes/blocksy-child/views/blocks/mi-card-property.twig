@@ -1,0 +1,15 @@
+{# MI Card Property Template #}
+{# This template uses the property-card component to render property cards #}
+
+{% set data = attributes ? attributes : mock %}
+<div {{ mb.get_block_wrapper_attributes() }}>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ data.columns|default(3) }} gap-6">
+        {% for property in properties %}
+            {% include 'components/property-card.twig' with { property: property } %}
+        {% else %}
+            <div class="col-span-full text-center p-8 bg-subtle-lightest rounded-[var(--radius-btn)]">
+                <p class="text-base">No properties found.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

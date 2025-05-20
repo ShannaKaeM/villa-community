@@ -2,164 +2,63 @@
 /**
  * MI Card Template
  *
- * @param array $args Template arguments.
- * @param object $block Block object.
- * @param array $content_data Content data for the card.
+ * This template is used as a fallback for displaying cards with Tailwind CSS.
  */
 
-// Set defaults based on block attributes
-$defaults = [
-    'variant' => 'property',
-    'layout' => 'grid',
-    'columns' => 3,
-    'showImage' => true,
-    'showTitle' => true,
-    'showExcerpt' => true,
-    'showMeta' => true,
-    'showAmenities' => true,
-    'showLocation' => true,
-    'showPrice' => true,
-    'showButton' => true,
-    'buttonText' => 'View Details',
-    'featuredOnly' => false,
-    'className' => '',
-];
+// Set up columns class based on attributes
+$columns_class = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-' . esc_attr($attributes['columns']);
 
-// Get attributes from block
-$block_attrs = [];
-if (isset($block) && isset($block->attributes)) {
-    foreach ($defaults as $key => $default) {
-        if (isset($block->attributes[$key])) {
-            $block_attrs[$key] = $block->attributes[$key];
-        }
-    }
-}
-
-// Merge defaults with block attributes and args
-$args = wp_parse_args($args, array_merge($defaults, $block_attrs));
-
-// Convert camelCase to snake_case for template variables
-$show_image = $args['showImage'];
-$show_title = $args['showTitle'];
-$show_excerpt = $args['showExcerpt'];
-$show_meta = $args['showMeta'];
-$show_amenities = $args['showAmenities'];
-$show_location = $args['showLocation'];
-$show_price = $args['showPrice'];
-$show_button = $args['showButton'];
-$button_text = $args['buttonText'];
-
-// Get the variant
-$variant = $args['variant'];
-
-// Get the class name
-$class_name = 'mi-card';
-
-// Add variant class
-$class_name .= ' mi-card--' . $variant;
-
-// Add layout class
-$class_name .= ' mi-card--' . $args['layout'];
-
-// Add columns class
-$class_name .= ' mi-card--columns-' . $args['columns'];
-
-// Add custom class if provided
-if (!empty($args['className'])) {
-    $class_name .= ' ' . $args['className'];
-}
-
-// Get the content data
-$content_data = $content_data ?? [];
-
-// Get the block alignment
-$align_class = isset($block->attributes['align']) ? $block->attributes['align'] : '';
-if (!empty($align_class)) {
-    $class_name .= ' align' . $align_class;
-}
-
-// Get the block ID
-$block_id = isset($block->attributes['id']) ? $block->attributes['id'] : 'mi-card-' . uniqid();
-
-// Add custom CSS for columns
-$columns = $args['columns'];
-$column_width = 100 / $columns;
 ?>
 
-<style>
-    #<?php echo esc_attr($block_id); ?> .mi-card__container {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -15px;
-    }
-    
-    #<?php echo esc_attr($block_id); ?> .mi-card--grid .mi-card__item {
-        width: calc(<?php echo $column_width; ?>% - 30px);
-        margin: 0 15px 30px;
-    }
-    
-    #<?php echo esc_attr($block_id); ?> .mi-card--list .mi-card__item {
-        width: calc(100% - 30px);
-        margin: 0 15px 30px;
-        display: flex;
-    }
-    
-    #<?php echo esc_attr($block_id); ?> .mi-card--list .mi-card__image {
-        width: 35%;
-    }
-    
-    #<?php echo esc_attr($block_id); ?> .mi-card--list .mi-card__content {
-        width: 65%;
-        padding-left: 20px;
-    }
-    
-    @media (max-width: 768px) {
-        #<?php echo esc_attr($block_id); ?> .mi-card--grid .mi-card__item {
-            width: calc(50% - 30px);
-        }
-    }
-    
-    @media (max-width: 576px) {
-        #<?php echo esc_attr($block_id); ?> .mi-card--grid .mi-card__item,
-        #<?php echo esc_attr($block_id); ?> .mi-card--list .mi-card__item {
-            width: calc(100% - 30px);
-        }
-        
-        #<?php echo esc_attr($block_id); ?> .mi-card--list .mi-card__item {
-            flex-direction: column;
-        }
-        
-        #<?php echo esc_attr($block_id); ?> .mi-card--list .mi-card__image,
-        #<?php echo esc_attr($block_id); ?> .mi-card--list .mi-card__content {
-            width: 100%;
-        }
-        
-        #<?php echo esc_attr($block_id); ?> .mi-card--list .mi-card__content {
-            padding-left: 0;
-            padding-top: 15px;
-        }
-    }
-</style>
-
-<div id="<?php echo esc_attr($block_id); ?>" class="<?php echo esc_attr($class_name); ?>">
-    <?php if (!empty($content_data)) : ?>
-        <div class="mi-card__container">
-            <?php foreach ($content_data as $item) : ?>
-                <?php 
-                // Include the variant template
-                $variant_template = __DIR__ . '/variants/' . $variant . '.php';
-                if (file_exists($variant_template)) {
-                    include $variant_template;
-                } else {
-                    // Fallback to default template
-                    include __DIR__ . '/variants/default.php';
-                }
-                ?>
+<div <?php echo $wrapper_attributes; ?>>
+    <div class="grid <?php echo $columns_class; ?> gap-6">
+        <?php if (!empty($properties)) : ?>
+            <?php foreach ($properties as $property) : ?>
+                <div class="bg-white rounded-[var(--radius-btn)] shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="relative">
+                        <?php if (!empty($property['image_url'])) : ?>
+                            <img src="<?php echo esc_url($property['image_url']); ?>" 
+                                alt="<?php echo esc_attr($property['title']); ?>"
+                                class="w-full h-60 object-cover">
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($property['price'])) : ?>
+                            <div class="absolute bottom-0 left-0 bg-secondary text-white py-[var(--spacing-btn-y)] px-[var(--spacing-btn-x)] font-semibold rounded-tr-[var(--radius-btn)]">
+                                <span><?php echo esc_html($property['price']); ?></span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-base-darkest mb-2">
+                            <a href="<?php echo esc_url($property['link']); ?>" class="hover:text-secondary transition-colors">
+                                <?php echo esc_html($property['title']); ?>
+                            </a>
+                        </h3>
+                        
+                        <?php if (!empty($property['location'])) : ?>
+                            <div class="flex items-center text-base mb-3">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span><?php echo esc_html($property['location']); ?></span>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($property['excerpt'])) : ?>
+                            <p class="text-base-light text-sm mb-4"><?php echo wp_kses_post($property['excerpt']); ?></p>
+                        <?php endif; ?>
+                        
+                        <a href="<?php echo esc_url($property['link']); ?>" class="block w-full bg-secondary hover:bg-secondary-hover text-white text-center py-[var(--spacing-btn-y)] px-[var(--spacing-btn-x)] rounded-[var(--radius-btn)] font-semibold transition-colors shadow-[var(--shadow-btn)]">
+                            View Details
+                        </a>
+                    </div>
+                </div>
             <?php endforeach; ?>
-        </div>
-    <?php else : ?>
-        <div class="mi-card__empty">
-            <p>No content found. Please check your content source settings.</p>
-        </div>
-    <?php endif; ?>
+        <?php else : ?>
+            <div class="col-span-full text-center p-8 bg-subtle-lightest rounded-[var(--radius-btn)]">
+                <p class="text-base">No items found.</p>
+            </div>
+        <?php endif; ?>
+    </div>
 </div>

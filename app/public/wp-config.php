@@ -88,8 +88,15 @@ $table_prefix = 'wp_';
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
 if ( ! defined( 'WP_DEBUG' ) ) {
-	define( 'WP_DEBUG', false );
+	define( 'WP_DEBUG', true );
 }
+
+// Enable debug logging to the /wp-content/debug.log file
+define( 'WP_DEBUG_LOG', true );
+
+// Display errors and warnings on the site
+define( 'WP_DEBUG_DISPLAY', true );
+@ini_set( 'display_errors', 1 );
 
 define( 'WP_ENVIRONMENT_TYPE', 'local' );
 /* That's all, stop editing! Happy publishing. */

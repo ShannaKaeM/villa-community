@@ -38,6 +38,11 @@ function mi_register_block_categories($categories) {
                 'title' => __('MI Blocks', 'blocksy-child'),
                 'icon'  => 'dashicons-block-default',
             ],
+            [
+                'slug' => 'mi-blocks2',
+                'title' => __('MI Blocks 2', 'blocksy-child'),
+                'icon'  => 'dashicons-grid-view',
+            ],
         ]
     );
 }
@@ -53,9 +58,17 @@ function mi_register_blocks() {
         
         // Loop through each block directory
         foreach ($block_folders as $block_folder) {
+            // Check for Block.php file (legacy)
             $block_php = $block_folder . '/Block.php';
             if (file_exists($block_php)) {
                 require_once $block_php;
+                continue;
+            }
+            
+            // Check for index.php file (new standard)
+            $index_php = $block_folder . '/index.php';
+            if (file_exists($index_php)) {
+                require_once $index_php;
             }
         }
     }

@@ -1,0 +1,98 @@
+{% set data = attributes ? attributes : mock %}
+<div {{ mb.get_block_wrapper_attributes() }}>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ data.columns|default(3) }} gap-6">
+        {% for property in data.properties %}
+            <div class="bg-white rounded-[var(--radius-btn)] shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div class="relative">
+                    {% if property.image_url %}
+                        <img src="{{ property.image_url }}" alt="{{ property.title }}" class="w-full h-60 object-cover">
+                    {% endif %}
+                    
+                    {% if property.price %}
+                        <div class="absolute bottom-0 left-0 bg-secondary text-white py-[var(--spacing-btn-y)] px-[var(--spacing-btn-x)] font-semibold rounded-tr-[var(--radius-btn)]">
+                            <span>{{ property.price }}</span>
+                        </div>
+                    {% endif %}
+                    
+                    {% if property.status %}
+                        <div class="absolute top-4 right-4 bg-primary text-white py-1 px-3 rounded-full text-sm font-semibold shadow-sm">
+                            {{ property.status }}
+                        </div>
+                    {% endif %}
+                    
+                    {% if property.featured %}
+                        <div class="absolute top-4 left-4 bg-emphasis text-white py-1 px-3 rounded-full text-sm font-semibold shadow-sm">
+                            Featured
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-base-darkest mb-2">
+                        <a href="{{ property.link }}" class="hover:text-secondary transition-colors">
+                            {{ property.title }}
+                        </a>
+                    </h3>
+                    
+                    {% if property.location %}
+                        <div class="flex items-center text-base mb-3">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            {{ property.location }}
+                        </div>
+                    {% endif %}
+                    
+                    {% if property.excerpt %}
+                        <p class="text-base-light text-sm mb-4">{{ property.excerpt }}</p>
+                    {% endif %}
+                    
+                    <div class="grid grid-cols-3 gap-2 mb-4 border-t border-subtle-lightest pt-4">
+                        {% if property.bedrooms %}
+                            <div class="bg-subtle-lightest rounded-[calc(var(--radius-btn)/1.5)] p-2 text-center">
+                                <span class="block text-xs text-base-light">Bedrooms</span>
+                                <span class="font-semibold text-base">{{ property.bedrooms }}</span>
+                            </div>
+                        {% endif %}
+                        
+                        {% if property.bathrooms %}
+                            <div class="bg-subtle-lightest rounded-[calc(var(--radius-btn)/1.5)] p-2 text-center">
+                                <span class="block text-xs text-base-light">Bathrooms</span>
+                                <span class="font-semibold text-base">{{ property.bathrooms }}</span>
+                            </div>
+                        {% endif %}
+                        
+                        {% if property.area %}
+                            <div class="bg-subtle-lightest rounded-[calc(var(--radius-btn)/1.5)] p-2 text-center">
+                                <span class="block text-xs text-base-light">Area</span>
+                                <span class="font-semibold text-base">{{ property.area }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if property.amenities %}
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            {% for amenity in property.amenities|slice(0, 3) %}
+                                <span class="bg-subtle-lightest text-base px-3 py-1 rounded-full text-xs">
+                                    {{ amenity.name }}
+                                </span>
+                            {% endfor %}
+                            {% if property.amenities|length > 3 %}
+                                <span class="text-secondary text-xs">+{{ property.amenities|length - 3 }} more</span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    
+                    <a href="{{ property.link }}" class="block w-full bg-secondary hover:bg-secondary-hover text-white text-center py-[var(--spacing-btn-y)] px-[var(--spacing-btn-x)] rounded-[var(--radius-btn)] font-semibold transition-colors shadow-[var(--shadow-btn)]">
+                        View Property
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-span-full text-center p-8 bg-subtle-lightest rounded-[var(--radius-btn)]">
+                <p class="text-base">No properties found.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

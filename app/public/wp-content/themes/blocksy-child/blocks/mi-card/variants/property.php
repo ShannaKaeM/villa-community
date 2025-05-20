@@ -2,136 +2,109 @@
 /**
  * Property Card Template
  * 
- * This template is used for displaying property cards.
- *
- * @param array $item The property data
- * @param array $args Template arguments
+ * This template is used for displaying property cards with Tailwind CSS.
  */
 
-// Get the property data
-$property = $item;
-
-// Card classes
-$card_class = 'mi-card__item';
-
-// Add featured class if property is featured
-if (!empty($property['is_featured'])) {
-    $card_class .= ' mi-card__item--featured';
-}
-
-// Add layout-specific classes
-if ($args['layout'] === 'list') {
-    $card_class .= ' mi-card__item--list';
-}
+// Set up columns class based on attributes
+$columns_class = 'grid-cols-1 md:grid-cols-2 lg:grid-cols-' . esc_attr($attributes['columns']);
 ?>
 
-<div class="<?php echo esc_attr($card_class); ?>">
-    <?php if ($show_image && !empty($property['featured_image'])) : ?>
-        <div class="mi-card__media">
-            <a href="<?php echo esc_url($property['permalink']); ?>" class="mi-card__media-link">
-                <img src="<?php echo esc_url($property['featured_image']['src']); ?>" 
-                     alt="<?php echo esc_attr($property['title']); ?>"
-                     class="mi-card__image" 
-                     width="<?php echo esc_attr($property['featured_image']['width']); ?>"
-                     height="<?php echo esc_attr($property['featured_image']['height']); ?>">
-                
-                <?php if ($show_price && !empty($property['nightly_rate'])) : ?>
-                    <div class="mi-card__price">
-                        <span class="mi-card__price-amount">$<?php echo esc_html(number_format($property['nightly_rate'], 0)); ?></span>
-                        <span class="mi-card__price-period">/night</span>
+<div <?php echo $wrapper_attributes; ?>>
+    <div class="grid <?php echo $columns_class; ?> gap-6">
+        <?php if (!empty($properties)) : ?>
+            <?php foreach ($properties as $property) : ?>
+                <div class="bg-white rounded-[var(--radius-btn)] shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="relative">
+                        <?php if (!empty($property['image_url'])) : ?>
+                            <img src="<?php echo esc_url($property['image_url']); ?>" 
+                                alt="<?php echo esc_attr($property['title']); ?>"
+                                class="w-full h-60 object-cover">
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($property['price'])) : ?>
+                            <div class="absolute bottom-0 left-0 bg-secondary text-white py-[var(--spacing-btn-y)] px-[var(--spacing-btn-x)] font-semibold rounded-tr-[var(--radius-btn)]">
+                                <span><?php echo esc_html($property['price']); ?></span>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($property['status'])) : ?>
+                            <div class="absolute top-4 right-4 bg-primary text-white py-1 px-3 rounded-full text-sm font-semibold shadow-sm">
+                                <?php echo esc_html($property['status']); ?>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($property['featured'])) : ?>
+                            <div class="absolute top-4 left-4 bg-emphasis text-white py-1 px-3 rounded-full text-sm font-semibold shadow-sm">
+                                Featured
+                            </div>
+                        <?php endif; ?>
                     </div>
-                <?php endif; ?>
-            </a>
-        </div>
-    <?php endif; ?>
-    
-    <div class="mi-card__content">
-        <?php if ($show_title && !empty($property['title'])) : ?>
-            <h3 class="mi-card__title">
-                <a href="<?php echo esc_url($property['permalink']); ?>" class="mi-card__title-link">
-                    <?php echo esc_html($property['title']); ?>
-                </a>
-            </h3>
-        <?php endif; ?>
-        
-        <?php if ($show_location && (!empty($property['city']) || !empty($property['location_terms']))) : ?>
-            <div class="mi-card__location">
-                <span class="mi-card__icon">📍</span>
-                <?php if (!empty($property['city']) && !empty($property['state'])) : ?>
-                    <span><?php echo esc_html($property['city'] . ', ' . $property['state']); ?></span>
-                <?php elseif (!empty($property['location_terms'])) : ?>
-                    <span><?php echo esc_html($property['location_terms'][0]['name']); ?></span>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
-        
-        <?php if ($show_excerpt && !empty($property['excerpt'])) : ?>
-            <div class="mi-card__excerpt">
-                <?php echo wp_kses_post($property['excerpt']); ?>
-            </div>
-        <?php endif; ?>
-        
-        <?php if ($show_meta) : ?>
-            <div class="mi-card__meta">
-                <?php if (!empty($property['bedrooms'])) : ?>
-                    <span class="mi-card__meta-item">
-                        <span class="mi-card__icon">🛏️</span>
-                        <span><?php echo esc_html($property['bedrooms']); ?> <?php echo esc_html($property['bedrooms'] > 1 ? 'beds' : 'bed'); ?></span>
-                    </span>
-                <?php endif; ?>
-                
-                <?php if (!empty($property['bathrooms'])) : ?>
-                    <span class="mi-card__meta-item">
-                        <span class="mi-card__icon">🚿</span>
-                        <span><?php echo esc_html($property['bathrooms']); ?> <?php echo esc_html($property['bathrooms'] > 1 ? 'baths' : 'bath'); ?></span>
-                    </span>
-                <?php endif; ?>
-                
-                <?php if (!empty($property['max_guests'])) : ?>
-                    <span class="mi-card__meta-item">
-                        <span class="mi-card__icon">👥</span>
-                        <span><?php echo esc_html($property['max_guests']); ?> <?php echo esc_html($property['max_guests'] > 1 ? 'guests' : 'guest'); ?></span>
-                    </span>
-                <?php endif; ?>
-                
-                <?php if (!empty($property['square_feet'])) : ?>
-                    <span class="mi-card__meta-item">
-                        <span class="mi-card__icon">📏</span>
-                        <span><?php echo esc_html(number_format($property['square_feet'])); ?> sq ft</span>
-                    </span>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
-        
-        <?php if ($show_amenities && !empty($property['amenities'])) : ?>
-            <div class="mi-card__amenities">
-                <h4 class="mi-card__amenities-title">Amenities</h4>
-                <ul class="mi-card__amenities-list">
-                    <?php foreach (array_slice($property['amenities'], 0, 5) as $amenity) : ?>
-                        <li class="mi-card__amenity">
-                            <?php if (!empty($amenity['icon'])) : ?>
-                                <span class="mi-card__amenity-icon"><?php echo esc_html($amenity['icon']); ?></span>
-                            <?php endif; ?>
-                            <span class="mi-card__amenity-name"><?php echo esc_html($amenity['name']); ?></span>
-                        </li>
-                    <?php endforeach; ?>
-                    
-                    <?php if (count($property['amenities']) > 5) : ?>
-                        <li class="mi-card__amenity mi-card__amenity--more">
-                            <a href="<?php echo esc_url($property['permalink']); ?>" class="mi-card__amenity-more-link">
-                                +<?php echo count($property['amenities']) - 5; ?> more
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-base-darkest mb-2">
+                            <a href="<?php echo esc_url($property['link']); ?>" class="hover:text-secondary transition-colors">
+                                <?php echo esc_html($property['title']); ?>
                             </a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
-        
-        <?php if ($show_button) : ?>
-            <div class="mi-card__actions">
-                <a href="<?php echo esc_url($property['permalink']); ?>" class="mi-card__button">
-                    <?php echo esc_html($button_text); ?>
-                </a>
+                        </h3>
+                        
+                        <?php if (!empty($property['location'])) : ?>
+                            <div class="flex items-center text-base mb-3">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span><?php echo esc_html($property['location']); ?></span>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <?php if (!empty($property['excerpt'])) : ?>
+                            <p class="text-base-light text-sm mb-4"><?php echo wp_kses_post($property['excerpt']); ?></p>
+                        <?php endif; ?>
+                        
+                        <div class="grid grid-cols-3 gap-2 mb-4 border-t border-subtle-lightest pt-4">
+                            <?php if (!empty($property['bedrooms'])) : ?>
+                                <div class="bg-subtle-lightest rounded-[calc(var(--radius-btn)/1.5)] p-2 text-center">
+                                    <span class="block text-xs text-base-light">Bedrooms</span>
+                                    <span class="font-semibold text-base"><?php echo esc_html($property['bedrooms']); ?></span>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($property['bathrooms'])) : ?>
+                                <div class="bg-subtle-lightest rounded-[calc(var(--radius-btn)/1.5)] p-2 text-center">
+                                    <span class="block text-xs text-base-light">Bathrooms</span>
+                                    <span class="font-semibold text-base"><?php echo esc_html($property['bathrooms']); ?></span>
+                                </div>
+                            <?php endif; ?>
+                            
+                            <?php if (!empty($property['area'])) : ?>
+                                <div class="bg-subtle-lightest rounded-[calc(var(--radius-btn)/1.5)] p-2 text-center">
+                                    <span class="block text-xs text-base-light">Area</span>
+                                    <span class="font-semibold text-base"><?php echo esc_html($property['area']); ?></span>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <?php if (!empty($property['amenities'])) : ?>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <?php foreach (array_slice($property['amenities'], 0, 3) as $amenity) : ?>
+                                    <span class="bg-subtle-lightest text-base px-3 py-1 rounded-full text-xs">
+                                        <?php echo esc_html($amenity['name']); ?>
+                                    </span>
+                                <?php endforeach; ?>
+                                <?php if (count($property['amenities']) > 3) : ?>
+                                    <span class="text-secondary text-xs">+<?php echo count($property['amenities']) - 3; ?> more</span>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <a href="<?php echo esc_url($property['link']); ?>" class="block w-full bg-secondary hover:bg-secondary-hover text-white text-center py-[var(--spacing-btn-y)] px-[var(--spacing-btn-x)] rounded-[var(--radius-btn)] font-semibold transition-colors shadow-[var(--shadow-btn)]">
+                            View Property
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <div class="col-span-full text-center p-8 bg-subtle-lightest rounded-[var(--radius-btn)]">
+                <p class="text-base">No properties found.</p>
             </div>
         <?php endif; ?>
     </div>
