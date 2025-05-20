@@ -237,6 +237,10 @@ if (!function_exists('mi_prepare_business_data')) {
             $data['price'] = carbon_get_post_meta($post->ID, 'business_price');
             $data['status'] = carbon_get_post_meta($post->ID, 'business_status');
             $data['featured'] = carbon_get_post_meta($post->ID, 'business_featured');
+            $data['phone'] = carbon_get_post_meta($post->ID, 'business_phone');
+            $data['email'] = carbon_get_post_meta($post->ID, 'business_email');
+            $data['website'] = carbon_get_post_meta($post->ID, 'business_website');
+            $data['address'] = carbon_get_post_meta($post->ID, 'business_address');
             
             // Get business type taxonomy
             $business_types = get_the_terms($post->ID, 'business_type');

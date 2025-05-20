@@ -21,11 +21,13 @@
     {# Loop through cards and display them #}
     {% if cards|length > 0 %}
         {% for card in cards %}
-            <div class="d-card shadow-xl">
+            {# Apply different classes based on variant #}
+            <div class="d-card shadow-xl {% if attributes.variant == 'property' %}d-card-property{% elseif attributes.variant == 'business' %}d-card-business{% endif %}">
                 {% if card.thumbnail %}
                     <figure>
                         <img src="{{ card.thumbnail }}" alt="{{ card.title }}">
                         
+                        {# Property badges #}
                         {% if attributes.variant == 'property' and card.price %}
                             <div class="d-badge d-badge-primary absolute bottom-4 left-4 text-lg">
                                 {{ card.price }}
@@ -43,6 +45,25 @@
                                 Featured
                             </div>
                         {% endif %}
+                        
+                        {# Business badges #}
+                        {% if attributes.variant == 'business' and card.price %}
+                            <div class="d-badge d-badge-primary absolute bottom-4 left-4 text-lg">
+                                {{ card.price }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if attributes.variant == 'business' and card.status %}
+                            <div class="d-badge d-badge-accent absolute top-4 right-4">
+                                {{ card.status }}
+                            </div>
+                        {% endif %}
+                        
+                        {% if attributes.variant == 'business' and card.featured %}
+                            <div class="d-badge d-badge-secondary absolute top-4 left-4">
+                                Featured
+                            </div>
+                        {% endif %}
                     </figure>
                 {% endif %}
                 
@@ -53,6 +74,7 @@
                         <p>{{ card.excerpt }}</p>
                     {% endif %}
                     
+                    {# Property Card Metadata #}
                     {% if attributes.variant == 'property' %}
                         <div class="flex flex-wrap gap-2 mt-4">
                             {% if card.location %}
@@ -80,6 +102,52 @@
                                 <div class="d-badge d-badge-outline">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                                     {{ card.area }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    
+                    {# Business Card Metadata #}
+                    {% elseif attributes.variant == 'business' %}
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            {% if card.location %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    {{ card.location }}
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.business_type %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                                    {{ card.business_type }}
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.phone %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    {{ card.phone }}
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.email %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    {{ card.email }}
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.website %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                                    <a href="{{ card.website }}" target="_blank" rel="noopener noreferrer" class="hover:underline">Website</a>
+                                </div>
+                            {% endif %}
+                            
+                            {% if card.address %}
+                                <div class="d-badge d-badge-outline">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                                    {{ card.address }}
                                 </div>
                             {% endif %}
                         </div>
