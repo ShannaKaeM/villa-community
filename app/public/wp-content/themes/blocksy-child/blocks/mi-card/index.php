@@ -2,7 +2,7 @@
 /**
  * MI Card Block
  * 
- * A simple property card component
+ * A property card component using Timber/Twig and Tailwind CSS classes
  */
 
 // Exit if accessed directly
@@ -30,169 +30,148 @@ function mi_register_card_block() {
         filemtime(get_stylesheet_directory() . '/blocks/mi-card/assets/css/editor.css')
     );
     
-    // Register editor script
-    wp_register_script(
-        'mi-card-editor-script',
-        get_stylesheet_directory_uri() . '/blocks/mi-card/assets/js/editor.js',
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', 'wp-data'),
-        filemtime(get_stylesheet_directory() . '/blocks/mi-card/assets/js/editor.js'),
-        true
-    );
-    
-    // Register the block
     register_block_type(__DIR__, array(
         'render_callback' => 'mi_render_card_block',
-        'editor_script' => 'mi-card-editor-script',
         'editor_style' => 'mi-card-editor-style',
-        'style' => 'mi-card-style',
+        'style' => 'mi-card-style'
     ));
 }
 add_action('init', 'mi_register_card_block');
 
 /**
- * Render the block
+ * Render the block.
+ *
+ * @param array    $attributes Block attributes.
+ * @param string   $content    Block content.
+ * @param WP_Block $block      Block instance.
+ * @return string  The rendered output.
  */
 function mi_render_card_block($attributes, $content, $block) {
-    // Get the count and columns
-    $count = isset($attributes['count']) ? $attributes['count'] : 3;
-    $columns = isset($attributes['columns']) ? $attributes['columns'] : 3;
-    
-    // Get the latest properties
+    // Check if Timber is active
+    if (!class_exists('Timber')) {
+        return '<div class="error">Timber plugin is required for this block.</div>';
+    }
+
+    // Default attributes
+    $attributes = wp_parse_args($attributes, array(
+        'variant' => 'property',
+        'postId' => 0,
+        'className' => '',
+        'count' => 3,
+        'columns' => 3
+    ));
+
+    // Get properties
     $args = array(
         'post_type' => 'property',
-        'posts_per_page' => $count,
+        'posts_per_page' => $attributes['count'],
         'orderby' => 'date',
-        'order' => 'DESC',
+        'order' => 'DESC'
     );
     
     $query = new WP_Query($args);
-    $content_data = array();
+    $properties = [];
     
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
             $post = get_post();
-            
-            // Basic post data
-            $post_data = array(
-                'id' => $post->ID,
-                'title' => get_the_title($post),
-                'excerpt' => get_the_excerpt($post),
-                'permalink' => get_permalink($post),
-                'date' => get_the_date('', $post),
-            );
-            
-            // Featured image
-            if (has_post_thumbnail($post)) {
-                $image_id = get_post_thumbnail_id($post);
-                $image = wp_get_attachment_image_src($image_id, 'medium_large');
-                if ($image) {
-                    $post_data['featured_image'] = array(
-                        'id' => $image_id,
-                        'src' => $image[0],
-                        'width' => $image[1],
-                        'height' => $image[2],
-                    );
-                }
-            } else {
-                // Placeholder image
-                $post_data['featured_image'] = array(
-                    'id' => 0,
-                    'src' => get_stylesheet_directory_uri() . '/assets/images/placeholder.jpg',
-                    'width' => 800,
-                    'height' => 600,
-                );
-            }
-            
-            // Property data from Carbon Fields
-            if (function_exists('carbon_get_post_meta')) {
-                // Basic property details
-                $post_data['address'] = carbon_get_post_meta($post->ID, 'property_address');
-                $post_data['city'] = carbon_get_post_meta($post->ID, 'property_city');
-                $post_data['state'] = carbon_get_post_meta($post->ID, 'property_state');
-                $post_data['zip'] = carbon_get_post_meta($post->ID, 'property_zip');
-                $post_data['bedrooms'] = carbon_get_post_meta($post->ID, 'property_bedrooms');
-                $post_data['bathrooms'] = carbon_get_post_meta($post->ID, 'property_bathrooms');
-                $post_data['square_feet'] = carbon_get_post_meta($post->ID, 'property_square_feet');
-                $post_data['nightly_rate'] = carbon_get_post_meta($post->ID, 'property_nightly_rate');
-                $post_data['max_guests'] = carbon_get_post_meta($post->ID, 'property_max_guests');
-                $post_data['booking_url'] = carbon_get_post_meta($post->ID, 'property_booking_url');
-                
-                // Status flags
-                $post_data['is_featured'] = carbon_get_post_meta($post->ID, 'property_is_featured');
-                $post_data['is_claimed'] = carbon_get_post_meta($post->ID, 'property_is_claimed');
-            }
-            
-            // Property type
-            $property_types = get_the_terms($post->ID, 'property_type');
-            if ($property_types && !is_wp_error($property_types)) {
-                $post_data['property_type'] = array();
-                foreach ($property_types as $term) {
-                    $post_data['property_type'][] = array(
-                        'id' => $term->term_id,
-                        'name' => $term->name,
-                        'slug' => $term->slug,
-                        'icon' => get_term_meta($term->term_id, 'property_type_icon_text', true),
-                    );
-                }
-            }
-            
-            // Amenities
-            $amenities = get_the_terms($post->ID, 'amenity');
-            if ($amenities && !is_wp_error($amenities)) {
-                $post_data['amenities'] = array();
-                foreach ($amenities as $term) {
-                    $post_data['amenities'][] = array(
-                        'id' => $term->term_id,
-                        'name' => $term->name,
-                        'slug' => $term->slug,
-                        'icon' => get_term_meta($term->term_id, 'amenity_icon_text', true),
-                    );
-                }
-            }
-            
-            // Location taxonomy
-            $locations = get_the_terms($post->ID, 'location');
-            if ($locations && !is_wp_error($locations)) {
-                $post_data['location_terms'] = array();
-                foreach ($locations as $term) {
-                    $post_data['location_terms'][] = array(
-                        'id' => $term->term_id,
-                        'name' => $term->name,
-                        'slug' => $term->slug,
-                        'icon' => get_term_meta($term->term_id, 'location_image_text', true),
-                    );
-                }
-            }
-            
-            $content_data[] = $post_data;
+            $properties[] = mi_prepare_property_data($post);
         }
     }
     wp_reset_postdata();
     
-    // Template args
-    $args = array(
-        'variant' => 'property',
-        'layout' => 'grid',
-        'columns' => $columns,
-        'showImage' => true,
-        'showTitle' => true,
-        'showExcerpt' => true,
-        'showMeta' => true,
-        'showAmenities' => true,
-        'showLocation' => true,
-        'showPrice' => true,
-        'showButton' => true,
-        'buttonText' => 'View Details',
-        'className' => isset($attributes['className']) ? $attributes['className'] : '',
+    // If no properties found, use current post
+    if (empty($properties) && $attributes['postId']) {
+        $post = get_post($attributes['postId']);
+        if ($post) {
+            $properties[] = mi_prepare_property_data($post);
+        }
+    }
+    
+    // Set up the context for Timber
+    $context = Timber::context();
+    $context['attributes'] = $attributes;
+    $context['properties'] = $properties;
+    $context['block'] = $block;
+    $context['mb'] = $block; // For compatibility with get_block_wrapper_attributes
+    
+    // Determine which Twig template to use
+    $templates = ['mi-card.twig'];
+    
+    if ($attributes['variant'] !== 'default' && file_exists(__DIR__ . '/' . $attributes['variant'] . '.twig')) {
+        array_unshift($templates, $attributes['variant'] . '.twig');
+    }
+    
+    // Render the Twig template
+    return Timber::compile($templates, $context);
+}
+
+/**
+ * Prepare basic post data.
+ *
+ * @param WP_Post $post The post object.
+ * @return array The prepared data.
+ */
+function mi_prepare_post_data($post) {
+    $title = get_the_title($post);
+    $excerpt = has_excerpt($post) ? get_the_excerpt($post) : wp_trim_words(get_the_content('', false, $post), 20);
+    $permalink = get_permalink($post);
+    $image_id = get_post_thumbnail_id($post);
+    $image_url = $image_id ? wp_get_attachment_image_url($image_id, 'large') : '';
+    
+    return array(
+        'title' => $title,
+        'excerpt' => $excerpt,
+        'link' => $permalink,
+        'image_url' => $image_url
     );
+}
+
+/**
+ * Prepare property data.
+ *
+ * @param WP_Post $post The post object.
+ * @return array The prepared data.
+ */
+function mi_prepare_property_data($post) {
+    // Get basic post data
+    $data = mi_prepare_post_data($post);
     
-    // Start output buffering
-    ob_start();
+    // Add property-specific data if Carbon Fields is active
+    if (function_exists('carbon_get_post_meta')) {
+        $data['bedrooms'] = carbon_get_post_meta($post->ID, 'property_bedrooms');
+        $data['bathrooms'] = carbon_get_post_meta($post->ID, 'property_bathrooms');
+        $data['area'] = carbon_get_post_meta($post->ID, 'property_area');
+        $data['price'] = carbon_get_post_meta($post->ID, 'property_price');
+        $data['location'] = carbon_get_post_meta($post->ID, 'property_location');
+        $data['featured'] = carbon_get_post_meta($post->ID, 'property_featured');
+        $data['status'] = carbon_get_post_meta($post->ID, 'property_status');
+    }
     
-    // Include the template
-    include __DIR__ . '/mi-card.php';
+    // Get property type terms
+    $property_types = get_the_terms($post->ID, 'property_type');
+    if ($property_types && !is_wp_error($property_types)) {
+        $data['property_types'] = [];
+        foreach ($property_types as $term) {
+            $data['property_types'][] = [
+                'name' => $term->name,
+                'slug' => $term->slug
+            ];
+        }
+    }
     
-    // Return the buffered content
-    return ob_get_clean();
+    // Get amenities
+    $amenities = get_the_terms($post->ID, 'amenity');
+    if ($amenities && !is_wp_error($amenities)) {
+        $data['amenities'] = [];
+        foreach ($amenities as $term) {
+            $data['amenities'][] = [
+                'name' => $term->name,
+                'slug' => $term->slug
+            ];
+        }
+    }
+    
+    return $data;
 }
