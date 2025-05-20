@@ -1,20 +1,20 @@
 {% if cards|length > 0 %}
     {% for card in cards %}
         {# Card classes setup #}
-        {% set card_classes = 'd-card bg-base-100 w-full shadow-xl' %}
+        {% set card_classes = 'm-card bg-base-100 w-full shadow-xl' %}
         
         {% if attributes.variant == 'property' %}
-            {% set card_classes = card_classes ~ ' d-card-property' %}
+            {% set card_classes = card_classes ~ ' m-card-property' %}
         {% elseif attributes.variant == 'business' %}
-            {% set card_classes = card_classes ~ ' d-card-business' %}
+            {% set card_classes = card_classes ~ ' m-card-business' %}
         {% elseif attributes.variant == 'generic' %}
-            {% set card_classes = card_classes ~ ' d-card-generic' %}
+            {% set card_classes = card_classes ~ ' m-card-generic' %}
         {% endif %}
         
         {% if attributes.cardSize == 'compact' %}
-            {% set card_classes = card_classes ~ ' d-card-compact' %}
+            {% set card_classes = card_classes ~ ' m-card-compact' %}
         {% elseif attributes.cardSize == 'large' %}
-            {% set card_classes = card_classes ~ ' d-card-side' %}
+            {% set card_classes = card_classes ~ ' m-card-side' %}
         {% endif %}
         
         <div class="{{ card_classes }}">
@@ -25,19 +25,19 @@
                     
                     {% if attributes.variant == 'property' or attributes.variant == 'business' %}
                         {% if card.price %}
-                            <div class="d-badge d-badge-primary absolute bottom-4 left-4 text-lg">
+                            <div class="m-badge m-badge-primary absolute bottom-4 left-4 text-lg">
                                 {{ card.price }}
                             </div>
                         {% endif %}
                         
                         {% if card.status %}
-                            <div class="d-badge d-badge-accent absolute top-4 right-4">
+                            <div class="m-badge m-badge-emphasis absolute top-4 right-4">
                                 {{ card.status }}
                             </div>
                         {% endif %}
                         
                         {% if card.featured %}
-                            <div class="d-badge d-badge-secondary absolute top-4 left-4">
+                            <div class="m-badge m-badge-secondary absolute top-4 left-4">
                                 Featured
                             </div>
                         {% endif %}
@@ -46,8 +46,8 @@
             {% endif %}
             
             {# Card body #}
-            <div class="d-card-body">
-                <h2 class="d-card-title">{{ card.title }}</h2>
+            <div class="m-card-body">
+                <h2 class="m-card-title">{{ card.title }}</h2>
                 
                 {% if card.excerpt %}
                     <p>{{ card.excerpt }}</p>
@@ -58,28 +58,28 @@
                     <div class="flex flex-wrap gap-2 mt-4">
                         {# Property metadata #}
                         {% if card.location %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                 {{ card.location }}
                             </div>
                         {% endif %}
                         
                         {% if card.bedrooms %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                                 {{ card.bedrooms }} Beds
                             </div>
                         {% endif %}
                         
                         {% if card.bathrooms %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                 {{ card.bathrooms }} Baths
                             </div>
                         {% endif %}
                         
                         {% if card.area %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                                 {{ card.area }}
                             </div>
@@ -89,14 +89,14 @@
                     <div class="flex flex-wrap gap-2 mt-4">
                         {# Business metadata #}
                         {% if card.location %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                 {{ card.location }}
                             </div>
                         {% endif %}
                         
                         {% if card.business_type %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
                                 {{ card.business_type }}
                             </div>
@@ -104,28 +104,28 @@
                         
                         {# Additional business metadata #}
                         {% if card.phone %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
                                 {{ card.phone }}
                             </div>
                         {% endif %}
                         
                         {% if card.email %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                 {{ card.email }}
                             </div>
                         {% endif %}
                         
                         {% if card.website %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
                                 <a href="{{ card.website }}" target="_blank" rel="noopener noreferrer" class="hover:underline">Website</a>
                             </div>
                         {% endif %}
                         
                         {% if card.address %}
-                            <div class="d-badge d-badge-outline">
+                            <div class="m-badge m-badge-outline">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
                                 {{ card.address }}
                             </div>
@@ -135,25 +135,25 @@
                 
                 {# Card actions #}
                 {% if card.permalink %}
-                    <div class="d-card-actions justify-end mt-4">
-                        {% set button_classes = 'd-btn' %}
+                    <div class="m-card-actions justify-end mt-4">
+                        {% set button_classes = 'm-btn' %}
                         
                         {% if attributes.buttonColor == 'primary' %}
-                            {% set button_classes = button_classes ~ ' d-btn-primary' %}
+                            {% set button_classes = button_classes ~ ' m-btn-primary' %}
                         {% elseif attributes.buttonColor == 'secondary' %}
-                            {% set button_classes = button_classes ~ ' d-btn-secondary' %}
-                        {% elseif attributes.buttonColor == 'accent' %}
-                            {% set button_classes = button_classes ~ ' d-btn-accent' %}
-                        {% elseif attributes.buttonColor == 'neutral' %}
-                            {% set button_classes = button_classes ~ ' d-btn-neutral' %}
+                            {% set button_classes = button_classes ~ ' m-btn-secondary' %}
+                        {% elseif attributes.buttonColor == 'emphasis' %}
+                            {% set button_classes = button_classes ~ ' m-btn-emphasis' %}
+                        {% elseif attributes.buttonColor == 'subtle' %}
+                            {% set button_classes = button_classes ~ ' m-btn-subtle' %}
                         {% else %}
-                            {% set button_classes = button_classes ~ ' d-btn-primary' %}
+                            {% set button_classes = button_classes ~ ' m-btn-primary' %}
                         {% endif %}
                         
                         {% if attributes.buttonSize == 'sm' %}
-                            {% set button_classes = button_classes ~ ' d-btn-sm' %}
+                            {% set button_classes = button_classes ~ ' m-btn-sm' %}
                         {% elseif attributes.buttonSize == 'lg' %}
-                            {% set button_classes = button_classes ~ ' d-btn-lg' %}
+                            {% set button_classes = button_classes ~ ' m-btn-lg' %}
                         {% endif %}
                         
                         <a href="{{ card.permalink }}" class="{{ button_classes }}">

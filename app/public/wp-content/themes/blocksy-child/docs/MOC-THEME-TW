@@ -1,0 +1,686 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme) theme(static);
+/* @import "tailwindcss/preflight.css" layer(base); */
+@import "tailwindcss/utilities.css" layer(utilities);
+:root {
+  /* Foundational Palette (Single Source of Truth) */
+  --theme-palette-color-1: #5A7F80;
+  --theme-palette-color-2: #883A3F; 
+  --theme-palette-color-3:rgb(21, 143, 147); 
+  --theme-palette-color-4:rgb(140, 121, 102); 
+  --theme-palette-color-5: #888888; 
+  --theme-palette-color-6: #ffffff; 
+  --theme-palette-color-7: #333333; 
+  --theme-palette-color-8: #f8f9fb;
+}
+
+@theme {
+  /* Primary Color Scale */
+  --primary: var(--theme-palette-color-1);
+  --primary-lightest: color-mix(in oklch, var(--primary) 30%, white);
+  --primary-light: color-mix(in oklch, var(--primary) 70%, white);
+  --primary-dark: color-mix(in oklch, var(--primary) 70%, black);
+  --primary-darkest: color-mix(in oklch, var(--primary) 30%, black);
+  
+  /* Secondary Color Scale */
+  --secondary: var(--theme-palette-color-2);
+  --secondary-lightest: color-mix(in oklch, var(--secondary) 30%, white);
+  --secondary-light: color-mix(in oklch, var(--secondary) 70%, white);
+  --secondary-dark: color-mix(in oklch, var(--secondary) 70%, black);
+  --secondary-darkest: color-mix(in oklch, var(--secondary) 30%, black);
+  
+  /* Emphasis Color Scale */
+  --emphasis: var(--theme-palette-color-3);
+  --emphasis-lightest: color-mix(in oklch, var(--emphasis) 30%, white);
+  --emphasis-light: color-mix(in oklch, var(--emphasis) 70%, white);
+  --emphasis-dark: color-mix(in oklch, var(--emphasis) 70%, black);
+  --emphasis-darkest: color-mix(in oklch, var(--emphasis) 30%, black);
+  
+  /* Subtle Color Scale */
+  --subtle: var(--theme-palette-color-5);
+  --subtle-lightest: color-mix(in oklch, var(--subtle) 30%, white);
+  --subtle-light: color-mix(in oklch, var(--subtle) 70%, white);
+  --subtle-dark: color-mix(in oklch, var(--subtle) 70%, black);
+  --subtle-darkest: color-mix(in oklch, var(--subtle) 30%, black);
+
+  /* Base Color Scale */
+  --base: var(--theme-palette-color-4);
+  --base-lightest: color-mix(in oklch, var(--base) 30%, white);
+  --base-light: color-mix(in oklch, var(--base) 70%, white);
+  --base-dark: color-mix(in oklch, var(--base) 70%, black);
+  --base-darkest: color-mix(in oklch, var(--base) 30%, black);
+  
+  /* Black and White */
+  --black: var(--theme-palette-color-7);
+  --white: var(--theme-palette-color-6);
+}
+
+/**
+ * MI Theme Component Library
+ * 
+ * This file contains all the component definitions for the MI Theme.
+ * Components use the m- prefix to distinguish them from DaisyUI components.
+ */
+
+@layer components {
+  /* ======= Card Components ======= */
+  
+  .m-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: flex-start; /* Align content to top */
+    border-radius: 0.5rem;
+    background-color: var(--white);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    height: 100%; /* Make all cards the same height */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover effects */
+  }
+  
+  .m-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  }
+  
+  .m-card:focus {
+    outline: none;
+  }
+  
+  .m-card-bordered {
+    border: 1px solid rgb(229 231 235);
+  }
+  
+  .m-card-compact .m-card-body {
+    padding: 1rem;
+    gap: 0.375rem; /* Even tighter spacing for compact cards */
+  }
+  
+  .m-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Further reduced gap for tighter spacing */
+    padding: 1.25rem;
+    flex-grow: 1; /* Allow body to grow and push actions to bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Start content at the top */
+  }
+  
+  /* Push card actions to the bottom */
+  .m-card-body > .m-card-actions {
+    margin-top: auto;
+    padding-top: 0.75rem;
+  }
+  
+  .m-card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--base-dark);
+    margin-bottom: 0.125rem; /* Minimal space after title */
+  }
+  
+  .m-card-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--base);
+    margin-top: -0.125rem; /* Pull subtitle closer to title */
+  }
+  
+  .m-card-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: auto; /* Push actions to bottom of card */
+    padding-top: 1rem; /* Add some space above the buttons */
+  }
+  
+  /* Card figure styling - works with both .m-card-figure and figure elements */
+  .m-card-figure,
+  .m-card > figure {
+    position: relative;
+    width: 100%;
+    margin: 0; /* Remove default figure margin */
+    overflow: hidden; /* Contain image on hover */
+  }
+  
+  /* Badge positioning within card figures */
+  .m-card-figure .m-badge,
+  .m-card > figure .m-badge {
+    position: absolute;
+    z-index: 10;
+  }
+  
+  /* Standard badge positions */
+  .m-badge.top-4 { top: 1rem; }
+  .m-badge.bottom-4 { bottom: 1rem; }
+  .m-badge.left-4 { left: 1rem; }
+  .m-badge.right-4 { right: 1rem; }
+  
+  .m-card-figure img,
+  .m-card > figure img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block; /* Remove any extra space */
+    transition: transform 0.3s ease; /* Smooth zoom effect */
+  }
+  
+  .m-card:hover .m-card-figure img,
+  .m-card:hover > figure img {
+    transform: scale(1.05); /* Subtle zoom on hover */
+  }
+  
+  /* Variant-specific Card Styles */
+  .m-card-property {
+    border-left: 4px solid var(--primary);
+  }
+  
+  .m-card-business {
+    border-left: 4px solid var(--secondary);
+  }
+  
+  .m-card-generic {
+    border-left: 4px solid var(--emphasis);
+  }
+  
+  /* Card metadata container */
+  .m-card-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Fix for flex alignment in metadata badges */
+  .m-card-metadata .m-badge {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  /* Fix for SVG icons in badges */
+  .m-badge svg {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.25rem;
+  }
+  
+  /* ======= Typography Components ======= */
+  
+  /* Pretitle - Small uppercase text above title */
+  @layer components {
+    .m-pretitle {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--subtle);
+      margin-bottom: 0.25rem;
+      line-height: 1.2;
+    }
+  }
+  
+  /* Size variants for pretitle */
+  @layer components {
+    .m-pretitle-sm {
+      font-size: var(--text-xs);
+    }
+  }
+  
+  @layer components {
+    .m-pretitle-lg {
+      font-size: var(--text-base);
+    }
+  }
+  
+  /* Title - Main heading */
+  @layer components {
+    .m-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--base-dark);
+      margin-bottom: 0.25rem;
+    }
+  }
+  
+  /* Size variants for title */
+  @layer components {
+    .m-title-sm {
+      font-size: var(--text-xl);
+    }
+  }
+  
+  @layer components {
+    .m-title-lg {
+      font-size: var(--text-3xl);
+    }
+  }
+  
+  /* Subtitle - Secondary heading */
+  @layer components {
+    .m-subtitle {
+      font-size: var(--text-lg);
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--base);
+      margin-top: -0.125rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* Size variants for subtitle */
+  @layer components {
+    .m-subtitle-sm {
+      font-size: var(--text-base);
+    }
+  }
+  
+  @layer components {
+    .m-subtitle-lg {
+      font-size: var(--text-xl);
+    }
+  }
+  
+  /* Description - Short descriptive text */
+  @layer components {
+    .m-description {
+      font-size: var(--text-base);
+      line-height: 1.5;
+      color: var(--base);
+      margin-bottom: 1rem;
+    }
+  }
+  
+  /* Size variants for description */
+  @layer components {
+    .m-description-sm {
+      font-size: var(--text-sm);
+    }
+  }
+  
+  @layer components {
+    .m-description-lg {
+      font-size: var(--text-lg);
+    }
+  }
+  
+  /* Body - Longer body text */
+  @layer components {
+    .m-body {
+      font-size: var(--text-base);
+      line-height: 1.6;
+      color: var(--base);
+      margin-bottom: 1rem;
+    }
+  }
+  
+  /* Size variants for body */
+  @layer components {
+    .m-body-sm {
+      font-size: var(--text-sm);
+    }
+  }
+  
+  @layer components {
+    .m-body-lg {
+      font-size: var(--text-lg);
+    }
+  }
+  
+  /* Text alignment utilities */
+  @layer components {
+    .m-text-center {
+      text-align: center;
+    }
+  }
+  
+  @layer components {
+    .m-text-right {
+      text-align: right;
+    }
+  }
+  
+  /* Color variants */
+  @layer components {
+    .m-text-primary {
+      color: var(--primary);
+    }
+  }
+  
+  @layer components {
+    .m-text-secondary {
+      color: var(--secondary);
+    }
+  }
+  
+  @layer components {
+    .m-text-emphasis {
+      color: var(--emphasis);
+    }
+  }
+  
+  @layer components {
+    .m-text-subtle {
+      color: var(--subtle);
+    }
+  }
+  
+  /* ======= Button Components ======= */
+  
+  .m-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .m-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+  
+  .m-btn-primary {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  .m-btn-primary:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .m-btn-secondary {
+    background-color: var(--secondary);
+    color: white;
+  }
+  
+  .m-btn-secondary:hover {
+    background-color: var(--secondary-dark);
+  }
+  
+  .m-btn-emphasis {
+    background-color: var(--emphasis);
+    color: white;
+  }
+  
+  .m-btn-emphasis:hover {
+    background-color: var(--emphasis-dark);
+  }
+  
+  .m-btn-subtle {
+    background-color: var(--subtle);
+    color: white;
+  }
+  
+  .m-btn-subtle:hover {
+    background-color: var(--subtle-dark);
+  }
+  
+  .m-btn-outline {
+    background-color: transparent;
+    border-color: currentColor;
+    color: var(--primary);
+  }
+  
+  .m-btn-outline:hover {
+    background-color: rgb(243 244 246);
+  }
+  
+  .m-btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .m-btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  /* ======= Badge Components ======= */
+  
+  .m-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    gap: 0.25rem; /* Space between icon and text */
+  }
+  
+  .m-badge-primary {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  .m-badge-secondary {
+    background-color: var(--secondary);
+    color: white;
+  }
+  
+  .m-badge-emphasis {
+    background-color: var(--emphasis);
+    color: var(--black);
+  }
+  
+  .m-badge-subtle {
+    background-color: var(--subtle);
+    color: white;
+  }
+  
+  .m-badge-outline {
+    background-color: transparent;
+    border: 1px solid currentColor;
+  }
+  
+  /* ======= Form Components ======= */
+  
+  .m-form-control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .m-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 0.5rem;
+  }
+  
+  .m-label-text {
+    font-size: 0.875rem;
+    color: var(--black);
+  }
+  
+  .m-input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgb(209 213 219);
+    border-radius: 0.375rem;
+    background-color: white;
+    color: var(--black);
+    font-size: 0.875rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .m-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+  
+  .m-checkbox {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid rgb(209 213 219);
+    border-radius: 0.25rem;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+  
+  .m-checkbox:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .m-checkbox:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+  
+  .m-checkbox-sm {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .m-range {
+    appearance: none;
+    width: 100%;
+    height: 0.5rem;
+    background-color: rgb(229 231 235);
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+  
+  .m-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--primary);
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+  
+  /* ======= Filter Components ======= */
+  
+  .m-filter-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .m-filter-section {
+    margin-bottom: 1rem;
+  }
+  
+  .m-filter-section-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--black);
+  }
+  
+  .m-filter-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  /* ======= Join Component (Button Groups) ======= */
+  
+  .m-join {
+    display: inline-flex;
+    border-radius: 0.375rem;
+    overflow: hidden;
+  }
+  
+  .m-join-item {
+    border-radius: 0;
+    margin-left: -1px;
+  }
+  
+  .m-join-item:first-child {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+    margin-left: 0;
+  }
+  
+  .m-join-item:last-child {
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+  }
+  
+  /* ======= Layout Utilities ======= */
+  
+  .m-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .m-grid-cols-1 {
+    grid-template-columns: 1fr;
+  }
+  
+  @media (min-width: 768px) {
+    .m-md\:grid-cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .m-lg\:grid-cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .m-lg\:grid-cols-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* ======= Dark Mode Variants ======= */
+  
+  @media (prefers-color-scheme: dark) {
+    .m-card {
+      background-color: rgb(31 41 55);
+    }
+    
+    .m-card-title {
+      color: white;
+    }
+    
+    .m-label-text {
+      color: white;
+    }
+    
+    .m-input {
+      background-color: rgb(17 24 39);
+      border-color: rgb(55 65 81);
+      color: white;
+    }
+    
+    .m-checkbox {
+      background-color: rgb(17 24 39);
+      border-color: rgb(55 65 81);
+    }
+    
+    .m-range {
+      background-color: rgb(55 65 81);
+    }
+    
+    .m-btn-outline:hover {
+      background-color: rgb(31 41 55);
+    }
+    
+    .m-filter-section-title {
+      color: white;
+    }
+  }
+}

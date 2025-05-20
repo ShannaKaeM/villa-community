@@ -70,7 +70,7 @@ The block supports the following attributes:
 | linkUrl | string | '#' | Link URL for cards |
 | linkText | string | 'Learn More' | Button text for cards |
 | buttonSize | string | 'md' | Button size (sm, md, lg) |
-| buttonColor | string | 'primary' | Button color (primary, secondary, accent, neutral) |
+| buttonColor | string | 'primary' | Button color (primary, secondary, emphasis, subtle) |
 | price | string | '' | Price for property/business cards |
 | status | string | '' | Status for property/business cards |
 | featured | boolean | false | Featured flag for cards |
@@ -104,13 +104,13 @@ The template uses conditional logic to display different badges and metadata bas
 
 ### Styling
 
-The block uses DaisyUI components with the `d-` prefix to avoid conflicts:
+The block uses our custom TW4 components with the `m-` prefix:
 
-- `d-card`: Base card component
-- `d-card-compact`: Compact card variant
-- `d-card-side`: Side-by-side card variant (large)
-- `d-badge`: For displaying metadata
-- `d-btn`: For action buttons
+- `m-card`: Base card component
+- `m-card-compact`: Compact card variant
+- `m-card-side`: Side-by-side card variant (large)
+- `m-badge`: For displaying metadata
+- `m-btn`: For action buttons
 
 Additional styling is provided in `Block.styles.css` for variant-specific customizations.
 
@@ -284,7 +284,7 @@ filterCategories: {
 ## Technical Notes
 
 - The block follows the grid-first approach from SITE-SETUP-3.md
-- All DaisyUI components use the `d-` prefix as defined in MOC-THEME.md
-- The block integrates with the color system defined in MOC-THEME.md
+- All custom components use the `m-` prefix as defined in MOC-THEME-TW.md
+- The block integrates with the color system defined in MOC-THEME-TW.md
 - The implementation follows the island architecture pattern
 - The block is designed to be responsive across all screen sizes
